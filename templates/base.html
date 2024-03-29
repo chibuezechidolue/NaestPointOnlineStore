@@ -21,8 +21,9 @@
           <a class="navbar-brand" href="{% url 'home-page'%}"><img class="main-logo" src="{%static 'images/naest-point-logo.svg' %}" alt="Logo"></a>
           </div>
           <div class="search-bar">
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search entire store" aria-label="Search">
+            <form class="d-flex" role="search" action="{% url 'search-prod-page' %}" method="get">
+              <!-- {% csrf_token %} -->
+              <input name="search_bar" class="form-control me-2" type="search" placeholder="Search entire store" aria-label="Search">
               <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i></button>
             </form>
           </div>
@@ -38,18 +39,19 @@
               <a href="cart.html"><img src="{% static 'images/Bag.svg'%}" class="nav-svg cart-icon" alt="..."></a>
               <div class="search">
                 <span class="ikon">
-                  <img src="static/images/Search-icon.svg" class="nav-svg searchBtn" alt="...">
-                  <img src="static/images/Close-icon.svg" class="nav-svg closeBtn" alt="...">
+                  <img src="{%static 'images/Search-icon.svg'%}" class="nav-svg searchBtn" alt="...">
+                  <img src="{%static 'images/Close-icon.svg'%}" class="nav-svg closeBtn" alt="...">
                 </span>
               </div>
             </li>
-            <form action="", method="post">
           </div>
-          <div class="searchBox">
-            <input type="text" placeholder="Serach entire store">
+          <form action="{% url 'search-prod-page' %}" method="get">
+            {% csrf_token %}
+            <div class="searchBox">
+            <input name="search_bar" type="text" placeholder="Serach entire store">
           </div>
+          </form>
         </div>
-      </form>
       </nav>
     </section>
     <section class="navbar-two">
