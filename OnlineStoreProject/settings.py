@@ -65,7 +65,8 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "Store.context_processors.collections",
+                # new context variables
+                "Store.context_processors.nav_bar",
             ],
         },
     },
@@ -128,11 +129,13 @@ FIXTURE_DIRS = ['fixtures/']
 
 # model for authenticating users
 AUTH_USER_MODEL = "User.CustomUser"
-
+# the default login urls rather than accounts/login
+LOGIN_URL = '/user/login/'
 # url route to redirect to after login authentication
 LOGIN_REDIRECT_URL="home-page"
 # url route to redirect to after logout
 LOGOUT_REDIRECT_URL = 'home-page'
+
 
 # Email backend settings
 EMAIL_BACKEND= "django.core.mail.backends.smtp.EmailBackend"

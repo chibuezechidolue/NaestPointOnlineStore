@@ -1,192 +1,71 @@
 
 <!DOCTYPE html>
 <html>
+  {% extends "base.html" %}
+  {% load static %}
 
-<head>
-  <meta charset="utf-8">
-  <title>Naest</title>
-  <link href="https://fonts.googleapis.com/css2?family=Halant:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
-</head>
 
 <body>
-
-  <!-- Nav Bar -->
-
-  <special-header></special-header>
-
+{%block content%}
   <!-- Products-1 -->
 
   <section id="shop-all">
     <div class="product-top">
       <div class="filter">
-        <button type="button" class="filtered all active"> <a href="#">All</a></button>
-        <button type="button" class="filtered shirt"> <a href="#">Shirt</a></button>
-        <button type="button" class="filtered polo"> <a href="#">Polo</a></button>
-        <button type="button" class="filtered trouser"> <a href="#">Trouser</a></button>
-        <button type="button" class="filtered skirt"> <a href="#">Skirt</a></button>
-        <button type="button" class="filtered gown"> <a href="#">Gown</a></button>
-        <button type="button" class="filtered suit"> <a href="#">Suit</a></button>
-        <button type="button" class="filtered sweater"> <a href="#">Sweater</a></button>
-        <button type="button" class="filtered overall"> <a href="#">Overall</a></button>
-        <button type="button" class="filtered native"> <a href="#">Native</a></button>
-        <button type="button" class="filtered t-shirt"> <a href="#">T-shirt</a></button>
+        <button type="button" class="filtered all active"> <a href="{% url 'shop-all-page' category='all' %}">All</a></button>
+        <button type="button" class="filtered shirt"> <a href="{% url 'shop-all-page' category='shirt' %}">Shirt</a></button>
+        <button type="button" class="filtered polo"> <a href="{% url 'shop-all-page' category='polo' %}">Polo</a></button>
+        <button type="button" class="filtered trouser"> <a href="{% url 'shop-all-page' category='trouser' %}">Trouser</a></button>
+        <button type="button" class="filtered skirt"> <a href="{% url 'shop-all-page' category='skirt' %}">Skirt</a></button>
+        <button type="button" class="filtered gown"> <a href="{% url 'shop-all-page' category='gown' %}">Gown</a></button>
+        <button type="button" class="filtered suit"> <a href="{% url 'shop-all-page' category='suit' %}">Suit</a></button>
+        <button type="button" class="filtered sweater"> <a href="{% url 'shop-all-page' category='sweater' %}">Sweater</a></button>
+        <button type="button" class="filtered overall"> <a href="{% url 'shop-all-page' category='overall' %}">Overall</a></button>
+        <button type="button" class="filtered native"> <a href="{% url 'shop-all-page' category='Native' %}">Native</a></button>
+        <button type="button" class="filtered t-shirt"> <a href="{% url 'shop-all-page' category='shirt' %}">T-shirt</a></button>
       </div>
     </div>
 
     <div class="row g-4">
+      {% for prod in page_obj%}
       <div class="col-6 col-sm-6 col-md-6 col-lg-3 product-card">
+        <a href="{%url 'single-prod-page' prod.product_name %}">
         <div class="card card-design">
           <div class="card-img">
-            <img src="images/Orange-gown.png" class="card-img-top" alt="...">
+            <img src="../../media/{{prod.product_img_1}}" class="card-img-top" alt="...">
           </div>
           <div class="card-body product-body">
-            <h3 class="product-title">Irish Silky Gown</h3>
+            <h3 class="product-title">{{prod.product_name}}</h3>
             <div class="product-info">
-              <p class="product-price">N20,200.50</p>
+              <p class="product-price">₦{{prod.product_price}}</p>
               <div class="option-button">
-                <img src="./images/Black-heart.svg" class="nav-svg" alt="...">
-                <img src="./images/Wheel-cart.svg" class="nav-svg" alt="...">
+                <img src="{% static 'images/Black-heart.svg' %}" class="nav-svg" alt="...">
+                <img src="{% static 'images/Wheel-cart.svg' %}" class="nav-svg" alt="...">
               </div>
             </div>
           </div>
         </div>
+      </a>
       </div>
-      <div class="col-6 col-sm-6 col-md-6 col-lg-3 product-card">
-        <div class="card card-design">
-          <div class="card-img">
-            <img src="images/redblack-gown.png" class="card-img-top" alt="...">
-          </div>
-          <div class="card-body product-body">
-            <h3 class="product-title">Italian Cotton Gown</h3>
-            <div class="product-info">
-              <p class="product-price">N23,000.00</p>
-              <div class="option-button">
-                <img src="./images/Black-heart.svg" class="nav-svg" alt="...">
-                <img src="./images/Wheel-cart.svg" class="nav-svg" alt="...">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-6 col-sm-6 col-md-6 col-lg-3 product-card">
-        <div class="card card-design">
-          <div class="card-img">
-            <img src="images/white-gown.png" class="card-img-top" alt="...">
-          </div>
-          <div class="card-body product-body">
-            <h3 class="product-title">Canzo Seamless Stretch</h3>
-            <div class="product-info">
-              <p class="product-price">N19,600.99</p>
-              <div class="option-button">
-                <img src="./images/Black-heart.svg" class="nav-svg" alt="...">
-                <img src="./images/Wheel-cart.svg" class="nav-svg" alt="...">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-6 col-sm-6 col-md-6 col-lg-3 product-card">
-        <div class="card card-design">
-          <div class="card-img">
-            <img src="images/black-suit.png" class="card-img-top" alt="...">
-          </div>
-          <div class="card-body product-body">
-            <h3 class="product-title">Cashmir Ethical Corron</h3>
-            <div class="product-info">
-              <p class="product-price">N20,200.50</p>
-              <div class="option-button">
-                <img src="./images/Black-heart.svg" class="nav-svg" alt="...">
-                <img src="./images/Wheel-cart.svg" class="nav-svg" alt="...">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-6 col-sm-6 col-md-6 col-lg-3 product-card">
-        <div class="card card-design">
-          <div class="card-img">
-            <img src="images/Pink-gown.png" class="card-img-top" alt="...">
-          </div>
-          <div class="card-body product-body">
-            <h3 class="product-title">Golden Weave Gown</h3>
-            <div class="product-info">
-              <p class="product-price">N102,000.00</p>
-              <div class="option-button">
-                <img src="./images/Black-heart.svg" class="nav-svg" alt="...">
-                <img src="./images/Wheel-cart.svg" class="nav-svg" alt="...">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-6 col-sm-6 col-md-6 col-lg-3 product-card">
-        <div class="card card-design">
-          <div class="card-img">
-            <img src="images/Orangeblack-gown.png" class="card-img-top" alt="...">
-          </div>
-          <div class="card-body product-body">
-            <h3 class="product-title">British Wool Gown</h3>
-            <div class="product-info">
-              <p class="product-price">N102,000.00</p>
-              <div class="option-button">
-                <img src="./images/Black-heart.svg" class="nav-svg" alt="...">
-                <img src="./images/Wheel-cart.svg" class="nav-svg" alt="...">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-6 col-sm-6 col-md-6 col-lg-3 product-card">
-        <div class="card card-design">
-          <div class="card-img">
-            <img src="images/Red-gown.png" class="card-img-top" alt="...">
-          </div>
-          <div class="card-body product-body">
-            <h3 class="product-title">Canzo Seamless Stretch</h3>
-            <div class="product-info">
-              <p class="product-price">N102,000.00</p>
-              <div class="option-button">
-                <img src="./images/Black-heart.svg" class="nav-svg" alt="...">
-                <img src="./images/Wheel-cart.svg" class="nav-svg" alt="...">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-6 col-sm-6 col-md-6 col-lg-3 product-card">
-        <div class="card card-design">
-          <div class="card-img">
-            <img src="images/black-suit.png" class="card-img-top" alt="...">
-          </div>
-          <div class="card-body product-body">
-            <h3 class="product-title">sartin Ethical Close</h3>
-            <div class="product-info">
-              <p class="product-price">N102,000.00</p>
-              <div class="option-button">
-                <img src="./images/Black-heart.svg" class="nav-svg" alt="...">
-                <img src="./images/Wheel-cart.svg" class="nav-svg" alt="...">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="pages">
-      <button type="button" class="directions"> <a href="#"><i class="bi bi-chevron-left"></i></a></button>
-      <button type="button" class="page one active"> <a href="#">1</a></button>
-      <button type="button" class="page two"> <a href="#">2</a></button>
-      <button type="button" class="page three"> <a href="#">3</a></button>
-      <button type="button" class="directions"> <a href="#"><i class="bi bi-chevron-right"></i></a></button>
+      {% endfor %}
+      
+      
+            
+      <div class="pages">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}"><button type="button" class="directions"><i class="bi bi-chevron-left"></i></button></a>
+            <a href="?page={{ page_obj.previous_page_number }}"><button type="button" class="page three"> {{page_obj.previous_page_number }}</button></a> 
+            {% endif %}
+  
+            <a href="?page={{ page_obj.number }}"><button type="button" class="page one"> {{page_obj.number}}.</button></a>
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}"><button type="button" class="page two"> {{page_obj.next_page_number }}</button></a>
+            <a href="?page={{ page_obj.next_page_number }}"><button type="button" class="directions"><i class="bi bi-chevron-right"></i></button></a>
+            {% endif %}
+        </span>
     </div>
   </section>
-
-  <special-footer></special-footer>
-
-  <script src="script.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  {%endblock content%}
 </body>
 </html>

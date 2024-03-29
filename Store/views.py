@@ -27,7 +27,7 @@ def collection_page(request,collection_name):
     paginator = Paginator(collection_prod, 8)  # Show 8 products per page.
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
-    return render(request,"store/top-rose.html",{"page_obj": page_obj,'design_brand':brand})
+    return render(request,"store/collection.html",{"page_obj": page_obj,'design_brand':brand})
 
 
 def whats_hot_page(request):
@@ -37,3 +37,15 @@ def whats_hot_page(request):
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     return render(request,"store/whats-hot.html",{"page_obj": page_obj,"advert":advert})
+
+def shop_all_page(request,category):
+    if category=="all":
+        products=Products.objects.all().order_by("-id").values()
+    else:
+        products=Products.objects.filter(product_name__contains=category)
+    
+        print(products)
+    paginator = Paginator(products, 8)  # Show 8 products per page.
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    return render(request,"store/shop-all.html",{'page_obj':page_obj})

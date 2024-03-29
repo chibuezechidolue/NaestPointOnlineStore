@@ -14,6 +14,7 @@ class Products(models.Model):
         ('1', u'MALE'),
         ('2', u'FEMALE'),
         ('3', u'KIDS'),
+        ('4', u'ACCESSORIES'),
     ))
     prod_is_featured=models.BooleanField(default=False)
     # product_collection=models.CharField(max_length=200,default="unbranded")

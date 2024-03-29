@@ -43,11 +43,13 @@
                 </span>
               </div>
             </li>
+            <form action="", method="post">
           </div>
           <div class="searchBox">
             <input type="text" placeholder="Serach entire store">
           </div>
         </div>
+      </form>
       </nav>
     </section>
     <section class="navbar-two">
@@ -80,7 +82,7 @@
                   <a class="nav-link" href="{% url 'whats-hot-page' %}">WHAT'S HOT</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="shop-all.html">SHOP ALL</a>
+                  <a class="nav-link" href="{% url 'shop-all-page' category='all' %}">SHOP ALL</a>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link nav-shopall" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -101,13 +103,13 @@
                   </ul>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/single-product.html">SINGLE PRODUCT</a>
+                  <a class="nav-link" href="/single-product.html">CONTACT US</a>
                 </li>
               </ul>
             </div>
             <div class="small-board">
-              <h6 class="board-title">BLACK FRIDAYS</h3>
-              <p class="board-text">26th May 2024</p>
+              <h6 class="board-title">{{nav_advert.advert_title}}</h3>
+              <p class="board-text">{{nav_advert.advert_text}}</p>
             </div>
           </div>
         </div>

@@ -208,6 +208,15 @@
     },
     {
       "model": "Store.advertisement",
+      "pk": 0,
+      "fields": {
+        "advert_location":"Nav_advert",
+        "advert_title":"BLACK FRIDAY",
+        "advert_text":"29th May 2024"
+      }
+    },
+    {
+      "model": "Store.advertisement",
       "pk": 1,
       "fields": {
         "advert_location":"CAROUSEL",

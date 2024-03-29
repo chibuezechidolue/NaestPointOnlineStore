@@ -11,13 +11,19 @@
   <!-- Hero -->
 
   <section id="hero">
-
+  
     <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         {%for ads in carousel%}
+        {%if ads == carousel.first%}
         <div class="carousel-item active">
           <img src="media/{{ads.advert_img}}" class="d-block w-100" alt="...">
         </div>
+        {%else%}
+        <div class="carousel-item ">
+          <img src="media/{{ads.advert_img}}" class="d-block w-100" alt="...">
+        </div>
+        {%endif%}
         {%endfor%}
       </div>
     </div>

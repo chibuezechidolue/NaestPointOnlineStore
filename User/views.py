@@ -1,7 +1,11 @@
 from django.shortcuts import render,redirect
-from .forms import CustomUserRegisterForm,LoginForm
+from .forms import CustomUserRegisterForm,UpdateUserInfoForm,UpdatePasswordForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login ,logout,get_user
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 
 # def login_page(request):
@@ -24,6 +28,12 @@ from django.contrib.auth import authenticate, login ,logout,get_user
 #         form=LoginForm(request.POST)
 #     return render(request,"user/login.html",{"form":form})
 
+
+# from django.http import HttpResponseRedirect
+# def logout_page(request):
+#     logout(request)
+#     return HttpResponseRedirect(request.path_info)
+
 def register_page(request):
     form=CustomUserRegisterForm()
 
@@ -41,10 +51,50 @@ def register_page(request):
     return render(request,"user/register.html",{"form":form})
 
 
-# from django.http import HttpResponseRedirect
-# def logout_page(request):
-#     logout(request)
-#     return HttpResponseRedirect(request.path_info)
 
-def user_profile(request):
-    return render(request,"user/profile.html")
+@login_required
+def user_profile(request,option:str=None):
+    arguement={}
+    if option=="edit":
+        form=UpdateUserInfoForm(instance=request.user)
+        arguement={"form":form,"edit":True}
+    elif option=="delete_account":
+        arguement={"delete_account":True}
+    
+    # elif option=="change_password":
+    #     form=UpdatePasswordForm()
+    #     arguement={"form":form,"change_password":True}    
+
+    if request.method=="POST":
+        if option=="edit":
+            form=UpdateUserInfoForm(request.POST,instance=request.user)
+            if form.is_valid():
+                form.save()
+                messages.add_message(request, messages.SUCCESS, "Your details has been updated sucessfully")
+                return redirect("user-profile")
+        elif option == "delete_account":
+            user=request.user
+            user.delete()
+            messages.add_message(request, messages.SUCCESS, "Your Account has been deleted successfully")
+            return redirect("login-page")
+        
+            # View function for change password
+        # elif option=="change_password":
+        #     form=UpdatePasswordForm(request.POST,instance=request.user)
+        #     if form.is_valid():
+        #         print("form is valid")
+        #         old_password=form.cleaned_data.get("password")
+        #         user=authenticate(request,email=request.user.email,password=old_password)
+        #         print(user)
+        #         if user is not None:
+        #             new_password1=form.cleaned_data.get("new_password1")
+        #             new_password2=form.cleaned_data.get("new_password2")
+        #             if new_password1==new_password2: #NOTE: change this line of code for security
+        #                 form.save()
+        #                 messages.add_message(request, messages.SUCCESS, "Your password has been changed sucessfully")
+        #                 return redirect("user-profile")
+    return render(request,"user/profile.html",arguement)
+
+class ChangePasswordView(LoginRequiredMixin,PasswordChangeView):
+    success_message = 'Your password has been changed successfully'
+    template_name = "user/profile.html"
