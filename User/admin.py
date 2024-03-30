@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import CustomUser
+from .models import CustomUser,NewsLetterSubscribers,NewsLetters
 
 # Register your models here.
 
@@ -11,4 +11,17 @@ class CustomUserAdmin(admin.ModelAdmin):
     # fields=("product_name","product_description","product_price",("product_img_1",'product_img_2','product_img_3'),"collection",("product_gender","prod_is_featured"))
     # actions=("set_prod_to_featured","set_prod_to_unfeatured")
 
+class NewsLetterAdmin(admin.ModelAdmin):
+    list_display=('subject','created_at')
+    actions=['send_newsletter',]
+
+    def send_newsletter(self, request, queryset):
+        for newsletter in queryset:
+            newsletter.send(request)
+        self.message_user(request, "The selected newsletter(s) has been Sent")
+
+    send_newsletter.short_description = "Send selected Newsletters to all subscribers"
+
 admin.site.register(CustomUser,CustomUserAdmin)
+admin.site.register(NewsLetters,NewsLetterAdmin)
+admin.site.register(NewsLetterSubscribers)

@@ -1,10 +1,13 @@
 from django.shortcuts import render,redirect
-from .forms import CustomUserRegisterForm,UpdateUserInfoForm,UpdatePasswordForm
+
+from User.models import NewsLetterSubscribers
+from .forms import CustomUserRegisterForm, NewsLetterForm,UpdateUserInfoForm,UpdatePasswordForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login ,logout,get_user
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseRedirect,HttpResponseForbidden
 
 
 
@@ -38,11 +41,9 @@ def register_page(request):
     form=CustomUserRegisterForm()
 
     if request.method == "POST":
-        print("this is a post request")
         form = CustomUserRegisterForm(request.POST)
         print(form)
         if form.is_valid():
-            print("the form is valid")
             form.save()
             messages.add_message(request, messages.SUCCESS, "Your account has been created")
             return redirect("login-page")
@@ -98,3 +99,25 @@ def user_profile(request,option:str=None):
 class ChangePasswordView(LoginRequiredMixin,PasswordChangeView):
     success_message = 'Your password has been changed successfully'
     template_name = "user/profile.html"
+
+
+def subscribe_newsletter(request):
+    if request.method=="POST":
+        form=NewsLetterForm(request.POST)
+        if form.is_valid():
+            print('it is a valid form')
+            form.save()
+            messages.add_message(request, messages.SUCCESS, "Your subscription to newletter was successful")
+        else:
+            messages.add_message(request, messages.ERROR, "Your subscription to newletter was not successful")
+        return redirect('home-page')
+    return HttpResponseForbidden()
+
+def unsubscribe_newsletter(request):
+    sub_email=NewsLetterSubscribers.objects.get(email=request.GET.get('email'))
+    sub_email.delete()
+    return render(request,'user/unsubscribe-news.html')
+
+        
+    
+

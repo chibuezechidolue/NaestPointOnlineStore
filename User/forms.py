@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from phonenumber_field.formfields import PhoneNumberField
-from .models import CustomUser
+from .models import CustomUser, NewsLetterSubscribers
 
 
 class CustomUserRegisterForm(UserCreationForm):
@@ -51,3 +51,10 @@ class UpdatePasswordForm(forms.ModelForm):
     class Meta:
         model=CustomUser
         fields=["password",]
+
+
+class NewsLetterForm(forms.ModelForm):
+    email=forms.EmailField(widget=forms.EmailInput(attrs={'class': 'email-input','placeholder':"Enter your email"}))
+    class Meta:
+        model=NewsLetterSubscribers
+        fields=['email',]

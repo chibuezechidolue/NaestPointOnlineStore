@@ -119,7 +119,10 @@
     </section>
   </header>
 <body>
-    {%block content%}{%endblock content%}
+   
+    {%block content%}
+   
+    {%endblock content%}
     
 </body>
 <footer id="footer">
@@ -160,8 +163,11 @@
         <div class="newsletter">
         <h6 class="link-title">SUBSCRIBE TO NEWSLETTER</h6>
         <P class="link-main newsletter-text">Get the lates stories, highlights, products to love and recomendations that are chosen for you</P>
-        <form class="newsletter-form">
-            <input class="email-input" type="email" placeholder="Enter your email" required>
+        <form class="newsletter-form" method="post" action="{% url 'subscribe-newsletter' %}">
+          {%csrf_token%}
+          {{newsletterform.email.errors}}
+            <!-- <input for="{{newsletterform.email.id_for_label}}" class="email-input" type="email" placeholder="Enter your email"  -->
+            {{newsletterform.email}}
             <button class="newsletter-button" type="submit"><i class="bi bi-arrow-right"></i></button>
         </form>
         </div>
