@@ -50,3 +50,11 @@ def shop_all_page(request,category):
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     return render(request,"store/shop-all.html",{'page_obj':page_obj})
+
+
+def featured_prod_page(request):
+    all_featured=Products.objects.filter(prod_is_featured=True)
+    paginator = Paginator(all_featured, 10)  # Show 10 products per page.
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    return render(request,'store/shop-all.html',{"page_obj":page_obj,"featured":True})
