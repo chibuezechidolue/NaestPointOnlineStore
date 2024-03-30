@@ -208,46 +208,20 @@
     </div>
 
     <div class="row g-4">
+      {%for handle in tags%}
       <div class="col-6 col-sm-6 col-md-6 col-lg-3 product-card">
+        <a href="{{handle.tag_url}}">
         <div class="card instagram-design">
           <div class="card-img">
             <div class="insta-name">
-              <h5 class="insta-text">@toprose</h5>
+              <h5 class="insta-text">@{{handle.tag_handle}}</h5>
             </div>
-            <img src="static/images/1st-insta.png" class="card-img-top" alt="...">
+            <img src="media/{{handle.tag_img}}" class="card-img-top" alt="...">
           </div>
         </div>
+      </a>
       </div>
-      <div class="col-6 col-sm-6 col-md-6 col-lg-3 product-card">
-        <div class="card instagram-design">
-          <div class="card-img">
-            <div class="insta-name">
-              <h5 class="insta-text">@Seamless</h5>
-            </div>
-            <img src="static/images/2nd-insta.png" class="card-img-top" alt="...">
-          </div>
-        </div>
-      </div>
-      <div class="col-6 col-sm-6 col-md-6 col-lg-3 product-card">
-        <div class="card instagram-design">
-          <div class="card-img">
-            <div class="insta-name">
-              <h5 class="insta-text">@zipazstore</h5>
-            </div>
-            <img src="static/images/3rd-insta.png" class="card-img-top" alt="...">
-          </div>
-        </div>
-      </div>
-      <div class="col-6 col-sm-6 col-md-6 col-lg-3 product-card">
-        <div class="card instagram-design">
-          <div class="card-img">
-            <div class="insta-name">
-              <h5 class="insta-text">@theboscostich</h5>
-            </div>
-            <img src="static/images/4th-insta.png" class="card-img-top" alt="...">
-          </div>
-        </div>
-      </div>
+      {%endfor%}
     </div>  
 
   </section>

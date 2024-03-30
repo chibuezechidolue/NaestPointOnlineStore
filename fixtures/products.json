@@ -302,6 +302,41 @@
         "advert_location":"whats_hot_advert",
         "advert_img":"images/advert/Beachwears-pics.svg"
       }
+    },
+    {
+      "model": "Product.socialmediatag",
+      "pk": 1,
+      "fields": {
+        "tag_handle":"toprose",
+        "tag_img":"images/socialmedia/1st-insta.png"
+      }
+    },
+    {
+      "model": "Product.socialmediatag",
+      "pk": 2,
+      "fields": {
+        "tag_handle":"Seamless",
+        "tag_img":"images/socialmedia/2nd-insta.png"
+      }
+    },
+    {
+      "model": "Product.socialmediatag",
+      "pk": 3,
+      "fields": {
+        "tag_handle":"zipazstore",
+        "tag_img":"images/socialmedia/3rd-insta.png"
+      }
+    },
+    {
+      "model": "Product.socialmediatag",
+      "pk": 4,
+      "fields": {
+        "tag_handle":"theboscostich",
+        "tag_img":"images/socialmedia/4th-insta.png"
+      }
     }
+
+
+
 
 ]    

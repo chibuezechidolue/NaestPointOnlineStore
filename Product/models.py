@@ -19,12 +19,15 @@ class Products(models.Model):
     prod_is_featured=models.BooleanField(default=False)
     # product_collection=models.CharField(max_length=200,default="unbranded")
     collection = models.ForeignKey(Collection, on_delete=models.CASCADE,default=0)
-
-
-
     
     def __str__(self):
 	    return self.product_name
+    
+
+class SocialMediaTag(models.Model):
+    tag_handle=models.CharField(max_length=50)
+    tag_url=models.URLField(null=True)
+    tag_img=models.ImageField(upload_to=f"images/socialmedia",default="default.jpg")
 
 
 
