@@ -1,8 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from Product.models import Products,SocialMediaTag
 from .models import Advertisement, Collection
 from django.core.paginator import Paginator
-# Create your views here.
+from django.core.mail import send_mail
+from django.contrib import messages
+
+import os
 
 
 def home_page(request):
@@ -58,3 +61,31 @@ def featured_prod_page(request):
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     return render(request,'store/shop-all.html',{"page_obj":page_obj,"featured":True})
+
+def category_page(request,category):
+    products=Products.objects.filter(product_gender=category)
+    paginator = Paginator(products, 10)  # Show 10 products per page.
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    return render(request,'store/whats-hot.html',{"page_obj":page_obj})
+
+
+def about_us_page(request):
+    return render(request,'store/about-us.html')
+
+def contact_us_page(request):
+    if request.method=="POST":
+        content = request.POST
+        name=content.get('name')
+        phone_no=content.get('phone_no')
+        message=content.get('message')
+        email=content['email']
+        send_mail(
+                subject='Message from NaestPoint Store',
+                message=f"\n\nName: {name}\nPhone: {phone_no}\nEmail: {email}\nMessage: {message}",   
+                from_email=None,
+                recipient_list=[os.environ.get('EMAIL_USERNAME'),],  
+            )
+        messages.add_message(request, messages.SUCCESS, "Your message was sent successfully")
+        return redirect('home-page')
+    return render(request,'store/contact-us.html')

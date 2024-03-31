@@ -1,5 +1,4 @@
 from django.shortcuts import render,redirect
-
 from User.models import NewsLetterSubscribers
 from .forms import CustomUserRegisterForm, NewsLetterForm,UpdateUserInfoForm,UpdatePasswordForm
 from django.contrib import messages
