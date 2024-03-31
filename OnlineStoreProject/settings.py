@@ -144,3 +144,10 @@ EMAIL_PORT=465
 EMAIL_USE_SSL=True  
 EMAIL_HOST_USER = os.environ.get("EMAIL_USERNAME")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")
+
+
+
+
+# inactive login sessison time limit
+# SESSION_COOKIE_AGE = 600
+# SESSION_SAVE_EVERY_REQUEST = True

@@ -2,6 +2,8 @@ from django.shortcuts import render
 from .models import Products
 from django.core.paginator import Paginator
 from django.views import generic
+from django.core.cache import cache
+
 
 
 # Create your views here.
@@ -12,8 +14,6 @@ def single_product(request,prod_name):
     
     return render(request,'product/single-product.html',{"product":product,"prod_suggestions":prod_suggestions}) 
 
-from django.core.cache import cache
-from django.core.cache import caches
 
 def search_product(request):
     if 'search_bar' in request.GET:
@@ -33,3 +33,7 @@ def search_product(request):
         context={"page_obj":page_obj,"search":True,"search_query":cache.get('search_query')}
         # context={'page_obj':page_obj,"search":True,"search_query":search_input}
     return render(request,"store/shop-all.html",context)
+
+
+def cart_page(request):
+    return render(request,'product/cart.html')

@@ -36,7 +36,7 @@
               {%endif%}
               
               <a href=""><img src="{%static 'images/Heart.svg'%}" class="nav-svg favourite-icon" alt="..."></a>
-              <a href="cart.html"><img src="{% static 'images/Bag.svg'%}" class="nav-svg cart-icon" alt="..."></a>
+              <a href="{% url 'cart-page' %}"><img src="{% static 'images/Bag.svg'%}" class="nav-svg cart-icon" alt="..."></a>
               <div class="search">
                 <span class="ikon">
                   <img src="{%static 'images/Search-icon.svg'%}" class="nav-svg searchBtn" alt="...">
