@@ -1,8 +1,8 @@
-from enum import unique
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from phonenumber_field.modelfields import PhoneNumberField       #pip install "django-phonenumber-field[phonenumbers]"
 from django.core.mail import send_mail
+
 
 class CustomUser(AbstractUser):
     username=models.CharField(max_length=100, null=True, blank=True, unique=True)
@@ -48,5 +48,7 @@ class NewsLetters(models.Model):
                 from_email=None,
                 recipient_list=[sub.email],  
             )
+
+
 
 

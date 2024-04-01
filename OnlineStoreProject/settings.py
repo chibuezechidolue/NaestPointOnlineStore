@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     "Product.apps.ProductConfig",
     "Store.apps.StoreConfig",
     "User.apps.UserConfig",
+    "Cart.apps.CartConfig",
     # 3rd party apps
     "phonenumber_field",
     "django_bootstrap5",

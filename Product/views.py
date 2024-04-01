@@ -35,8 +35,3 @@ def search_product(request):
     return render(request,"store/shop-all.html",context)
 
 
-def cart_page(request):
-    return render(request,'product/cart.html')
-
-def favourite_page(request):
-    return render(request,'product/favourite.html')

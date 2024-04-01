@@ -117,6 +117,8 @@ def unsubscribe_newsletter(request):
     sub_email.delete()
     return render(request,'user/unsubscribe-news.html')
 
+
+
         
     
 

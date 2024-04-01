@@ -13,7 +13,8 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("Store.urls")),
     path("product/", include("Product.urls")),
-    path("user/",include("User.urls"))
+    path("user/",include("User.urls")),
+    path('cart/',include("Cart.urls"))
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
