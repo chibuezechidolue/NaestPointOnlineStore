@@ -37,3 +37,6 @@ def search_product(request):
 
 def cart_page(request):
     return render(request,'product/cart.html')
+
+def favourite_page(request):
+    return render(request,'product/favourite.html')

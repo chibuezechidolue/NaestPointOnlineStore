@@ -35,7 +35,7 @@
               <a href="{% url 'user-profile' %}"><img src="{%static 'images/Avatar.svg'%}" class="nav-svg profile-icon" alt="..."></a>
               {%endif%}
               
-              <a href=""><img src="{%static 'images/Heart.svg'%}" class="nav-svg favourite-icon" alt="..."></a>
+              <a href="{% url 'favourite-page' %}"><img src="{%static 'images/Heart.svg'%}" class="nav-svg favourite-icon" alt="..."></a>
               <a href="{% url 'cart-page' %}"><img src="{% static 'images/Bag.svg'%}" class="nav-svg cart-icon" alt="..."></a>
               <div class="search">
                 <span class="ikon">
@@ -105,7 +105,7 @@
                   </ul>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/single-product.html">CONTACT US</a>
+                  <a class="nav-link" href="{% url 'contact-us-page' %}">CONTACT US</a>
                 </li>
               </ul>
             </div>
