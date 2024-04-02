@@ -7,12 +7,26 @@ import uuid
 
 class Cart(models.Model):
     id=models.UUIDField(default=uuid.uuid4,primary_key=True)
-    user=models.ForeignKey(CustomUser,on_delete=models.CASCADE)
+    user=models.ForeignKey(CustomUser,on_delete=models.CASCADE,null=True,blank=True)
+    session_id=models.CharField(max_length=150,null=True,blank=True)
     paid=models.BooleanField(default=False)
     date=models.DateField(auto_now=True)
 
+
     def __str__(self) -> str:
-        return self.id +  self.date
+        return str(self.id)
+    
+    @property
+    def num_of_item(self):
+        cart_items=self.cartitems.all()
+        output=sum([item.quantity for item in cart_items])
+        return output
+    
+    def total_cart_sum(self):
+        cart_items=self.cartitems.all()
+        output=sum([item.total_item_price for item in cart_items])
+        return output
+
 
 
 class CartItems(models.Model):
@@ -22,3 +36,9 @@ class CartItems(models.Model):
 
     def __str__(self) -> str:
         return self.product.product_name
+    
+    @property
+    def total_item_price(self):
+        product_price=self.product.product_price.replace(",","")
+        return self.quantity*int(product_price)
+        

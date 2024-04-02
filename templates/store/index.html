@@ -100,19 +100,18 @@
             <h3 class="product-title">{{product.product_name}}</h3>
             <div class="product-info">
               <p class="product-price">₦{{product.product_price}}</p>
+            </a>
               <div class="option-button">
                 <img src="static/images/Black-heart.svg" class="nav-svg" alt="...">
-                <img src="static/images/Wheel-cart.svg" class="nav-svg" id="" alt="...">
+                <button><img src="static/images/Wheel-cart.svg" class="nav-svg add_to_cart" id="{{product.id}}"  alt="..."></button>
               </div>
             </div>
           </div>
         </div>
-      </a>
-      </div>
-      {%endfor%}
       
       </div>
-
+      {%endfor%}
+      </div>
       <a href="{% url 'featured-prod-page' %}"><button type="button" class="product-button"> VIEW MORE</button></a>
   </section>
 

@@ -36,7 +36,10 @@
               {%endif%}
               
               <a href="{% url 'favourite-page' %}"><img src="{%static 'images/Heart.svg'%}" class="nav-svg favourite-icon" alt="..."></a>
-              <a href="{% url 'cart-page' %}"><img src="{% static 'images/Bag.svg'%}" class="nav-svg cart-icon" alt="..."></a>
+              <!-- <a href="{% url 'cart-page' %}"> -->
+                <img src="{% static 'images/Bag.svg'%}" class="nav-svg cartIcon" alt="...">
+              <!-- </a> -->
+              <span class="number-display " id="no_of_cart_items">{{cart.num_of_item}}</span>
               <div class="search">
                 <span class="ikon">
                   <img src="{%static 'images/Search-icon.svg'%}" class="nav-svg searchBtn" alt="...">
@@ -118,6 +121,36 @@
       </nav>
     </section>
   </header>
+<!-- shopping cart dropdown -->
+<div class="cartTab">
+  <h2 class="cart-title">SHOPPING CART</h2>
+  <div class="listCart">
+    {%for item in cart.cartitems.all%}
+    <div class="item">
+      <div class="item-image">
+        <img src="../../media/{{item.product.product_img_1}}" alt="">
+      </div>
+      <div class="item-name">
+        {{item.product.product_name}}
+      </div>
+      <div class="item-price">
+        ₦{{item.product.product_price}}
+      </div>
+      <div class="item-quantity">
+        <button><span id="{{item.product.id}}" class="minus rm_from_cart">-</span></button>
+        <span>{{item.quantity}}</span>
+        <button><span id="{{item.product.id}}" class="plus add_to_cart">+</span></button>
+      </div>
+    </div>
+    {%endfor%}
+    <div>TOTAL ORDER:  ₦{{cart_items.0.cart.total_cart_sum}}</div>
+  <div class="cart-btn">
+    <button class="closeCart"> CLOSE</button>
+    <button class="checkOut"> CHECK OUT</button>
+  </div>
+</div>
+</div>
+  
 <body>
    
     {%block content%}

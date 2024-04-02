@@ -1,85 +1,101 @@
-// const productItemGenerator = ({ imgSrc, title, amount}) => {
-//     const parentDiv = document.createElement('div')
-// parentDiv.classList = "col-6 col-sm-6 col-md-6 col-lg-3 product-card"
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          // Does this cookie string begin with the name we want?
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
+          }
+      }
+  }
+  return cookieValue;
+}
+const csrftoken = getCookie('csrftoken');
 
-// const wrapperDiv = document.createElement('div')
-// wrapperDiv.classList = "card card-design"
 
-// const imageDiv = document.createElement('div')
-// imageDiv.classList = "card-img"
+let cartAddBtns=document.querySelectorAll(".add_to_cart")
+cartAddBtns.forEach(btn=>{
+  btn.addEventListener("click",addToCart)
+})
 
-// const imgTag = document.createElement('img')
-// imgTag.classList = "card-img-top"
-// imgTag.src = imgSrc
-// imgTag.alt = "" 
+function addToCart(e){
+  // let product_id = e.target.value
+  let product_id = e.target.id
+  console.log(product_id)
+  let url = 'cart/add-to-cart/'
+  let data = {id:product_id}
 
-// imageDiv.appendChild(imgTag)
+  fetch(url,{
+    method: "POST",
+    headers: {'Content-Type':"application/json",'X-CSRFToken': csrftoken},
+    body:JSON.stringify(data)
+  })
 
-// mainDiv = document.createElement('div')
-// mainDiv.classList = "card-body product-body"
+  .then(res=>res.json())
+  .then(data=>{document.getElementById('no_of_cart_items').innerHTML=data})
 
-// const h3 = document.createElement('h3')
-// h3.classList = 'product-title'
-// h3.innerText = title
+  .catch(error=>{console.log(error)})
+}
 
-// const detailsDiv =  document.createElement('div')
-// detailsDiv.classList = 'product-info'
 
-// const pTag = document.createElement('p')
-// pTag.classList = 'product-price'
-// pTag.innerText = amount
+let cartRmvBtns=document.querySelectorAll(".rm_from_cart")
+cartRmvBtns.forEach(btn=>{
+  btn.addEventListener("click",rmFromCart)
+})
 
-// detailsDiv.appendChild(pTag)
+function rmFromCart(e){
+  // let product_id = e.target.value
+  let product_id = e.target.id
+  console.log(product_id)
+  let url = 'cart/rm-from-cart/'
+  let data = {id:product_id}
 
-// const bottomDiv = document.createElement('div')
-// bottomDiv.classList = "option-button"
+  fetch(url,{
+    method: "POST",
+    headers: {'Content-Type':"application/json",'X-CSRFToken': csrftoken},
+    body:JSON.stringify(data)
+  })
 
-// const bottomImgTag1 = document.createElement('img')
-// bottomImgTag1.src = "./images/Black-heart.svg"
-// bottomImgTag1.classList = "nav-svg"
-// bottomImgTag1.alt =""
+  .then(res=>res.json())
+  .then(data=>{document.getElementById('no_of_cart_items').innerHTML=data})
 
-// const bottomImgTag2 = document.createElement('img')
-// bottomImgTag2.src = "./images/Wheel-cart.svg"
-// bottomImgTag2.classList = "nav-svg"
-// bottomImgTag2.alt =""
+  .catch(error=>{console.log(error)})
+}
 
-// bottomDiv.appendChild(bottomImgTag1)
-// bottomDiv.appendChild(bottomImgTag2)
 
-// detailsDiv.appendChild(bottomDiv)
 
-// mainDiv.appendChild(h3)
-// mainDiv.appendChild(detailsDiv)
-
-// wrapperDiv.appendChild(imageDiv)
-// wrapperDiv.appendChild(mainDiv)
-
-// parentDiv.appendChild(wrapperDiv)
-
-// return parentDiv
-// }
 
 window.addEventListener('DOMContentLoaded', () => {
 
   // Responsive Search button
     
-let searchBtn = document.querySelector('.searchBtn');
-let closeBtn = document.querySelector('.closeBtn');
-let searchBox = document.querySelector('.searchBox');
-
-    searchBtn.onclick = function () {
-        searchBox.classList.add('active')
-        closeBtn.classList.add('active')
-        searchBtn.classList.add('active')
-    }
-
-    closeBtn.onclick = function () {
-        searchBox.classList.remove('active')
-        closeBtn.classList.remove('active')
-        searchBtn.classList.remove('active')
-    }
-
+  let searchBtn = document.querySelector('.searchBtn');
+  let closeBtn = document.querySelector('.closeBtn');
+  let searchBox = document.querySelector('.searchBox');
+  let cartIcon = document.querySelector('.cartIcon');
+  let closeCart = document.querySelector('.closeCart');
+  let cartTab = document.querySelector('.cartTab');
+  
+      searchBtn.onclick = function () {
+          searchBox.classList.add('active')
+          closeBtn.classList.add('active')
+          searchBtn.classList.add('active')
+      }
+      closeBtn.onclick = function () {
+          searchBox.classList.remove('active')
+          closeBtn.classList.remove('active')
+          searchBtn.classList.remove('active')
+      }
+  
+      cartIcon.onclick = function () {
+          cartTab.classList.add('showcart')
+      }
+      closeCart.onclick = function () {
+          cartTab.classList.remove('showcart')
+      }
     // View Product thumbnail
 
     mainImg = document.getElementById('mainImg');
@@ -192,6 +208,7 @@ class SpecialHeader extends HTMLElement {
                     <a href="profile.html"><img src="static/images/Avatar.svg" class="nav-svg profile-icon" alt="..."></a>
                     <a href=""><img src="static/images/Heart.svg" class="nav-svg favourite-icon" alt="..."></a>
                     <a href="cart.html"><img src="static/images/Bag.svg" class="nav-svg cart-icon" alt="..."></a>
+                    <span class="number-display">0</span>
                     <div class="search">
                       <span class="ikon">
                         <img src="static/images/Search-icon.svg" class="nav-svg searchBtn" alt="...">

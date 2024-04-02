@@ -1,12 +1,14 @@
+from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render,redirect
 from User.models import NewsLetterSubscribers
 from .forms import CustomUserRegisterForm, NewsLetterForm,UpdateUserInfoForm,UpdatePasswordForm
+from Cart.models import Cart,CartItems
 from django.contrib import messages
 from django.contrib.auth import authenticate, login ,logout,get_user
-from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.views import PasswordChangeView,LoginView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponseRedirect,HttpResponseForbidden
+from django.http import HttpResponse, HttpResponseRedirect,HttpResponseForbidden
 
 
 
@@ -29,6 +31,29 @@ from django.http import HttpResponseRedirect,HttpResponseForbidden
 
 #         form=LoginForm(request.POST)
 #     return render(request,"user/login.html",{"form":form})
+
+
+class MyLoginView(LoginView):
+   
+    def get_success_url(self) -> str:
+        response= super().get_success_url()
+        try:
+            session_cart=Cart.objects.get(session_id=self.request.session.get('session_id'),paid=False)
+            if Cart.objects.filter(user=self.request.user,paid=False).exists():
+                user_cart=Cart.objects.get(user=self.request.user,paid=False)
+                for item in session_cart.cartitems.all():
+                    cart_items=CartItems(cart=user_cart,product=item.product,quantity=item.quantity)
+                    cart_items.save()
+                    session_cart.save()
+                if session_cart!=user_cart:
+                    session_cart.delete()
+            else:
+                session_cart.user=self.request.user
+                session_cart.session_id=None
+                session_cart.save()
+        except:
+            pass
+        return response
 
 
 # from django.http import HttpResponseRedirect
@@ -116,7 +141,6 @@ def unsubscribe_newsletter(request):
     sub_email=NewsLetterSubscribers.objects.get(email=request.GET.get('email'))
     sub_email.delete()
     return render(request,'user/unsubscribe-news.html')
-
 
 
         
