@@ -48,14 +48,15 @@
             <h3 class="product-title">{{prod.product_name}}</h3>
             <div class="product-info">
               <p class="product-price">₦{{prod.product_price}}</p>
+            </a>
               <div class="option-button">
                 <img src="{% static 'images/Black-heart.svg' %}" class="nav-svg" alt="...">
-                <img src="{% static 'images/Wheel-cart.svg' %}" class="nav-svg" alt="...">
+                <button><img src="{% static 'images/Wheel-cart.svg' %}" class="nav-svg refresh-cart add_to_cart" id="{{prod.id}}"  alt="..."></button>
               </div>
             </div>
           </div>
         </div>
-      </a>
+      
       </div>
       {% endfor %}
       

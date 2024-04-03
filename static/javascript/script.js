@@ -1,3 +1,6 @@
+// Start of Cart js Functionalities
+
+// function to get csrf_token
 function getCookie(name) {
   let cookieValue = null;
   if (document.cookie && document.cookie !== '') {
@@ -13,19 +16,29 @@ function getCookie(name) {
   }
   return cookieValue;
 }
+
 const csrftoken = getCookie('csrftoken');
+// function to reload page
+function refreshPage() {
+  location.reload();
+}
+// reload page when an element with class=refresh-cart is clicked
+let itemBtns=document.querySelectorAll('.refresh-cart')
+itemBtns.forEach(btn=>{
+  btn.addEventListener('click',refreshPage)
+})
 
-
+// function for calling addToCart function to all element with class=add_to_cart in the current page
 let cartAddBtns=document.querySelectorAll(".add_to_cart")
 cartAddBtns.forEach(btn=>{
   btn.addEventListener("click",addToCart)
 })
 
+// function for adding a clicked product to cart
 function addToCart(e){
   // let product_id = e.target.value
   let product_id = e.target.id
-  console.log(product_id)
-  let url = 'cart/add-to-cart/'
+  let url = window.location.origin+"/cart/add-to-cart/"
   let data = {id:product_id}
 
   fetch(url,{
@@ -35,22 +48,27 @@ function addToCart(e){
   })
 
   .then(res=>res.json())
-  .then(data=>{document.getElementById('no_of_cart_items').innerHTML=data})
-
+  // .then(json => console.log(JSON.stringify(json.item_qty)))
+  .then(data=>{
+              document.getElementById('no_of_cart_items').innerHTML=data.num_of_cart_items;
+              document.getElementById("quantity"+data.item_prod_id).innerHTML=data.item_qty;
+              document.getElementById("total_cart_sum").innerHTML=data.total_cart_sum;
+})
+  // .then(data=>{document.getElementById('no_of_cart_items').innerHTML=data}) Note: for single response (include safe=False) 
+  
   .catch(error=>{console.log(error)})
 }
 
-
+// function for calling rmFromCart function to all element with class=rm_from_cart in the current page
 let cartRmvBtns=document.querySelectorAll(".rm_from_cart")
 cartRmvBtns.forEach(btn=>{
   btn.addEventListener("click",rmFromCart)
 })
-
+// function for removing a clicked product from cart
 function rmFromCart(e){
   // let product_id = e.target.value
   let product_id = e.target.id
-  console.log(product_id)
-  let url = 'cart/rm-from-cart/'
+  let url = window.location.origin+"/cart/add-to-cart/"
   let data = {id:product_id}
 
   fetch(url,{
@@ -60,11 +78,22 @@ function rmFromCart(e){
   })
 
   .then(res=>res.json())
-  .then(data=>{document.getElementById('no_of_cart_items').innerHTML=data})
-
+  .then(data=>{
+              document.getElementById('no_of_cart_items').innerHTML=data.num_of_cart_items;
+              if(data.item_qty<1){
+                document.getElementById("current_item").remove();
+              }
+              else{
+                document.getElementById("quantity"+data.item_prod_id).innerHTML=data.item_qty;
+              }
+              document.getElementById("total_cart_sum").innerHTML=data.total_cart_sum;
+})
   .catch(error=>{console.log(error)})
 }
 
+
+// End of Cart js Functionalities
+  
 
 
 
@@ -89,13 +118,13 @@ window.addEventListener('DOMContentLoaded', () => {
           closeBtn.classList.remove('active')
           searchBtn.classList.remove('active')
       }
-  
       cartIcon.onclick = function () {
           cartTab.classList.add('showcart')
       }
       closeCart.onclick = function () {
           cartTab.classList.remove('showcart')
       }
+
     // View Product thumbnail
 
     mainImg = document.getElementById('mainImg');

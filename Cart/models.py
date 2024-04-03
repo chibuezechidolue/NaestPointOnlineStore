@@ -21,7 +21,7 @@ class Cart(models.Model):
         cart_items=self.cartitems.all()
         output=sum([item.quantity for item in cart_items])
         return output
-    
+    @property
     def total_cart_sum(self):
         cart_items=self.cartitems.all()
         output=sum([item.total_item_price for item in cart_items])

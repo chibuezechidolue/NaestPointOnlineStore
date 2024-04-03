@@ -6,34 +6,43 @@
 
 <body>
 {%block content%}
+<section id="profile">
  <!-- shopping cart dropdown -->
- <div class="cartTab">
+ <div class="cartTa">
   <h2 class="cart-title">SHOPPING CART</h2>
+  <a href="{% url 'delete-cart' %}"><button>Clear Cart</button></a>
   <div class="listCart">
-    {%for item in cart_items%}
+    {%for item in cart.cartitems.all%}
     <div class="item">
       <div class="item-image">
-        <img src="media/{{item.product.product_img_1}}" alt="">
+        <img src="../../media/{{item.product.product_img_1}}" alt="">
       </div>
       <div class="item-name">
         {{item.product.product_name}}
       </div>
       <div class="item-price">
-        N{{item.product.product_price}}
+        ₦{{item.product.product_price}}
       </div>
       <div class="item-quantity">
-        <button id="rm_from_cart"><span title="{{item.product.id}}" class="minus">-</span></button>
+        <button><span id="{{item.product.id}}" class="minus refresh-cart rm_from_cart">-</span></button>
         <span>{{item.quantity}}</span>
-        <button id="add_to_cart"><span title="{{item.product.id}}" class="plus">+</span></button>
+        <button><span id="{{item.product.id}}" class="plus refresh-cart add_to_cart">+</span></button>
+      </div>
+      <div>
+       qty_cost: ₦{{item.total_item_price}}
       </div>
     </div>
     {%endfor%}
+    <div>TOTAL ORDER:  ₦{{cart.total_cart_sum}}</div>
   <div class="cart-btn">
     <button class="closeCart"> CLOSE</button>
     <button class="checkOut"> CHECK OUT</button>
   </div>
 </div>
 </div>
+  
+</section>
     {%endblock content%}
+
 </body>
 </html>

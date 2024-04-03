@@ -26,7 +26,7 @@ def nav_bar(request):
                 cart = Cart.objects.get(session_id=session,paid=False)
             except:
                 cart={"num_of_item":0}
-        
+    print(cart)    
     return {'collections': Collection.objects.all(),
             "nav_advert":Advertisement.objects.get(advert_location="Nav_advert"),
             "newsletterform":form,"cart":cart,
