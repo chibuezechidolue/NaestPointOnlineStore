@@ -14,10 +14,12 @@ def cart_page(request):
 def delete_cart(request):
     if request.user.is_authenticated:
         cart = Cart.objects.get(user=request.user,paid=False)
-        cart.delete()
+        cart_items=cart.cartitems.all()
+        cart_items.delete()
     else:
         cart = Cart.objects.get(session_id=request.session.get('session_id'),paid=False)
-        cart.delete()
+        cart_items=cart.cartitems.all()
+        cart_items.delete()
     previous_page=request.META.get('HTTP_REFERER')
     return redirect(previous_page)
 

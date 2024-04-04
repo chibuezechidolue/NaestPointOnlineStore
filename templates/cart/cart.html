@@ -10,8 +10,10 @@
  <!-- shopping cart dropdown -->
  <div class="cartTa">
   <h2 class="cart-title">SHOPPING CART</h2>
-  <a href="{% url 'delete-cart' %}"><button>Clear Cart</button></a>
   <div class="listCart">
+  {%if cart.num_of_item > 0%}
+  <a href="{% url 'delete-cart' %}"><button>Clear Cart</button></a>
+  {%endif%}
     {%for item in cart.cartitems.all%}
     <div class="item">
       <div class="item-image">

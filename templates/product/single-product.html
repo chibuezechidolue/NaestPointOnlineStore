@@ -8,6 +8,13 @@
 <body>
 {%block content%}
   <section id="single-product">
+    {% if messages %}
+        {% for message in messages%}
+          <div class="alert alert-{{message.tags}}">
+            {{message}}
+          </div>
+        {% endfor %}
+        {% endif %}
     <div class="row g-4 images">
         <div class="col-12 col-sm-12 col-md-12 col-lg-5 product-card">
             <div class="main-image">
@@ -31,21 +38,29 @@
                 <p class="singleproduct-description"><strong>Description</strong></p>
                 <p class="singleproduct-description">{{product.product_description}} </p>
                 <hr class="description-line">
+                <form action="" method="post">
+                  {%csrf_token%}
                 <div class="singleproduct-button">
                     <div class="size-description">
-                        <button type="button" class="measurement sm active"> <a href="#">SM</a></button>
-                        <button type="button" class="measurement md"> <a href="#">MD</a></button>
-                        <button type="button" class="measurement lg"> <a href="#">LG</a></button>
-                        <button type="button" class="measurement xl"> <a href="#">XL</a></button>
+                        <input name="size_choice" type="hidden" id="choice_size" value="">
+                        <button type="button"  class="measurement sm size_choice">SM</button>
+                        <button type="button"  class="measurement md size_choice activate">MD</button>
+                        <button type="button"  class="measurement lg size_choice">LG</button>
+                        <button type="button"  class="measurement xl size_choice">XL</button>
                     </div>
                     <img src="{% static 'images/greenheart.svg' %}" class="singleproduct-favourite-icon" alt="">
                     <div class="number">
-                        <button type="button" class="goods-number"><i class="bi bi-dash"></i></button>
-                        <button type="button" class="goods-number shownumber">3</button>
-                        <button type="button" class="goods-number"><i class="bi bi-plus"></i></button>
+                        <button type="button" id="decrement" class="goods-number" ><i  class="bi bi-dash " ></i></button>
+                        
+                        <button type="button"><input name="quantity" type="hidden" id="input"  value={{item_qty}}> <p id="input_value">{{item_qty}}</p> </button>
+                        
+                        <button type="button" id="increment" class="goods-number"><i  class="bi bi-plus " ></i></button>
                     </div>
-                    <button type="button" class="addtocart-button"><a href="#">ADD TO CART<i class="bi bi-cart2"></i></a></button>
+                    
+                    <!-- <button class="addtocart-button refresh-cart add_to_cart" id="{{product.id}}" type="button" ><a href="#">ADD TO CART<i class="bi bi-cart2"></i></a></button> -->
+                    <button class="addtocart-button" type="submit" >ADD TO CART<i class="bi bi-cart2"></i></button>
                 </div>
+              </form>
                 <hr class="description-line">
                 <h2 class="singleproduct-heading">DELIVERY & RETURN POLICY</h2>
                 <p class="singleproduct-description"><strong>Delivery</strong></p>

@@ -68,7 +68,7 @@ cartRmvBtns.forEach(btn=>{
 function rmFromCart(e){
   // let product_id = e.target.value
   let product_id = e.target.id
-  let url = window.location.origin+"/cart/add-to-cart/"
+  let url = window.location.origin+"/cart/rm-from-cart/"
   let data = {id:product_id}
 
   fetch(url,{
@@ -81,7 +81,7 @@ function rmFromCart(e){
   .then(data=>{
               document.getElementById('no_of_cart_items').innerHTML=data.num_of_cart_items;
               if(data.item_qty<1){
-                document.getElementById("current_item").remove();
+                document.getElementById("item_"+data.item_prod_id).remove();
               }
               else{
                 document.getElementById("quantity"+data.item_prod_id).innerHTML=data.item_qty;
@@ -93,7 +93,57 @@ function rmFromCart(e){
 
 
 // End of Cart js Functionalities
-  
+
+
+// Start of single_product quantity selection section
+let inc=document.getElementById("increment")
+let input = document.getElementById("input")
+let inputValue = document.getElementById("input_value")
+let dec=document.getElementById("decrement")
+
+let counter=inputValue.textContent
+function increment (){
+  counter++;
+}
+
+function decrement (){
+  counter--;
+}
+
+inc.addEventListener("click",()=>{
+  increment()
+  input.value=counter
+  inputValue.innerHTML=counter
+})
+
+dec.addEventListener("click",()=>{
+  if(counter>0){
+    decrement()
+    input.value=counter
+    inputValue.innerHTML=counter
+  }
+})
+// End of single_product quantity selection section
+
+// Start of single_product size selection section
+
+let sizeBtns= document.querySelectorAll(".size_choice")
+sizeBtns.forEach(btn=>{
+  btn.addEventListener('click',sizeSelection)
+})
+
+let sizeInput = document.getElementById("choice_size")
+function sizeSelection(e){
+  let value=e.target.textContent
+  console.log(e.target.textContent)
+  let activeSizeBtn=document.querySelector(".activate")
+  activeSizeBtn.classList.remove("activate");
+  e.target.classList.add("activate");
+  sizeInput.value=value
+}
+
+
+// End of single_product size selection section
 
 
 

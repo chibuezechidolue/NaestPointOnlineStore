@@ -33,6 +33,7 @@ class CartItems(models.Model):
     product=models.ForeignKey(Products,on_delete=models.CASCADE)
     cart=models.ForeignKey(Cart,on_delete=models.CASCADE,related_name='cartitems')
     quantity=models.PositiveIntegerField(default=0)
+    size=models.CharField(max_length=2,default="MD")
 
     def __str__(self) -> str:
         return self.product.product_name

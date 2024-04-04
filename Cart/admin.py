@@ -1,7 +1,9 @@
 from django.contrib import admin
 from .models import Cart,CartItems
 from django.utils.translation import gettext_lazy as _
-
+from django.urls import reverse
+from django.utils.http import urlencode
+from django.utils.html import format_html
 # Register your models here.
 
 class UserCartItemsFilter(admin.SimpleListFilter):
@@ -38,9 +40,7 @@ class CartItemAdmin(admin.ModelAdmin):
     def user(self,obj):
         return obj.cart.user
     
-from django.urls import reverse
-from django.utils.http import urlencode
-from django.utils.html import format_html
+
 class CartAdmin(admin.ModelAdmin):
     list_display=("user","paid",'date','view_cart_items',)
     list_filter=('user',"paid",)
