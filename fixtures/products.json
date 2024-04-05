@@ -71,6 +71,7 @@
         "product_name": "Lauren Ralph Polo",
         "product_description": "This material is meant from a jean factory in Naples, designed and crafted by Ferdinand",
         "product_price":"34,000",
+        "product_sizes":["SM","MD","LG","XL"],
         "product_img_1": "images/product/Blue-polo.png",
         "product_gender":"MALE"
       }
@@ -93,6 +94,7 @@
         "product_name": "Irish Silky Gown",
         "product_description": "202 N 1st Street, San Jose, CA",
         "product_price":"29,000",
+        "product_sizes":["SM","MD","LG"],
         "product_img_1": "images/product/Orange-gown.png",
         "product_img_2": "images/product/redblack-gown.png",
         "product_img_3": "images/product/Ash-suit.png",
@@ -107,6 +109,7 @@
         "product_name": "Italian Cotton Gown",
         "product_description": "202 N 1st Street, San Jose, CA",
         "product_price":"26,500",
+        "product_sizes":["SM","XL"],
         "product_img_1": "images/product/redblack-gown.png",
         "product_gender":"FEMALE",
         "prod_is_featured":"True"
@@ -119,6 +122,7 @@
         "product_name": "Canzo Seamless Stretch",
         "product_description": "202 N 1st Street, San Jose, CA",
         "product_price":"33,500",
+        "product_sizes":["MD","LG","XL"],
         "product_img_1": "images/product/white-gown.png",
         "product_gender":"FEMALE",
         "prod_is_featured":"True"
@@ -131,6 +135,7 @@
         "product_name": "Cashmir Ethical Corron",
         "product_description": "202 N 1st Street, San Jose, CA",
         "product_price":"28,500",
+        "product_sizes":["SM","MD"],
         "product_img_1": "images/product/black-suit.png",
         "product_gender":"FEMALE",
         "prod_is_featured":"True"
@@ -165,6 +170,7 @@
         "product_name": "Golden Weave Gown",
         "product_description": "202 N 1st Street, San Jose, CA",
         "product_price":"29,000",
+        "product_sizes":["SM","MD","LG","XL"],
         "product_img_1": "images/product/pink-gown.png",
         "product_gender":"FEMALE",
         "prod_is_featured":"True"
@@ -177,6 +183,7 @@
         "product_name": "British Wool Gown",
         "product_description": "202 N 1st Street, San Jose, CA",
         "product_price":"26,500",
+        "product_sizes":["SM","MD","LG","XL"],
         "product_img_1": "images/product/Orangeblack-gown.png",
         "product_gender":"FEMALE",
         "prod_is_featured":"True"
@@ -189,6 +196,7 @@
         "product_name": "Canzo Seamless Stretch1",
         "product_description": "202 N 1st Street, San Jose, CA",
         "product_price":"33,500",
+        "product_sizes":["SM","LG","XL"],
         "product_img_1": "images/product/Red-gown.png",
         "product_gender":"FEMALE",
         "prod_is_featured":"True"
@@ -201,6 +209,7 @@
         "product_name": "sartin Ethical Close",
         "product_description": "202 N 1st Street, San Jose, CA",
         "product_price":"28,500",
+        "product_sizes":["SM","MD","LG","XL"],
         "product_img_1": "images/product/black-suit.png",
         "product_gender":"FEMALE",
         "prod_is_featured":"True"

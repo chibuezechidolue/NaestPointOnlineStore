@@ -1,12 +1,26 @@
+from email.policy import default
 from django.db import models
 from Store.models import Collection
+from django.contrib.postgres.fields import ArrayField
 
 # Create your models here.
+def get_default_choice():
+    return ['MD']
 
 class Products(models.Model):
     product_name=models.CharField(max_length=150,unique=True)
     product_description=models.CharField(max_length=300)
     product_price=models.CharField(max_length=200)
+    DEFAULT_CHOICE=get_default_choice
+    SIZE_CHOICES = (
+        ('1', 'SM'),
+        ('2', 'MD'),
+        ('3', 'LG'),
+        ('4', 'XL'),
+    )
+    product_sizes = ArrayField(
+        models.CharField(max_length=2,blank=True),blank=True,default=DEFAULT_CHOICE
+    )
     product_img_1=models.ImageField(upload_to=f"images/product",default="default.jpg")
     product_img_2=models.ImageField(upload_to=f"images/product",default="default.jpg",null=True)
     product_img_3=models.ImageField(upload_to=f"images/product",default="default.jpg",null=True)
@@ -17,7 +31,6 @@ class Products(models.Model):
         ('4', u'ACCESSORIES'),
     ))
     prod_is_featured=models.BooleanField(default=False)
-    # product_collection=models.CharField(max_length=200,default="unbranded")
     collection = models.ForeignKey(Collection, on_delete=models.CASCADE,default=0)
     
     def __str__(self):

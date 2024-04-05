@@ -22,11 +22,7 @@ const csrftoken = getCookie('csrftoken');
 function refreshPage() {
   location.reload();
 }
-// reload page when an element with class=refresh-cart is clicked
-let itemBtns=document.querySelectorAll('.refresh-cart')
-itemBtns.forEach(btn=>{
-  btn.addEventListener('click',refreshPage)
-})
+
 
 // function for calling addToCart function to all element with class=add_to_cart in the current page
 let cartAddBtns=document.querySelectorAll(".add_to_cart")
@@ -53,6 +49,7 @@ function addToCart(e){
               document.getElementById('no_of_cart_items').innerHTML=data.num_of_cart_items;
               document.getElementById("quantity"+data.item_prod_id).innerHTML=data.item_qty;
               document.getElementById("total_cart_sum").innerHTML=data.total_cart_sum;
+              // refreshPage();
 })
   // .then(data=>{document.getElementById('no_of_cart_items').innerHTML=data}) Note: for single response (include safe=False) 
   
@@ -91,60 +88,12 @@ function rmFromCart(e){
   .catch(error=>{console.log(error)})
 }
 
-
+// reload page when an element with class=refresh-cart is clicked
+let itemBtns=document.querySelectorAll('.refresh-cart')
+itemBtns.forEach(btn=>{
+  btn.addEventListener('click',refreshPage)
+})
 // End of Cart js Functionalities
-
-
-// Start of single_product quantity selection section
-let inc=document.getElementById("increment")
-let input = document.getElementById("input")
-let inputValue = document.getElementById("input_value")
-let dec=document.getElementById("decrement")
-
-let counter=inputValue.textContent
-function increment (){
-  counter++;
-}
-
-function decrement (){
-  counter--;
-}
-
-inc.addEventListener("click",()=>{
-  increment()
-  input.value=counter
-  inputValue.innerHTML=counter
-})
-
-dec.addEventListener("click",()=>{
-  if(counter>0){
-    decrement()
-    input.value=counter
-    inputValue.innerHTML=counter
-  }
-})
-// End of single_product quantity selection section
-
-// Start of single_product size selection section
-
-let sizeBtns= document.querySelectorAll(".size_choice")
-sizeBtns.forEach(btn=>{
-  btn.addEventListener('click',sizeSelection)
-})
-
-let sizeInput = document.getElementById("choice_size")
-function sizeSelection(e){
-  let value=e.target.textContent
-  console.log(e.target.textContent)
-  let activeSizeBtn=document.querySelector(".activate")
-  activeSizeBtn.classList.remove("activate");
-  e.target.classList.add("activate");
-  sizeInput.value=value
-}
-
-
-// End of single_product size selection section
-
 
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -195,53 +144,66 @@ window.addEventListener('DOMContentLoaded', () => {
     thumb3.addEventListener("click", function() {
       mainImg.src=thumb3Src
     })
-
-// const productItemsContainer = document.getElementById('productItemsContainer')
-
-// const produtItems = [
-//     {
-//         imgSrc: 'images/redblack-gown.png',
-//         title: 'Italian Cotton Gown',
-//         amount: "N23,000.00"
-//     },
-//     {
-//         imgSrc: 'images/white-gown.png',
-//         title: 'Canzo Seamless Stretch',
-//         amount: "N23,000.00"
-//     },
-//     {
-//         imgSrc: 'images/black-suit.png',
-//         title: 'Cashmir Ethical Corron',
-//         amount: "N23,000.00"
-//     },
-//     {
-//         imgSrc: 'images/Pink-gown.png',
-//         title: 'Golden Weave Gown',
-//         amount: "N23,000.00"
-//     },
-//     {
-//         imgSrc: 'images/Orangeblack-gown.png',
-//         title: 'British Wool Gown',
-//         amount: "N23,000.00"
-//     },
-//     {
-//         imgSrc: 'images/Red-gown.png',
-//         title: 'Canzo Seamless Stretch',
-//         amount: "N23,000.00"
-//     }
-// ]
-
-// produtItems.forEach(productItem => {
-//     productItemsContainer.appendChild(productItemGenerator(productItem))
-
-// });
-
-
-
 }, false)
-
-
 // Navbar disappear
+
+
+// Start of single_product quantity selection section
+let inc=document.getElementById("increment")
+let input = document.getElementById("input")
+let inputValue = document.getElementById("input_value")
+let dec=document.getElementById("decrement")
+
+let counter=inputValue.textContent
+function increment (){
+  counter++;
+}
+
+function decrement (){
+  counter--;
+}
+
+inc.addEventListener("click",()=>{
+  increment()
+  input.value=counter
+  inputValue.innerHTML=counter
+})
+
+dec.addEventListener("click",()=>{
+  if(counter>0){
+    decrement()
+    input.value=counter
+    inputValue.innerHTML=counter
+  }
+})
+// End of single_product quantity selection section
+
+// Start of single_product size selection section
+
+let sizeBtns= document.querySelectorAll(".size_choice")
+sizeBtns.forEach(btn=>{
+  btn.addEventListener('click',sizeSelection)
+})
+
+let sizeInput = document.getElementById("choice_size")
+function sizeSelection(e){
+  let value=e.target.textContent
+  console.log(e.target.textContent)
+  try{
+    let activeSizeBtn=document.querySelector(".activate")
+    console.log(activeSizeBtn)
+    activeSizeBtn.classList.remove("activate");
+  }
+  catch{
+    
+  }
+  e.target.classList.add("activate");
+  sizeInput.value=value
+}
+
+
+// End of single_product size selection section
+
 
 
 

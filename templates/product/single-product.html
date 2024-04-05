@@ -40,13 +40,29 @@
                 <hr class="description-line">
                 <form action="" method="post">
                   {%csrf_token%}
-                <div class="singleproduct-button">
+                <div class="singleproduct-button">                    
                     <div class="size-description">
                         <input name="size_choice" type="hidden" id="choice_size" value="">
+                        {%if not 'SM' in product.product_sizes%}
+                        <button type="button" class="measurement sm size_choice deactivate" disabled> SM</button>
+                        {%else%}
                         <button type="button"  class="measurement sm size_choice">SM</button>
+                        {%endif%}
+                        {%if not 'MD' in product.product_sizes%} 
+                          <button type="button" class="measurement md size_choice deactivate" disabled> MD</button>
+                        {%else%}
                         <button type="button"  class="measurement md size_choice activate">MD</button>
+                        {%endif%}
+                        {%if not 'LG' in product.product_sizes%} 
+                          <button type="button" class="measurement lg size_choice deactivate" disabled> LG</button>
+                        {%else%}
                         <button type="button"  class="measurement lg size_choice">LG</button>
+                        {%endif%}
+                        {%if not 'XL' in product.product_sizes%} 
+                          <button type="button" class="measurement xl size_choice deactivate" disabled>XL</button>
+                        {%else%}
                         <button type="button"  class="measurement xl size_choice">XL</button>
+                        {%endif%}
                     </div>
                     <img src="{% static 'images/greenheart.svg' %}" class="singleproduct-favourite-icon" alt="">
                     <div class="number">

@@ -77,15 +77,15 @@ def contact_us_page(request):
     if request.method=="POST":
         content = request.POST
         name=content.get('name')
-        phone_no=content.get('phone_no')
-        message=content.get('message')
         email=content['email']
+        subject=content.get('email_subject')
+        message=content.get('email_content')
         send_mail(
                 subject='Message from NaestPoint Store',
-                message=f"\n\nName: {name}\nPhone: {phone_no}\nEmail: {email}\nMessage: {message}",   
+                message=f"{subject}\n\nName: {name}\nEmail: {email}\nMessage: {message}",   
                 from_email=None,
                 recipient_list=[os.environ.get('EMAIL_USERNAME'),],  
             )
         messages.add_message(request, messages.SUCCESS, "Your message was sent successfully")
-        return redirect('home-page')
+        # return redirect('home-page')
     return render(request,'store/contact-us.html')
