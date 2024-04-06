@@ -11,15 +11,8 @@ class Products(models.Model):
     product_name=models.CharField(max_length=150,unique=True)
     product_description=models.CharField(max_length=300)
     product_price=models.CharField(max_length=200)
-    DEFAULT_CHOICE=get_default_choice
-    SIZE_CHOICES = (
-        ('1', 'SM'),
-        ('2', 'MD'),
-        ('3', 'LG'),
-        ('4', 'XL'),
-    )
     product_sizes = ArrayField(
-        models.CharField(max_length=2,blank=True),blank=True,default=DEFAULT_CHOICE
+        models.CharField(max_length=2,blank=True),blank=True,default=get_default_choice
     )
     product_img_1=models.ImageField(upload_to=f"images/product",default="default.jpg")
     product_img_2=models.ImageField(upload_to=f"images/product",default="default.jpg",null=True)

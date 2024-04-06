@@ -18,10 +18,7 @@ function getCookie(name) {
 }
 
 const csrftoken = getCookie('csrftoken');
-// function to reload page
-function refreshPage() {
-  location.reload();
-}
+
 
 
 // function for calling addToCart function to all element with class=add_to_cart in the current page
@@ -49,7 +46,6 @@ function addToCart(e){
               document.getElementById('no_of_cart_items').innerHTML=data.num_of_cart_items;
               document.getElementById("quantity"+data.item_prod_id).innerHTML=data.item_qty;
               document.getElementById("total_cart_sum").innerHTML=data.total_cart_sum;
-              // refreshPage();
 })
   // .then(data=>{document.getElementById('no_of_cart_items').innerHTML=data}) Note: for single response (include safe=False) 
   
@@ -88,18 +84,31 @@ function rmFromCart(e){
   .catch(error=>{console.log(error)})
 }
 
-// reload page when an element with class=refresh-cart is clicked
-let itemBtns=document.querySelectorAll('.refresh-cart')
-itemBtns.forEach(btn=>{
-  btn.addEventListener('click',refreshPage)
+// reloading page when cartIcon is clicked and call cartTab to appear on NavBar
+let loadTab = sessionStorage.getItem("loadTab")
+let cartIcon = document.querySelector('.cartIcon');
+let cartTab = document.querySelector('.cartTab');
+
+cartIcon.addEventListener("click", () => {
+  sessionStorage.setItem("loadTab", "true")
+  location.reload()
 })
-// End of Cart js Functionalities
+
+window.onload = () => {
+  if(loadTab){
+    cartTab.classList.add('showcart')
+    // sessionStorage.clear() // This cleans all the session storage
+        //  OR
+    // If you want to  remove ONLY the item from the storage use:
+    sessionStorage.removeItem("loadTab")
+  }
+};
 
 
+
+// Responsive Search button
 window.addEventListener('DOMContentLoaded', () => {
 
-  // Responsive Search button
-    
   let searchBtn = document.querySelector('.searchBtn');
   let closeBtn = document.querySelector('.closeBtn');
   let searchBox = document.querySelector('.searchBox');
@@ -117,9 +126,11 @@ window.addEventListener('DOMContentLoaded', () => {
           closeBtn.classList.remove('active')
           searchBtn.classList.remove('active')
       }
-      cartIcon.onclick = function () {
-          cartTab.classList.add('showcart')
-      }
+      // cartIcon.onclick = function () {
+      //     cartTab.classList.add('showcart')
+      // }
+
+      
       closeCart.onclick = function () {
           cartTab.classList.remove('showcart')
       }
