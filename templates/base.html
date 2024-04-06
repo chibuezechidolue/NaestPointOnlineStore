@@ -36,9 +36,8 @@
               {%endif%}
               
               <a href="{% url 'favourite-page' %}"><img src="{%static 'images/Heart.svg'%}" title="Saved Items" class="nav-svg favourite-icon" alt="..."></a>
-              <!-- <a href="{% url 'cart-page' %}"> -->
+              <span class="fav_number-display" id="no_of_saved_items" >{{saved_items | length}} </span>
                 <img src="{% static 'images/Bag.svg'%}" title="Shopping Cart" class="nav-svg cartIcon refresh-button" alt="...">
-              <!-- </a> -->
               <span class="number-display " id="no_of_cart_items"  >{{cart.num_of_item}}</span>
               <div class="search">
                 <span class="ikon">

@@ -1,7 +1,9 @@
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from Product.models import Products
-from .models import Cart,CartItems
+from django.contrib.auth.decorators import login_required
+from .models import Cart,CartItems, SavedItems
+from django.contrib import messages
 import json
 import uuid
 
@@ -71,6 +73,42 @@ def rm_from_cart(request):
     return JsonResponse(response)   
     # return JsonResponse(cart.num_of_item,safe=False)
 
-
+@login_required
 def favourite_page(request):
-    return render(request,'product/favourite.html')
+    return render(request,'cart/favourite.html')
+
+from django.http import HttpResponseRedirect
+
+@login_required
+def add_to_favourite(request):
+    data=json.loads(request.body)
+    product_id=data['id']
+    prod=Products.objects.get(id=product_id)
+    item=SavedItems(user=request.user,product=prod)
+    usr_saved_items=SavedItems.objects.filter(user=request.user)
+    item.save()
+    num_of_item=len(usr_saved_items)
+    response={"num_of_saved_items":num_of_item }
+    return JsonResponse(response)
+
+
+@login_required
+def rm_from_favourite(request):
+    data=json.loads(request.body)
+    product_id=data['id']
+    item=SavedItems.objects.get(user=request.user,product_id=product_id)
+    usr_saved_items=SavedItems.objects.filter(user=request.user)
+    item.delete()
+    num_of_item=len(usr_saved_items)
+    response={"num_of_saved_items":num_of_item }
+    return JsonResponse(response)
+
+
+
+@login_required
+def delete_all_favourites(request):
+    usr_saved_items=SavedItems.objects.filter(user=request.user)
+    usr_saved_items.delete()
+    messages.add_message(request, messages.SUCCESS, "All saved items has been deleted")
+    previous_page=request.META.get('HTTP_REFERER')
+    return redirect(previous_page)

@@ -1,6 +1,6 @@
 from .models import Collection,Advertisement
 from User.forms import NewsLetterForm
-from Cart.models import Cart,CartItems
+from Cart.models import Cart,CartItems, SavedItems
 import uuid
 
 
@@ -15,7 +15,9 @@ def nav_bar(request):
             cart = Cart.objects.get(user=user,paid=False)
         except:
             cart={"num_of_item":0}
+        usr_saved_items= SavedItems.objects.filter(user=request.user)
     else:
+        usr_saved_items=[]
         try:
             session=request.session['session_id']
         except:
@@ -28,6 +30,6 @@ def nav_bar(request):
                 cart={"num_of_item":0}
     return {'collections': Collection.objects.all(),
             "nav_advert":Advertisement.objects.get(advert_location="Nav_advert"),
-            "newsletterform":form,"cart":cart,
+            "newsletterform":form,"cart":cart,"saved_items":usr_saved_items
             }
 

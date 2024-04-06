@@ -12,166 +12,43 @@
 
    <section id="favourite">
     <div class="cart-top">
-        <img src="images/Favourite-img.svg" class="cart-image" alt="">
+        <img src="{% static 'images/Favourite-img.svg'%}" class="cart-image" alt="">
     </div>
+    {% if messages %}
+        {% for message in messages%}
+          <div class="alert alert-{{message.tags}}">
+            {{message}}
+          </div>
+        {% endfor %}
+        {% endif %}
     <div class="listFavourite">
+        {% for prod in saved_items %}
       <div class="favourite">
         <div class="favourite-image">
-          <img src="./images/Orange-gown.png" alt="">
+          <img src="../../media/{{prod.product.product_img}}" alt="">
         </div>
         <div class="favourite-name">
-          irish Silky Gown
+          {{prod.product.product_name}}
         </div>
         <div class="favourite-price">
-          N20,000
+          N{{prod.product.product_price}}
         </div>
         <div class="favourite-quantity">
           <button type="button" class="favourite-addtocart">ADD TO CART<i class="bi bi-cart2 cart1"></i></button>
         </div>
         <div class="delete-button">
-          <i class="bi bi-trash-fill"></i>  
+          <i class="bi bi-trash-fill rm_from_fav" id="{{prod.product.id}}"></i>  
         </div>
       </div>
-      <div class="favourite">
-        <div class="favourite-image">
-          <img src="./images/Orange-gown.png" alt="">
-        </div>
-        <div class="favourite-name">
-          irish Silky Gown
-        </div>
-        <div class="favourite-price">
-          N20,000
-        </div>
-        <div class="favourite-quantity">
-          <button type="button" class="favourite-addtocart">ADD TO CART<i class="bi bi-cart2 cart1"></i></button>
-        </div>
-        <div class="delete-button">
-          <i class="bi bi-trash-fill"></i>  
-        </div>
-      </div>
-      <div class="favourite">
-        <div class="favourite-image">
-          <img src="./images/Orange-gown.png" alt="">
-        </div>
-        <div class="favourite-name">
-          irish Silky Gown
-        </div>
-        <div class="favourite-price">
-          N20,000
-        </div>
-        <div class="favourite-quantity">
-          <button type="button" class="favourite-addtocart">ADD TO CART<i class="bi bi-cart2 cart1"></i></button>
-        </div>
-        <div class="delete-button">
-          <i class="bi bi-trash-fill"></i>  
-        </div>
-      </div>
-      <div class="favourite">
-        <div class="favourite-image">
-          <img src="./images/Orange-gown.png" alt="">
-        </div>
-        <div class="favourite-name">
-          irish Silky Gown
-        </div>
-        <div class="favourite-price">
-          N20,000
-        </div>
-        <div class="favourite-quantity">
-          <button type="button" class="favourite-addtocart">ADD TO CART<i class="bi bi-cart2 cart1"></i></button>
-        </div>
-        <div class="delete-button">
-          <i class="bi bi-trash-fill"></i>  
-        </div>
-      </div>
-      <div class="favourite">
-        <div class="favourite-image">
-          <img src="./images/Orange-gown.png" alt="">
-        </div>
-        <div class="favourite-name">
-          irish Silky Gown
-        </div>
-        <div class="favourite-price">
-          N20,000
-        </div>
-        <div class="favourite-quantity">
-          <button type="button" class="favourite-addtocart">ADD TO CART<i class="bi bi-cart2 cart1"></i></button>
-        </div>
-        <div class="delete-button">
-          <i class="bi bi-trash-fill"></i>  
-        </div>
-      </div>
-      <div class="favourite">
-        <div class="favourite-image">
-          <img src="./images/Orange-gown.png" alt="">
-        </div>
-        <div class="favourite-name">
-          irish Silky Gown
-        </div>
-        <div class="favourite-price">
-          N20,000
-        </div>
-        <div class="favourite-quantity">
-          <button type="button" class="favourite-addtocart">ADD TO CART<i class="bi bi-cart2 cart1"></i></button>
-        </div>
-        <div class="delete-button">
-          <i class="bi bi-trash-fill"></i>  
-        </div>
-      </div>
-      <div class="favourite">
-        <div class="favourite-image">
-          <img src="./images/Orange-gown.png" alt="">
-        </div>
-        <div class="favourite-name">
-          irish Silky Gown
-        </div>
-        <div class="favourite-price">
-          N20,000
-        </div>
-        <div class="favourite-quantity">
-          <button type="button" class="favourite-addtocart">ADD TO CART<i class="bi bi-cart2 cart1"></i></button>
-        </div>
-        <div class="delete-button">
-          <i class="bi bi-trash-fill"></i>  
-        </div>
-      </div>
-      <div class="favourite">
-        <div class="favourite-image">
-          <img src="./images/Orange-gown.png" alt="">
-        </div>
-        <div class="favourite-name">
-          irish Silky Gown
-        </div>
-        <div class="favourite-price">
-          N20,000
-        </div>
-        <div class="favourite-quantity">
-          <button type="button" class="favourite-addtocart">ADD TO CART<i class="bi bi-cart2 cart1"></i></button>
-        </div>
-        <div class="delete-button">
-          <i class="bi bi-trash-fill"></i>  
-        </div>
-      </div>
-      <div class="favourite">
-        <div class="favourite-image">
-          <img src="./images/Orange-gown.png" alt="">
-        </div>
-        <div class="favourite-name">
-          irish Silky Gown
-        </div>
-        <div class="favourite-price">
-          N20,000
-        </div>
-        <div class="favourite-quantity">
-          <button type="button" class="favourite-addtocart">ADD TO CART<i class="bi bi-cart2 cart1"></i></button>
-        </div>
-        <div class="delete-button">
-          <i class="bi bi-trash-fill"></i>  
-        </div>
-      </div>
+      {%endfor%}
     </div>
+    {% if saved_items|length > 0 %}
     <div class="cart-btn">
-      <button class="delete-all">DELETE ALL</button>
+      <a href="{% url 'delete-all-fav' %}"><button  class="delete-all">DELETE ALL</button></a>
     </div>
+    {%else%}
+    <h2>You currently do not have any saved items</h2>
+    {%endif%}
    </section>
 {%endblock content%}
 </body>

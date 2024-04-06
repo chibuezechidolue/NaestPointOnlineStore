@@ -84,6 +84,67 @@ function rmFromCart(e){
   .catch(error=>{console.log(error)})
 }
 
+
+
+
+// function for calling addToFav function to all element with class=add_to_fav in the current page
+let favAddBtns=document.querySelectorAll(".add_to_fav")
+favAddBtns.forEach(btn=>{
+  btn.addEventListener("click",addToFav)
+})
+
+// function for adding a clicked product to favourite
+function addToFav(e){
+  // let product_id = e.target.value
+  let product_id = e.target.id
+  let url = window.location.origin+"/customer/add-to-favourite"
+  let data = {id:product_id}
+
+  fetch(url,{
+    method: "POST",
+    headers: {'Content-Type':"application/json",'X-CSRFToken': csrftoken},
+    body:JSON.stringify(data)
+  })
+
+  .then(res=>res.json())
+  .then(data=>{
+              document.getElementById('no_of_saved_items').innerHTML=data.num_of_saved_items;
+              console.log(data.num_of_saved_items)
+             
+})
+  
+  .catch(error=>{console.log(error)})
+}
+
+// function for adding a clicked product to favourite
+let favRmvBtns=document.querySelectorAll(".rm_from_fav")
+favRmvBtns.forEach(btn=>{
+  btn.addEventListener("click",rmFromFav)
+})
+
+// function for removing a clicked product to favourite
+function rmFromFav(e){
+  // let product_id = e.target.value
+  let product_id = e.target.id
+  let url = window.location.origin+"/customer/rm-from-favourite"
+  let data = {id:product_id}
+
+  fetch(url,{
+    method: "POST",
+    headers: {'Content-Type':"application/json",'X-CSRFToken': csrftoken},
+    body:JSON.stringify(data)
+  })
+
+  .then(res=>res.json())
+  .then(data=>{
+              document.getElementById('no_of_saved_items').innerHTML=data.num_of_saved_items;
+              location.reload()
+             
+})
+  .catch(error=>{console.log(error)})
+}
+
+
 // reloading page when cartIcon is clicked and call cartTab to appear on NavBar
 let loadTab = sessionStorage.getItem("loadTab")
 let cartIcon = document.querySelector('.cartIcon');
@@ -199,10 +260,8 @@ sizeBtns.forEach(btn=>{
 let sizeInput = document.getElementById("choice_size")
 function sizeSelection(e){
   let value=e.target.textContent
-  console.log(e.target.textContent)
   try{
     let activeSizeBtn=document.querySelector(".activate")
-    console.log(activeSizeBtn)
     activeSizeBtn.classList.remove("activate");
   }
   catch{

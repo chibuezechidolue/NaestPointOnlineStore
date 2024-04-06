@@ -43,3 +43,9 @@ class CartItems(models.Model):
         product_price=self.product.product_price.replace(",","")
         return self.quantity*int(product_price)
         
+
+
+class SavedItems(models.Model):
+    user=models.ForeignKey(CustomUser,on_delete=models.CASCADE,null=True,blank=True)
+    product=models.OneToOneField(Products,on_delete=models.CASCADE)
+

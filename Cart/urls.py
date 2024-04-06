@@ -7,6 +7,5 @@ urlpatterns = [
     path("add-to-cart/", views.add_to_cart, name="add-to-cart"  ),
     path("rm-from-cart/", views.rm_from_cart, name="rm-from-cart"  ),
     path("clear-cart/", views.delete_cart, name="delete-cart"  ),
-    path("favourite/", views.favourite_page, name="favourite-page"  ),
 
 ]
