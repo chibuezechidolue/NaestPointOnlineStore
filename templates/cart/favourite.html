@@ -25,16 +25,16 @@
         {% for prod in saved_items %}
       <div class="favourite">
         <div class="favourite-image">
-          <img src="../../media/{{prod.product.product_img}}" alt="">
+          <img src="../../media/{{prod.product.product_img_1}}" alt="">
         </div>
         <div class="favourite-name">
           {{prod.product.product_name}}
         </div>
         <div class="favourite-price">
-          N{{prod.product.product_price}}
+          ₦{{prod.product.product_price}}
         </div>
         <div class="favourite-quantity">
-          <button type="button" class="favourite-addtocart">ADD TO CART<i class="bi bi-cart2 cart1"></i></button>
+          <a href=""><button type="button" class="favourite-addtocart add_to_cart" id="{{prod.product.id}}" >ADD TO CART<i class="bi bi-cart2 cart1"></i></button></a>
         </div>
         <div class="delete-button">
           <i class="bi bi-trash-fill rm_from_fav" id="{{prod.product.id}}"></i>  

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Cart,CartItems
+from .models import Cart,CartItems, SavedItems
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 from django.utils.http import urlencode
@@ -65,5 +65,13 @@ class CartAdmin(admin.ModelAdmin):
         self.message_user(request, "The selected cart(s) has been set as unpaid")
     set_cart_as_unpaid.short_description="Set Selected Cart as Not_Yet_Paid"
 
+
+class SavedItemsAdmin(admin.ModelAdmin):
+    list_display=("product",'user')
+    list_filter=('user',"product",)
+    search_fields=("user__email__contains",)
+    list_per_page=10
+
 admin.site.register(Cart,CartAdmin)
 admin.site.register(CartItems,CartItemAdmin)
+admin.site.register(SavedItems,SavedItemsAdmin)

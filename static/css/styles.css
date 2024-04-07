@@ -911,9 +911,9 @@ header.hide {
     transition: all 1s ease;
 }
 
-.card-design:hover img {
+/* .card-design:hover img {
     transform: scale(1.2);
-}
+} */
 
 /* .modal-content {
     background-color: #232222;
@@ -2988,3 +2988,19 @@ input[type=radio] {
     top: 0;
     right: 50px;
 }
+
+
+.fav_activate{
+    /* background-color: black; */
+    transform: scale(1.9);
+}
+
+/* .fav_activate:hover img {
+    transform: scale(1.9);
+} */
+
+.cart_activate {
+    /* background-color: black; */
+    transform: scale(1.9);
+}
+

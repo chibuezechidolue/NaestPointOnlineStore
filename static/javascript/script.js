@@ -43,9 +43,14 @@ function addToCart(e){
   .then(res=>res.json())
   // .then(json => console.log(JSON.stringify(json.item_qty)))
   .then(data=>{
+              e.target.src="../../static/images/cart_activate.svg"
+              e.target.classList.add("cart_activate");
+              sleep(1000).then(() => { e.target.classList.remove("cart_activate");
+                                      e.target.src="../../static/images/Wheel-cart.svg" });
               document.getElementById('no_of_cart_items').innerHTML=data.num_of_cart_items;
               document.getElementById("quantity"+data.item_prod_id).innerHTML=data.item_qty;
               document.getElementById("total_cart_sum").innerHTML=data.total_cart_sum;
+              
 })
   // .then(data=>{document.getElementById('no_of_cart_items').innerHTML=data}) Note: for single response (include safe=False) 
   
@@ -87,6 +92,11 @@ function rmFromCart(e){
 
 
 
+const sleep = function(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
 // function for calling addToFav function to all element with class=add_to_fav in the current page
 let favAddBtns=document.querySelectorAll(".add_to_fav")
 favAddBtns.forEach(btn=>{
@@ -108,8 +118,12 @@ function addToFav(e){
 
   .then(res=>res.json())
   .then(data=>{
+              e.target.src="../../static/images/favourite_activate.svg" 
+              e.target.classList.add("fav_activate");
+              sleep(1000).then(() => { e.target.classList.remove("fav_activate"); 
+                                      e.target.src="../../static/images/Black-heart.svg"});
               document.getElementById('no_of_saved_items').innerHTML=data.num_of_saved_items;
-              console.log(data.num_of_saved_items)
+              
              
 })
   

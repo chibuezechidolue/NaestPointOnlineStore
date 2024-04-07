@@ -4,6 +4,7 @@ from Product.models import Products
 from django.contrib.auth.decorators import login_required
 from .models import Cart,CartItems, SavedItems
 from django.contrib import messages
+from django.db.utils import IntegrityError
 import json
 import uuid
 
@@ -33,6 +34,13 @@ def add_to_cart(request):
     user=request.user
     if user.is_authenticated:
         cart, created = Cart.objects.get_or_create(user=user,paid=False)
+        saved_items=SavedItems.objects.filter(user=user)
+        try:
+            item=SavedItems.objects.get(product=product)
+        except:
+            item=product
+        if item in saved_items:
+            item.delete()
     else:
         try:
             session=request.session['session_id']
@@ -77,14 +85,18 @@ def rm_from_cart(request):
 def favourite_page(request):
     return render(request,'cart/favourite.html')
 
-from django.http import HttpResponseRedirect
 
 @login_required
 def add_to_favourite(request):
     data=json.loads(request.body)
     product_id=data['id']
     prod=Products.objects.get(id=product_id)
+    # try:
     item=SavedItems(user=request.user,product=prod)
+    # except IntegrityError: 
+    #     print("there was an integrity error")
+    #     messages.add_message(request, messages.SUCCESS, "the Item is already in your favourites")
+        
     usr_saved_items=SavedItems.objects.filter(user=request.user)
     item.save()
     num_of_item=len(usr_saved_items)
