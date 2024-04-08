@@ -124,7 +124,7 @@
 
             </div>
             <div class="product-info">
-              <p class="product-price">₦{{product.product_price}}</p>
+              <p class="product-price">{{product.product_price|currency}}</p>
             </a>
               <div class="option-button">
                 <button><img src="{% static 'images/Black-heart.svg' %}"  class="nav-svg add_to_fav" id="{{product.id}}" alt="..."></button>
@@ -187,7 +187,7 @@
             <div class="product2-info">
               <h3 class="product-title">{{prod.product_name}}</h3>
               <p class="product-description">{{prod.product_description}}</p>
-              <p class="product-price">₦{{prod.product_price}}</p>
+              <p class="product-price">{{prod.product_price|currency}}</p>
             </div>
           </div>
         </div>

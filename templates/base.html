@@ -127,9 +127,9 @@
     {%if cart.num_of_item > 0%}
     <a href="{% url 'delete-cart' %}"><button>Clear Cart</button></a>
     {%endif%}
+    <span class="position-absolute  end-0"><a href="{% url 'cart-page' %}"><button>View FullPage</button></a></span>
     {%for item in cart.cartitems.all%}
     <div class="item" id="item_{{item.product.id}}">
-    <!-- <a class="" href="{% url 'single-prod-page' prod_name=item.product.product_name %}"> -->
       <div class="item-image">
         <img src="../../media/{{item.product.product_img_1}}" alt="">
       </div>
@@ -137,7 +137,7 @@
         {{item.product.product_name}}
       </div>
       <div class="item-price">
-        ₦{{item.product.product_price}}
+        {{item.product.product_price|currency}}
       </div>
       <!-- </a> -->
       <div class="item-quantity">
@@ -147,8 +147,17 @@
       </div>
   </div>
     {%endfor%}
-    <div>
-    <span>TOTAL ORDER:</span><span id="total_cart_sum"> ₦{{cart.total_cart_sum}} </span>
+  <div>
+  <span>Sub Total:</span><span id="total_cart_sum"> {{cart.total_cart_sum}} </span>
+  </div>
+  <div>
+    <span>Discount:</span><span id="total_cart_sum_discount">{{cart.total_cart_sum_discount}} </span>
+  </div>
+  <div>
+    <span>Shipping:</span><span id="total_cart_sum_shipping_fee">{{cart.total_cart_sum_shipping_fee}} </span>
+  </div>
+  <div>
+    <span>Total Checkout:</span><span id="total_checkout_cost">{{cart.total_checkout_cost}} </span>
   </div>
   <div class="cart-btn">
     <button class="closeCart"> CLOSE</button>
@@ -156,6 +165,7 @@
   </div>
 </div>
 </div>
+
   
 <body>
    

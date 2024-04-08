@@ -105,7 +105,7 @@
           <div class="card-body suggestion-body">
             <h3 class="suggestion-title">{{prod.product_name}}</h3>
             <div class="product-info">
-              <p class="suggestion-price">₦{{prod.product_price}}</p>
+              <p class="suggestion-price">{{prod.product_price|currency}}</p>
               <div class="option-button">
                 <img src="{% static 'images/Black-heart.svg' %}" class="suggestion-svg" alt="...">
                 <img src="{% static 'images/Wheel-cart.svg' %}" class="suggestion-svg" alt="...">

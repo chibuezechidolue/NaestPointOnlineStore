@@ -1,6 +1,8 @@
 from django.db import models
 from Product.models import Products
 from User.models import CustomUser
+from Store.templatetags.custom_tag import get_currency
+import babel.numbers
 import uuid
 
 # Create your models here.
@@ -24,9 +26,24 @@ class Cart(models.Model):
     @property
     def total_cart_sum(self):
         cart_items=self.cartitems.all()
-        output=sum([item.total_item_price for item in cart_items])
-        return output
+        self.total_sum=sum([item.total_item_price for item in cart_items])
+        return get_currency(self.total_sum)
+    
 
+    @property
+    def total_cart_sum_discount(self):
+        self.discount=0.05*self.total_sum
+        return get_currency(self.discount)
+    
+    @property
+    def total_cart_sum_shipping_fee(self):
+        self.shipping= 0.08*self.total_sum
+        return get_currency(self.shipping)
+
+    @property
+    def total_checkout_cost(self):
+        self.total_checkout=self.total_sum + self.shipping - self.discount
+        return get_currency(self.total_checkout)
 
 
 class CartItems(models.Model):

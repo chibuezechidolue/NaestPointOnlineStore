@@ -12,7 +12,7 @@
 
    <section id="favourite">
     <div class="cart-top">
-        <img src="{% static 'images/Favourite-img.svg'%}" class="cart-image" alt="">
+        <img src="{% static 'images/Favourite-img.svg'%" class="cart-image" alt="">
     </div>
     {% if messages %}
         {% for message in messages%}
@@ -22,6 +22,8 @@
         {% endfor %}
         {% endif %}
     <div class="listFavourite">
+      <h2 class="cart-heading">SAVED ITEMS</h2>
+      <hr class="cartHeading-line">
         {% for prod in saved_items %}
       <div class="favourite">
         <div class="favourite-image">
@@ -31,7 +33,7 @@
           {{prod.product.product_name}}
         </div>
         <div class="favourite-price">
-          ₦{{prod.product.product_price}}
+          {{prod.product.product_price|currency}}
         </div>
         <div class="favourite-quantity">
           <a href=""><button type="button" class="favourite-addtocart add_to_cart" id="{{prod.product.id}}" >ADD TO CART<i class="bi bi-cart2 cart1"></i></button></a>

@@ -48,8 +48,18 @@ function addToCart(e){
               sleep(1000).then(() => { e.target.classList.remove("cart_activate");
                                       e.target.src="../../static/images/Wheel-cart.svg" });
               document.getElementById('no_of_cart_items').innerHTML=data.num_of_cart_items;
+              document.getElementById('main_no_of_cart_items').innerHTML='X'+data.num_of_cart_items;
               document.getElementById("quantity"+data.item_prod_id).innerHTML=data.item_qty;
+              document.getElementById("main_quantity"+data.item_prod_id).innerHTML=data.item_qty;
               document.getElementById("total_cart_sum").innerHTML=data.total_cart_sum;
+              document.getElementById("main_total_cart_sum").innerHTML=data.total_cart_sum;
+              document.getElementById("total_cart_sum_discount").innerHTML=data.total_cart_sum_disc;
+              document.getElementById("main_total_cart_sum_discount").innerHTML=data.total_cart_sum_disc;
+              document.getElementById("total_cart_sum_shipping_fee").innerHTML=data.total_cart_sum_shipping_fee;
+              document.getElementById("main_total_cart_sum_shipping_fee").innerHTML=data.total_cart_sum_shipping_fee;
+              document.getElementById("total_checkout_cost").innerHTML=data.total_checkout_cost;
+              document.getElementById("main_total_checkout_cost").innerHTML=data.total_checkout_cost;
+
               
 })
   // .then(data=>{document.getElementById('no_of_cart_items').innerHTML=data}) Note: for single response (include safe=False) 
@@ -78,13 +88,25 @@ function rmFromCart(e){
   .then(res=>res.json())
   .then(data=>{
               document.getElementById('no_of_cart_items').innerHTML=data.num_of_cart_items;
+              document.getElementById('main_no_of_cart_items').innerHTML='X'+data.num_of_cart_items;
               if(data.item_qty<1){
                 document.getElementById("item_"+data.item_prod_id).remove();
+                document.getElementById("main_item_"+data.item_prod_id).remove();
               }
               else{
                 document.getElementById("quantity"+data.item_prod_id).innerHTML=data.item_qty;
+                document.getElementById("main_quantity"+data.item_prod_id).innerHTML=data.item_qty;
+
               }
               document.getElementById("total_cart_sum").innerHTML=data.total_cart_sum;
+              document.getElementById("main_total_cart_sum").innerHTML=data.total_cart_sum;
+              document.getElementById("total_cart_sum_discount").innerHTML=data.total_cart_sum_disc;
+              document.getElementById("main_total_cart_sum_discount").innerHTML=data.total_cart_sum_disc;
+              document.getElementById("total_cart_sum_shipping_fee").innerHTML=data.total_cart_sum_shipping_fee;
+              document.getElementById("main_total_cart_sum_shipping_fee").innerHTML=data.total_cart_sum_shipping_fee;
+              document.getElementById("total_checkout_cost").innerHTML=data.total_checkout_cost;
+              document.getElementById("main_total_checkout_cost").innerHTML=data.total_checkout_cost;
+
 })
   .catch(error=>{console.log(error)})
 }

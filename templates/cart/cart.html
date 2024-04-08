@@ -6,45 +6,84 @@
 
 <body>
 {%block content%}
-<section id="profile">
- <!-- shopping cart dropdown -->
- <div class="cartTa">
-  <h2 class="cart-title">SHOPPING CART</h2>
-  <div class="listCart">
-  {%if cart.num_of_item > 0%}
-  <a href="{% url 'delete-cart' %}"><button>Clear Cart</button></a>
-  {%endif%}
-    {%for item in cart.cartitems.all%}
-    <div class="item">
-      <div class="item-image">
-        <img src="../../media/{{item.product.product_img_1}}" alt="">
-      </div>
-      <div class="item-name">
-        {{item.product.product_name}}
-      </div>
-      <div class="item-price">
-        ₦{{item.product.product_price}}
-      </div>
-      <div class="item-quantity">
-        <button><span id="{{item.product.id}}" class="minus refresh-cart rm_from_cart">-</span></button>
-        <span>{{item.quantity}}</span>
-        <button><span id="{{item.product.id}}" class="plus refresh-cart add_to_cart">+</span></button>
-      </div>
-      <div>
-       qty_cost: ₦{{item.total_item_price}}
+<section id="cart">
+  <div class="cart-top">
+    <img src="{% static 'images/cart-top-img.svg'%" class="cart-image" alt="">
+  </div>
+  <div class="row g-4 cart-container">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+      <div class="cart-border-left">
+        <h2 class="cart-heading">CART ITEMS</h2>
+        <hr class="cartHeading-line">
+        <div class="listItems">
+          {%for item in cart.cartitems.all%}
+          <div class="item" id="main_item_{{item.product.id}}">
+            <div class="cartItem-image">
+              <img src="../../media/{{item.product.product_img_1}}" alt="">
+            </div>
+            <div class="cartItem-name">
+              {{item.product.product_name}}
+            </div>
+            <div class="cartItem-price">
+              {{item.product.product_price|currency}}
+            </div>
+            <div class="cartItem-quantity">
+                <button><span id="{{item.product.id}}" class="minus rm_from_cart">-</span></button>
+                <span id="main_quantity{{item.product.id}}">{{item.quantity}}</span>
+                <button><span id="{{item.product.id}}" class="plus  add_to_cart">+</span></button>
+              </div>
+            </div>
+          {%endfor%}
+          </div>
+          {%if cart.num_of_item <= 0 %}
+          <p> Your Cart is currently empty</p>
+          </div>
+        </div>
+          {%else%}
+        </div>
+        <br>
+      <div class="cart-btn">
+        <a href="{% url 'delete-cart' %}"><button  class="delete-all">CLEAR CART</button></a>
       </div>
     </div>
-    {%endfor%}
-    <div>TOTAL ORDER:  ₦{{cart.total_cart_sum}}</div>
-  <div class="cart-btn">
-    <button class="closeCart"> CLOSE</button>
-    <button class="checkOut"> CHECK OUT</button>
+      {%endif%}
+
+    <!-- CART SUMMARY SECTION -->
+    <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+      <div class="cart-border-right">
+        <h2 class="cart-heading">CART SUMMARY</h2>
+        <hr class="cartHeading-line">
+        <div class="cart-item-details">
+          <hr class="item-line">
+          <div class="mainproduct-detail">
+            <h4 class="cart-summary">Number of Items:</h4>
+            <h4 class="cart-summary" id="main_no_of_cart_items">X{{cart.num_of_item}}</h4>
+          </div>
+          <div class="mainproduct-detail">
+            <h4 class="cart-summary">Sub Total:</h4>
+            <h4 class="cart-summary" id="main_total_cart_sum">{{cart.total_cart_sum}}</h4>
+          </div>
+          <div class="mainproduct-detail">
+            <h4 class="cart-summary">Discount:</h4>
+            <h4 class="cart-summary" id="main_total_cart_sum_discount">{{cart.total_cart_sum_discount}}</h4>
+          </div>
+          <div class="mainproduct-detail">
+            <h4 class="cart-summary">Shipping:</h4>
+            <h4 class="cart-summary" id="main_total_cart_sum_shipping_fee">{{cart.total_cart_sum_shipping_fee}}</h4>
+          </div>
+        </div>
+        <div class="cart-item-total">
+          <hr class="item-line">
+          <div class="price-info">
+            <h4 class="mainproduct-price">TOTAL:</h4>
+            <h4 class="mainproduct-price" id="main_total_checkout_cost">{{cart.total_checkout_cost}}</h4>
+          </div>
+        </div>
+        <button type="submit" class="payment-button">PROCEED TO CHECKOUT</button>
+      </div>
+    </div>
   </div>
-</div>
-</div>
-  
 </section>
     {%endblock content%}
-
 </body>
 </html>

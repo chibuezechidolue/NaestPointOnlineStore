@@ -88,7 +88,7 @@
               {%endif%}
               </div>
               <div class="product-info">
-                <p class="product-price">₦{{prod.product_price}}</p>
+                <p class="product-price">{{prod.product_price|currency}}</p>
                 <div class="option-button">
                   <button><img src="{% static 'images/Black-heart.svg' %}"  class="nav-svg add_to_fav" id="{{prod.id}}" alt="..."></button>
                   <button><img src="{% static 'images/Wheel-cart.svg' %}" class="nav-svg refresh-cart add_to_cart" id="{{prod.id}}"  alt="..."></button>
