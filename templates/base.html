@@ -36,9 +36,13 @@
               {%endif%}
               
               <a href="{% url 'favourite-page' %}"><img src="{%static 'images/Heart.svg'%}" title="Saved Items" class="nav-svg favourite-icon" alt="..."></a>
+              <!-- {%if saved_items|length > 0 %} -->
               <span class="fav_number-display" id="no_of_saved_items" >{{saved_items | length}} </span>
-                <img src="{% static 'images/Bag.svg'%}" title="Shopping Cart" class="nav-svg cartIcon refresh-button" alt="...">
-              <span class="number-display " id="no_of_cart_items"  >{{cart.num_of_item}}</span>
+              <!-- {%endif%}   -->
+              <img src="{% static 'images/Bag.svg'%}" title="Shopping Cart" class="nav-svg cartIcon refresh-button" alt="...">
+              <!-- {%if cart.num_of_item > 0 %} -->
+                <span class="number-display " id="no_of_cart_items" >{{cart.num_of_item}}</span>
+              <!-- {%endif%} -->
               <div class="search">
                 <span class="ikon">
                   <img src="{%static 'images/Search-icon.svg'%}" class="nav-svg searchBtn" alt="...">

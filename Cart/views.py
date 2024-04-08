@@ -10,7 +10,6 @@ import uuid
 
 
 
-
 def cart_page(request):
     return render(request,'cart/cart.html')
 
@@ -85,13 +84,24 @@ def rm_from_cart(request):
     return JsonResponse(response)   
     # return JsonResponse(cart.num_of_item,safe=False)
 
+
+# def login_requirement(fn):
+#     def wrapper(request,*args,**kwargs):
+#         if request.user.is_anonymous:
+#             messages.success(request,"Sorry! You are not logged in")
+#             return redirect("login-page")
+#         else:
+#             return fn(request,*args,**kwargs)
+#     return wrapper
+# @login_requirement
 @login_required
 def favourite_page(request):
     return render(request,'cart/favourite.html')
 
 
-@login_required
 def add_to_favourite(request):
+    if not request.user.is_authenticated:
+        return JsonResponse({"num_of_saved_items":"user_not_authenticated"})
     data=json.loads(request.body)
     product_id=data['id']
     prod=Products.objects.get(id=product_id)
@@ -116,7 +126,7 @@ def rm_from_favourite(request):
     usr_saved_items=SavedItems.objects.filter(user=request.user)
     item.delete()
     num_of_item=len(usr_saved_items)
-    response={"num_of_saved_items":num_of_item }
+    response={"num_of_saved_items":num_of_item}
     return JsonResponse(response)
 
 

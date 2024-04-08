@@ -48,17 +48,21 @@ function addToCart(e){
               sleep(1000).then(() => { e.target.classList.remove("cart_activate");
                                       e.target.src="../../static/images/Wheel-cart.svg" });
               document.getElementById('no_of_cart_items').innerHTML=data.num_of_cart_items;
-              document.getElementById('main_no_of_cart_items').innerHTML='X'+data.num_of_cart_items;
               document.getElementById("quantity"+data.item_prod_id).innerHTML=data.item_qty;
-              document.getElementById("main_quantity"+data.item_prod_id).innerHTML=data.item_qty;
               document.getElementById("total_cart_sum").innerHTML=data.total_cart_sum;
-              document.getElementById("main_total_cart_sum").innerHTML=data.total_cart_sum;
               document.getElementById("total_cart_sum_discount").innerHTML=data.total_cart_sum_disc;
-              document.getElementById("main_total_cart_sum_discount").innerHTML=data.total_cart_sum_disc;
               document.getElementById("total_cart_sum_shipping_fee").innerHTML=data.total_cart_sum_shipping_fee;
-              document.getElementById("main_total_cart_sum_shipping_fee").innerHTML=data.total_cart_sum_shipping_fee;
               document.getElementById("total_checkout_cost").innerHTML=data.total_checkout_cost;
-              document.getElementById("main_total_checkout_cost").innerHTML=data.total_checkout_cost;
+              try{
+                document.getElementById('main_no_of_cart_items').innerHTML='X'+data.num_of_cart_items;
+                document.getElementById("main_quantity"+data.item_prod_id).innerHTML=data.item_qty;
+                document.getElementById("main_total_cart_sum").innerHTML=data.total_cart_sum;
+                document.getElementById("main_total_cart_sum_discount").innerHTML=data.total_cart_sum_disc;
+                document.getElementById("main_total_cart_sum_shipping_fee").innerHTML=data.total_cart_sum_shipping_fee;
+                document.getElementById("main_total_checkout_cost").innerHTML=data.total_checkout_cost;
+                
+              }
+              catch{}
 
               
 })
@@ -88,10 +92,10 @@ function rmFromCart(e){
   .then(res=>res.json())
   .then(data=>{
               document.getElementById('no_of_cart_items').innerHTML=data.num_of_cart_items;
-              document.getElementById('main_no_of_cart_items').innerHTML='X'+data.num_of_cart_items;
               if(data.item_qty<1){
                 document.getElementById("item_"+data.item_prod_id).remove();
-                document.getElementById("main_item_"+data.item_prod_id).remove();
+                try{document.getElementById("main_item_"+data.item_prod_id).remove();}
+                catch{} 
               }
               else{
                 document.getElementById("quantity"+data.item_prod_id).innerHTML=data.item_qty;
@@ -99,13 +103,19 @@ function rmFromCart(e){
 
               }
               document.getElementById("total_cart_sum").innerHTML=data.total_cart_sum;
-              document.getElementById("main_total_cart_sum").innerHTML=data.total_cart_sum;
               document.getElementById("total_cart_sum_discount").innerHTML=data.total_cart_sum_disc;
-              document.getElementById("main_total_cart_sum_discount").innerHTML=data.total_cart_sum_disc;
               document.getElementById("total_cart_sum_shipping_fee").innerHTML=data.total_cart_sum_shipping_fee;
-              document.getElementById("main_total_cart_sum_shipping_fee").innerHTML=data.total_cart_sum_shipping_fee;
               document.getElementById("total_checkout_cost").innerHTML=data.total_checkout_cost;
-              document.getElementById("main_total_checkout_cost").innerHTML=data.total_checkout_cost;
+              try{
+                document.getElementById('main_no_of_cart_items').innerHTML='X'+data.num_of_cart_items;
+                document.getElementById("main_quantity"+data.item_prod_id).innerHTML=data.item_qty;
+                document.getElementById("main_total_cart_sum").innerHTML=data.total_cart_sum;
+                document.getElementById("main_total_cart_sum_discount").innerHTML=data.total_cart_sum_disc;
+                document.getElementById("main_total_cart_sum_shipping_fee").innerHTML=data.total_cart_sum_shipping_fee;
+                document.getElementById("main_total_checkout_cost").innerHTML=data.total_checkout_cost;
+        
+              }
+              catch{}
 
 })
   .catch(error=>{console.log(error)})
@@ -138,13 +148,21 @@ function addToFav(e){
     body:JSON.stringify(data)
   })
 
+
   .then(res=>res.json())
   .then(data=>{
+              if(data.num_of_saved_items==="user_not_authenticated"){
+                // prompt("LOGIN REQUIRED", ["You have to be logged in to save items"])
+                alert("You have to be logged in to save items");
+                console.log(data.num_of_saved_items)
+              }
+              else{
               e.target.src="../../static/images/favourite_activate.svg" 
               e.target.classList.add("fav_activate");
               sleep(1000).then(() => { e.target.classList.remove("fav_activate"); 
                                       e.target.src="../../static/images/Black-heart.svg"});
               document.getElementById('no_of_saved_items').innerHTML=data.num_of_saved_items;
+            }
               
              
 })
