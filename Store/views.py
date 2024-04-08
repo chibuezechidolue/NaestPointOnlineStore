@@ -4,7 +4,6 @@ from .models import Advertisement, Collection
 from django.core.paginator import Paginator
 from django.core.mail import send_mail
 from django.contrib import messages
-
 import os
 
 
