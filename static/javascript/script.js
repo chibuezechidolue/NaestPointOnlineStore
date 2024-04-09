@@ -128,6 +128,12 @@ const sleep = function(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+let closePopUpBtn=document.getElementById("pop_up_close")
+closePopUpBtn.addEventListener("click",()=>{document.getElementById("pop_up_container").style.display="none"})
+// function cancePopUp(){
+
+// }
+
 
 // function for calling addToFav function to all element with class=add_to_fav in the current page
 let favAddBtns=document.querySelectorAll(".add_to_fav")
@@ -141,6 +147,7 @@ function addToFav(e){
   let product_id = e.target.id
   let url = window.location.origin+"/customer/add-to-favourite"
   let data = {id:product_id}
+  document.getElementById("pop_up_container").style.display="none"
 
   fetch(url,{
     method: "POST",
@@ -152,8 +159,7 @@ function addToFav(e){
   .then(res=>res.json())
   .then(data=>{
               if(data.num_of_saved_items==="user_not_authenticated"){
-                // prompt("LOGIN REQUIRED", ["You have to be logged in to save items"])
-                alert("You have to be logged in to save items");
+                document.getElementById("pop_up_container").style.display="inline"
                 console.log(data.num_of_saved_items)
               }
               else{

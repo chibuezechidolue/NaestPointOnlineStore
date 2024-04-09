@@ -2988,3 +2988,31 @@ input[type=radio] {
     transform: scale(1.9);
 } */
 
+
+.main_pop_conainer{
+    display: none;
+}
+.pop_container{
+    background-color: #3f3f3f;
+    color: white;
+    width: 13.5rem;
+    text-align: left;
+    padding: 1rem;
+    font-size: small;
+    display: block;
+    position: fixed;
+    bottom: 0;
+}
+
+.pop_close{
+    background-color: #1c1d1f;
+    width: 2.4rem;
+    display: block;
+    margin-left: 13rem;
+    height: 5.6rem;
+    position: fixed;
+    bottom: 0;
+    
+}
+
+

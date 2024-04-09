@@ -36,13 +36,13 @@
               {%endif%}
               
               <a href="{% url 'favourite-page' %}"><img src="{%static 'images/Heart.svg'%}" title="Saved Items" class="nav-svg favourite-icon" alt="..."></a>
-              <!-- {%if saved_items|length > 0 %} -->
+              <!-- {%if saved_items|length > 0 % -->
               <span class="fav_number-display" id="no_of_saved_items" >{{saved_items | length}} </span>
-              <!-- {%endif%}   -->
+              <!-- {%endif%   -->
               <img src="{% static 'images/Bag.svg'%}" title="Shopping Cart" class="nav-svg cartIcon refresh-button" alt="...">
-              <!-- {%if cart.num_of_item > 0 %} -->
+              <!-- {%if cart.num_of_item > 0 % -->
                 <span class="number-display " id="no_of_cart_items" >{{cart.num_of_item}}</span>
-              <!-- {%endif%} -->
+              <!-- {%endif% -->
               <div class="search">
                 <span class="ikon">
                   <img src="{%static 'images/Search-icon.svg'%}" class="nav-svg searchBtn" alt="...">
@@ -169,17 +169,28 @@
   </div>
 </div>
 </div>
-
   
 <body>
-   
     {%block content%}
    
     {%endblock content%}
     
 </body>
 <footer id="footer">
-
+  <div class="main_pop_conainer" id="pop_up_container">
+    <div class="pop_container">
+    <div class="pop_title" >
+      You need to be logged in to Save an Item
+    </div>
+    <div class="pop_link">
+      <a href="{% url 'login-page' %}"><button>Click here to Login</button></a>
+    </div>
+  </div>
+    <div class=" pop_close" id="pop_up_close">
+      <svg height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg" aria-label="close" class="" name="close"><path d="M8.95 8l5.853-5.854a.671.671 0 1 0-.95-.95L8 7.05 2.146 1.198a.671.671 0 1 0-.95.95L7.05 8l-5.852 5.853a.671.671 0 0 0 .948.95L8 8.948l5.854 5.854a.671.671 0 1 0 .948-.95L8.95 8z" fill="#4A4A4A" fill-rule="nonzero" stroke="#4A4A4A"></path></svg>
+    </div>
+   </div>
+   
     <div class="row">
     <div class="col-lg-3 last-message">
         <div class="services-top">
