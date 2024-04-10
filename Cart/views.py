@@ -9,7 +9,6 @@ import json
 import uuid
 
 
-
 def cart_page(request):
     return render(request,'cart/cart.html')
 
@@ -50,8 +49,8 @@ def add_to_cart(request):
     cart_item.quantity+=1
     cart_item.save()
     response={"num_of_cart_items":cart.num_of_item,"item_qty":cart_item.quantity,
-              "total_cart_sum":cart.total_cart_sum,"total_cart_sum_disc":cart.total_cart_sum_discount,
-              "total_cart_sum_shipping_fee":cart.total_cart_sum_shipping_fee,"total_checkout_cost":cart.total_checkout_cost,
+              "total_cart_sum":cart.total_cart_sum[1],"total_cart_sum_disc":cart.total_cart_sum_discount[1],
+              "total_cart_sum_shipping_fee":cart.total_cart_sum_shipping_fee[1],"total_checkout_cost":cart.total_checkout_cost[1],
               "item_prod_id":cart_item.product.pk}
     return JsonResponse(response)
     # return JsonResponse(cart.num_of_item,safe=False)
@@ -78,9 +77,9 @@ def rm_from_cart(request):
     else:
         cart_item.save()
     response={"num_of_cart_items":cart.num_of_item,"item_qty":cart_item.quantity,
-              "total_cart_sum":cart.total_cart_sum,"total_cart_sum_disc":cart.total_cart_sum_discount,
-              "total_cart_sum_shipping_fee":cart.total_cart_sum_shipping_fee,
-              "total_checkout_cost":cart.total_checkout_cost,"item_prod_id":cart_item.product.pk}
+              "total_cart_sum":cart.total_cart_sum[1],"total_cart_sum_disc":cart.total_cart_sum_discount[1],
+              "total_cart_sum_shipping_fee":cart.total_cart_sum_shipping_fee[1],
+              "total_checkout_cost":cart.total_checkout_cost[1],"item_prod_id":cart_item.product.pk}
     return JsonResponse(response)   
     # return JsonResponse(cart.num_of_item,safe=False)
 

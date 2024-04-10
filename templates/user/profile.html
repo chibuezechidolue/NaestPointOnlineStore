@@ -22,28 +22,27 @@
     <div class="col-12 col-sm-12 col-md-12 col-lg-3">
       <div class="account-left">
               <div class="account-option">
-          <div class="account-description intro">
+          {%if not order_history and not delete_account and not change_password%}<div class="account-description intro ">{%else%}<div class="account-description ">{%endif%}
             <i class="bi bi-person-square"></i>
-             <a href="{% url 'user-profile' %}"><p class="account-info">My Details</p></a>
+             <a href="{% url 'user-profile' %}"><p class="account-info profile_focus">My Details</p></a>
           </div>
-          <div class="account-description">
+          {%if order_history%}<div class="account-description intro ">{%else%}<div class="account-description ">{%endif%}
             <i class="bi bi-bag-check"></i>
-            <p class="account-info">Order History</p>
+            <a href="{% url 'user-profile-edit' 'order_history' %}"><p class="account-info profile_focus">Order History</p></a>
           </div>
-          <div class="account-description">
+          {%if change_password%}<div class="account-description intro ">{%else%}<div class="account-description ">{%endif%}
             <i class="bi bi-file-lock2"></i>
             <!-- <a href="{% url 'user-profile-edit' option='change_password' %}"><p class="account-info">Change password</p></a> -->
-            <a href="{% url 'change-password' %}"><p class="account-info">Change password</p></a>
-            
+            <a href="{% url 'change-password' %}"><p class="account-info profile_focus">Change password</p></a>
           </div>
-          <div class="account-description">
+          {%if delete_account%}<div class="account-description intro ">{%else%}<div class="account-description ">{%endif%}
             <i class="bi bi-file-lock2"></i>
-            <a href="{% url 'user-profile-edit' 'delete_account' %}"><p class="account-info">Delete Account</p></a>
+            <a href="{% url 'user-profile-edit' 'delete_account' %}"><p class="account-info profile_focus">Delete Account</p></a>
             
           </div>
           <div class="account-description">
             <i class="bi bi-box-arrow-left"></i>
-            <a href="{%url 'logout-page' %}"><p class="account-info">Logout</p></a>
+            <a href="{%url 'logout-page' %}"><p class="account-info profile_focus">Logout</p></a>
           </div>
         </div>
       </div>
@@ -90,7 +89,6 @@
         {%elif change_password%}
         <h2 class="cart-heading">CHANGE PASSWORD</h2>
         <hr class="heading-line">
-        <i class="bi bi-pencil-square"></i>
         <form action="" method="post">
           {% csrf_token %}
           {%for field in form%}
@@ -117,6 +115,34 @@
           <button type="submit" class="btn btn-danger">Yes, Delete</button>
           <a class="btn btn-primary" href="">No, Back to Details</a>
       </form>
+      {%elif order_history%}
+      <h2 class="cart-heading">ORDER HISTORY</h2>
+        <hr class="heading-line">
+        {%if specific_order%}
+        <h3>Cart_id: {{cart_items.1.cart_id}}</h3>
+        <div>
+        <span> Product Name</span> <span>Product Price</span> <span>Product Qty</span>
+      </div>
+        {%for item in cart_items%}
+        <div>
+        <span> {{item.product.product_name}}</span> <span>{{item.product.product_price|currency}}</span> <span>{{item.quantity}}</span>
+        </div>
+        {%endfor%}
+        {%else%}
+      {%if processed_orders|length > 0 %}
+      <span> Order_id</span>  <span>Total Order Qty</span> <span>Date</span>
+      {%for order in processed_orders%}
+      <li><a href="{% url 'user-profile-edit'  order.id %}"><span> {{order}} </span></a> <span> {{order.num_of_item}} </span> <span>{{order.date}}</span></li>
+      {%endfor%}
+      {%else%}
+      <h2 class="cart-heading">ORDER HISTORY</h2>
+        <hr class="heading-line">
+      <h3>
+        You have not paid or completed any order yet.
+      </h3>
+      {%endif%}
+      {%endif%}
+
         {%else%}
         <h2 class="cart-heading">MY DETAILS</h2>
         <hr class="heading-line">

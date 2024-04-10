@@ -76,7 +76,7 @@ TEMPLATES = [
 WSGI_APPLICATION = "OnlineStoreProject.wsgi.application"
 
 
-# Database
+# SQLite Database setting
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 # DATABASES = {
@@ -86,9 +86,24 @@ WSGI_APPLICATION = "OnlineStoreProject.wsgi.application"
 #     }
 # }
 
+
+# Local PostgreSQL Database stting
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': os.environ.get("DB_NAME"), 
+#         'USER': os.environ.get("DB_USER"),
+#         'PASSWORD': os.environ.get("DB_PASSWORD"),
+#         'HOST': os.environ.get("DB_HOST"), 
+#         'PORT': os.environ.get("DB_PORT"),
+#     }
+# }
+
+
+# Local PostgreSQL Database stting
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ.get("DB_NAME"), 
         'USER': os.environ.get("DB_USER"),
         'PASSWORD': os.environ.get("DB_PASSWORD"),
@@ -97,9 +112,6 @@ DATABASES = {
     }
 }
 
-
-# Password validation
-# https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -126,13 +138,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
 STATICFILES_DIRS=[os.path.join(BASE_DIR, 'static')]
 STATIC_URL = "static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Set Media files variables
 MEDIA_ROOT= os.path.join(BASE_DIR,"media")
@@ -157,7 +171,14 @@ EMAIL_USE_SSL=True
 EMAIL_HOST_USER = os.environ.get("EMAIL_USERNAME")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")
 
-
+# AWS_SECRET_KEY_ID = os.environ.get('AWS_SECRET_KEY_ID')
+# AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+# AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+# AWS_S3_REGION_NAME = os.environ.get('AWS_S3_REGION_NAME')
+# AWS_S3_SIGNATURE_NAME = os.environ.get('AWS_S3_SIGNATURE_NAME')
+# AWS_S3_FILE_OVERWRITE = False
+# AWS_DEFAULT_ACL = None
+# AWS_S3_VERIFY=True
 
 
 # inactive login sessison time limit

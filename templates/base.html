@@ -152,16 +152,16 @@
   </div>
     {%endfor%}
   <div>
-  <span>Sub Total:</span><span id="total_cart_sum"> {{cart.total_cart_sum}} </span>
+  <span>Sub Total:</span><span id="total_cart_sum"> {{cart.total_cart_sum.1}} </span>
   </div>
   <div>
-    <span>Discount:</span><span id="total_cart_sum_discount">{{cart.total_cart_sum_discount}} </span>
+    <span>Discount:</span><span id="total_cart_sum_discount">{{cart.total_cart_sum_discount.1}} </span>
   </div>
   <div>
-    <span>Shipping:</span><span id="total_cart_sum_shipping_fee">{{cart.total_cart_sum_shipping_fee}} </span>
+    <span>Shipping:</span><span id="total_cart_sum_shipping_fee">{{cart.total_cart_sum_shipping_fee.1}} </span>
   </div>
   <div>
-    <span>Total Checkout:</span><span id="total_checkout_cost">{{cart.total_checkout_cost}} </span>
+    <span>Total Checkout:</span><span id="total_checkout_cost">{{cart.total_checkout_cost.1}} </span>
   </div>
   <div class="cart-btn">
     <button class="closeCart"> CLOSE</button>
