@@ -19,22 +19,23 @@ def home_page(request):
                "sec3_ads":all_adds.filter(advert_location="sec3_advert"),
                "sec4_ads":all_adds.filter(advert_location="sec4_advert"),
                "tags":SocialMediaTag.objects.all()}
+    
     return render(request,'store/index.html',context)
 
 
 def collection_page(request,collection_name):
     brand=Collection.objects.get(collection_name=collection_name)
-    collection_prod=Products.objects.filter(collection_id=brand.id)
+    collection_prods=Products.objects.filter(collection_id=brand.id)
     # collection_prod=Products.objects.filter(collection_id=0)
 
-    paginator = Paginator(collection_prod, 8)  # Show 8 products per page.
+    paginator = Paginator(collection_prods, 8)  # Show 8 products per page.
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     return render(request,"store/collection.html",{"page_obj": page_obj,'design_brand':brand})
 
 
 def whats_hot_page(request):
-    all_products=Products.objects.all().order_by("-id").values()
+    all_products=Products.objects.all().order_by("-id")
     advert=Advertisement.objects.get(advert_location="whats_hot_advert")
     paginator = Paginator(all_products, 10)  # Show 10 products per page.
     page_number = request.GET.get("page")
@@ -43,11 +44,10 @@ def whats_hot_page(request):
 
 def shop_all_page(request,category):
     if category=="all":
-        products=Products.objects.all().order_by("-id").values()
+        products=Products.objects.all().order_by("-id")
     else:
         products=Products.objects.filter(product_name__contains=category)
     
-        print(products)
     paginator = Paginator(products, 8)  # Show 8 products per page.
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)

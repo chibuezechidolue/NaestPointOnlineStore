@@ -19,7 +19,7 @@
           {%for item in cart.cartitems.all%}
           <div class="item" id="main_item_{{item.product.id}}">
             <div class="cartItem-image">
-              <img src="../../media/{{item.product.product_img_1}}" alt="">
+              <img src="{{item.product.product_img_1.url}}" alt="">
             </div>
             <div class="cartItem-name">
               {{item.product.product_name}}

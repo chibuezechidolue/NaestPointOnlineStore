@@ -18,15 +18,15 @@
     <div class="row g-4 images">
         <div class="col-12 col-sm-12 col-md-12 col-lg-5 product-card">
             <div class="main-image">
-              <img src="../../media/{{product.product_img_1}}" class="card-img-top" alt="..." id="mainImg">
+              <img src="{{product.product_img_1.url}}" class="card-img-top" alt="..." id="mainImg">
             </div>
             <div class="other-images">
               {%if product.product_img_2 != "default.jpg" %}
-              <img src="../../media/{{product.product_img_1}}" class="card-img-bottom" alt="..." id="thumb1">
-              <img src="../../media/{{product.product_img_2}}" class="card-img-bottom" alt="..." id="thumb2">
+              <img src="{{product.product_img_1.url}}" class="card-img-bottom" alt="..." id="thumb1">
+              <img src="{{product.product_img_2.url}}" class="card-img-bottom" alt="..." id="thumb2">
               {%endif%}
               {%if product.product_img_3 != "default.jpg" %}
-              <img src="../../media/{{product.product_img_3}}" class="card-img-bottom" alt="..." id="thumb3">
+              <img src="{{product.product_img_3.url}}" class="card-img-bottom" alt="..." id="thumb3">
               {%endif%}
             </div>
         </div>
@@ -100,7 +100,7 @@
         <a href="{% url 'single-prod-page' prod_name=prod.product_name %}">
         <div class="card card-design">
           <div class="card-img">
-            <img src="../../media/{{prod.product_img_1}}" class="card-img-top" alt="...">
+            <img src="{{prod.product_img_1.url}}" class="card-img-top" alt="...">
           </div>
           <div class="card-body suggestion-body">
             <h3 class="suggestion-title">{{prod.product_name}}</h3>

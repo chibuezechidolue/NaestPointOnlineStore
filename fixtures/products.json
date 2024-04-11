@@ -171,7 +171,7 @@
         "product_description": "202 N 1st Street, San Jose, CA",
         "product_price":"29000",
         "product_sizes":["SM","MD","LG","XL"],
-        "product_img_1": "images/product/pink-gown.png",
+        "product_img_1": "images/product/Pink-gown.png",
         "product_gender":"FEMALE",
         "prod_is_featured":"True"
       }

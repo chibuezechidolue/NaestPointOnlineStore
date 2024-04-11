@@ -27,7 +27,7 @@
         {% for prod in saved_items %}
       <div class="favourite">
         <div class="favourite-image">
-          <img src="../../media/{{prod.product.product_img_1}}" alt="">
+          <img src="{{prod.product.product_img_1.url}}" alt="">
         </div>
         <div class="favourite-name">
           {{prod.product.product_name}}
