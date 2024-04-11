@@ -87,7 +87,7 @@ WSGI_APPLICATION = "OnlineStoreProject.wsgi.application"
 # }
 
 
-# Local PostgreSQL Database stting
+# Local PostgreSQL Database settings
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -100,7 +100,7 @@ WSGI_APPLICATION = "OnlineStoreProject.wsgi.application"
 # }
 
 
-# Local PostgreSQL Database stting
+# Amazon RDS PostgreSQL Database settings
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -203,7 +203,6 @@ if USE_S3_BUCKET:
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
     DEFAULT_FILE_STORAGE = 'Product.s3_storage_backend.PublicMediaStorage'
 else:
-    print("its False")
     STATIC_URL = '/static/'
     # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
     MEDIA_URL = '/media/'

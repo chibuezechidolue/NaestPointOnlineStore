@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  {% extends "base.html" %}
+  {% load static %}
+  {%block title%} Shop all @ NaestPoint {%endblock title%}
+
+<body>
+{%block content%}
+  <!-- Products-1 -->
+  <section id="shop-all">
+    <div class="men-product-top">
+        {%if FEMALE%}
+        <h2 class="men-product-heading">WOMEN'S FASHION</h2>
+        <P class="men-product-text">All kinds of Women wears are available in all sizes, just make your choice</P>
+        {%elif KIDS%}
+        <h2 class="men-product-heading">KIDS FASHION</h2>
+        <P class="men-product-text">Select adorable outfits for your kids </P>
+        {%endif%}
+    </div>
+    <div class="row g-4">
+        {% for prod in page_obj%}
+        <div class="col-6 col-sm-6 col-md-6 col-lg-3 product-card">
+          <a href="{%url 'single-prod-page' prod.product_name %}">
+          <div class="card card-design">
+            <div class="card-img">
+              <img src="{{prod.product_img_1.url}}" class="card-img-top" alt="...">
+            </div>
+            <div class="card-body product-body">
+              <h3 class="product-title">{{prod.product_name}}</h3>
+              <div class="sizes">
+                {%if 'SM' in prod.product_sizes %}
+                  <button type="button" class="size sm active"> SM</button>
+                {%else%}
+                  <button type="button" class="size sm deactivate" disabled> SM</button>
+                {%endif%}
+                {%if 'MD' in prod.product_sizes %}
+                  <button type="button" class="size sm active"> MD</button>
+                {%else%} 
+                  <button type="button" class="size md deactivate" disabled> MD</button>
+                {%endif%}
+                {%if 'LG' in prod.product_sizes %}
+                  <button type="button" class="size sm active"> LG</button>
+                {%else%} 
+                  <button type="button" class="size lg deactivate" disabled> LG</button>
+                {%endif%}
+                {%if 'XL' in prod.product_sizes %}
+                  <button type="button" class="size sm active"> XL</button>
+                {%else%} 
+                  <button type="button" class="size xl deactivate" disabled>XL</button>
+                {%endif%}
+              </div>
+              <div class="product-info">
+                <p class="product-price">{{prod.product_price|currency}}</p>
+              </a>
+                <div class="option-button">
+                  <img src="{% static 'images/Black-heart.svg' %}"  class="nav-svg add_to_fav" id="{{prod.id}}" alt="...">
+                  <img src="{% static 'images/Wheel-cart.svg' %}" class="nav-svg refresh-cart add_to_cart" id="{{prod.id}}"  alt="...">
+                </div>
+              </div>
+            </div>
+          </div>
+        
+        </div>
+        {% endfor %}
+      
+      {%if page_obj.0%}      
+      <div class="pages">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}"><button type="button" class="directions"><i class="bi bi-chevron-left"></i></button></a>
+            <a href="?page={{ page_obj.previous_page_number }}"><button type="button" class="page three"> {{page_obj.previous_page_number }}</button></a> 
+            {% endif %}
+  
+            <a href="?page={{ page_obj.number }}"><button type="button" class="page one"> {{page_obj.number}}.</button></a>
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}"><button type="button" class="page two"> {{page_obj.next_page_number }}</button></a>
+            <a href="?page={{ page_obj.next_page_number }}"><button type="button" class="directions"><i class="bi bi-chevron-right"></i></button></a>
+            {% endif %}
+        </span>
+    </div>
+    {%endif%} 
+  </section>
+  {%endblock content%}
+</body>
+</html>

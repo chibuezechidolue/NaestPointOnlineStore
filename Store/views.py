@@ -66,7 +66,12 @@ def category_page(request,category):
     paginator = Paginator(products, 10)  # Show 10 products per page.
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
-    return render(request,'store/whats-hot.html',{"page_obj":page_obj})
+    if category=="FEMALE" or category=="KIDS":
+        return render(request,'store/female-category.html',{"page_obj":page_obj,category:True})
+    elif category=="MALE":
+        return render(request,"store/male-category.html",{"page_obj":page_obj})
+    elif category=="ACCESSORIES":
+        return render(request,"store/accessory-category.html",{"page_obj":page_obj})
 
 
 def about_us_page(request):
@@ -88,3 +93,4 @@ def contact_us_page(request):
         messages.add_message(request, messages.SUCCESS, "Your message was sent successfully")
         # return redirect('home-page')
     return render(request,'store/contact-us.html')
+

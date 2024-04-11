@@ -104,14 +104,16 @@ def add_to_favourite(request):
     data=json.loads(request.body)
     product_id=data['id']
     prod=Products.objects.get(id=product_id)
-    # try:
+    
     item=SavedItems(user=request.user,product=prod)
-    # except IntegrityError: 
-    #     print("there was an integrity error")
-    #     messages.add_message(request, messages.SUCCESS, "the Item is already in your favourites")
         
     usr_saved_items=SavedItems.objects.filter(user=request.user)
-    item.save()
+    try:
+        item.save()
+    except IntegrityError:
+        print("there was an integrity error")
+        return JsonResponse({"num_of_saved_items":"item_already_saved"})
+
     num_of_item=len(usr_saved_items)
     response={"num_of_saved_items":num_of_item }
     return JsonResponse(response)
