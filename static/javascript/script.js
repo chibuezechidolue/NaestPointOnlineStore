@@ -43,10 +43,10 @@ function addToCart(e){
   .then(res=>res.json())
   // .then(json => console.log(JSON.stringify(json.item_qty)))
   .then(data=>{
-              e.target.src="../../static/images/cart_activate.svg"
+              e.target.src="https://naestpoints3bucket.s3.amazonaws.com/static/images/cart_activate.svg"
               e.target.classList.add("cart_activate");
               sleep(1000).then(() => { e.target.classList.remove("cart_activate");
-                                      e.target.src="../../static/images/Wheel-cart.svg" });
+                                      e.target.src="https://naestpoints3bucket.s3.amazonaws.com/static/images/Wheel-cart.svg" });
               document.getElementById('no_of_cart_items').innerHTML=data.num_of_cart_items;
               document.getElementById("quantity"+data.item_prod_id).innerHTML=data.item_qty;
               document.getElementById("total_cart_sum").innerHTML=data.total_cart_sum;
@@ -130,7 +130,8 @@ const sleep = function(ms) {
 }
 
 let closePopUpBtn=document.getElementById("pop_up_close")
-closePopUpBtn.addEventListener("click",()=>{document.getElementById("pop_up_container").style.display="none"})
+closePopUpBtn.addEventListener("click",()=>{
+  document.getElementById("pop_up_container").style.left="-324px"})
 
 
 // function for calling addToFav function to all element with class=add_to_fav in the current page
@@ -145,7 +146,7 @@ function addToFav(e){
   let product_id = e.target.id
   let url = window.location.origin+"/customer/add-to-favourite"
   let data = {id:product_id}
-  document.getElementById("pop_up_container").style.display="none"
+  document.getElementById("pop_up_container").style.left="-324px"
 
   fetch(url,{
     method: "POST",
@@ -157,14 +158,15 @@ function addToFav(e){
   .then(res=>res.json())
   .then(data=>{
               if(data.num_of_saved_items==="user_not_authenticated"){
-                document.getElementById("pop_up_container").style.display="inline"
+                document.getElementById("pop_up_container").style.left="24px";
                 console.log(data.num_of_saved_items)
+
               }
               else{
-              e.target.src="../../static/images/favourite_activate.svg" 
+              e.target.src="https://naestpoints3bucket.s3.amazonaws.com/static/images/favourite_activate.svg" 
               e.target.classList.add("fav_activate");
               sleep(1000).then(() => { e.target.classList.remove("fav_activate"); 
-                                      e.target.src="../../static/images/Black-heart.svg"});
+                                      e.target.src="https://naestpoints3bucket.s3.amazonaws.com/static/images/Black-heart.svg"});
               document.getElementById('no_of_saved_items').innerHTML=data.num_of_saved_items;
             }
               

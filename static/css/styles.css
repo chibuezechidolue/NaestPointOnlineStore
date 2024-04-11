@@ -11,6 +11,7 @@
 :root {
     --color-bg: #f6f6f6;
     --color-bg2: #e7f6e7;
+    --color-bg3: #f4fbf4;
     --color-primary: #2e7a62;
     --color-primary2: #145d46;
     --color-white: #ffffff;
@@ -887,11 +888,12 @@ header.hide {
     font-size: 1.1rem;
     font-weight: 600;
     color: var(--color-primary);
+    margin-top: 6px;
 }
 
 .card-design {
     border: 0;
-    background-color: var(--color-bg2);
+    background-color: var(--color-bg3);
     transition: all 600ms;
     margin-bottom: 2rem;
 }
@@ -899,6 +901,7 @@ header.hide {
 .card-img {
     overflow: hidden;
     border-radius: 0;
+    background-color: lightgray;
 }
 
 .card-img img {
@@ -913,29 +916,6 @@ header.hide {
 .card-design:hover img {
     transform: scale(1.2);
 }
-
-/* .modal-content {
-    background-color: #232222;
-}
-
-.project-main {
-    margin: 2rem 0;
-    text-align: start;
-}
-
-.project-img {
-    width: 100%;
-    border-radius: 0.5rem;
-}
-
-.project-title {
-    margin-bottom: 1rem;
-}
-
-.project-info {
-    margin: 1rem 0;
-    color: #c8c8c8;
-} */
 
 hr {
     color: var(--color-black);
@@ -1036,11 +1016,11 @@ hr {
     letter-spacing: 1px;
     border: 1px var(--color-black) solid;
     padding: 2px 4px;
-    transition: ease-out 500ms;
+    /* transition: ease-out 500ms; */
 }
-.size:hover {
+/* .size:hover {
     transform: translateY(-3px);
-}
+} */
 .size a {
     text-decoration: none;
     color: var(--color-black);
@@ -1430,6 +1410,61 @@ input[type=radio] {
     cursor: pointer;
 }
 
+/* Login Popup */
+
+.login-pop {
+    width: 300px;
+    position: fixed;
+    bottom: 24px;
+    left: -324px;
+    /* left:24px; */
+    display: grid;
+    grid-template-columns: 85% 15%;
+    z-index: 6;
+    transition: 0.5s ease-in-out;
+}
+
+.login-message {
+    background-color: gray;
+    color: white;
+    padding: .5rem 1rem 1rem;
+}
+
+.loginPop-message {
+    font-size: .8rem;
+}
+
+.loginPop-button {
+    font-weight: 500;
+    background-color: transparent;
+    border: 1.5px solid var(--color-white);
+    color: #9ee6cf;
+    padding: 2px 10px;
+    margin-top: 8px;
+    font-size: .8rem;
+    transition: ease-in 400ms
+}
+.loginPop-button:hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.close-container {
+    background-color: var(--color-black);
+    color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bi-x {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+
 /* Cart */
 
 #cart {
@@ -1524,7 +1559,7 @@ input[type=radio] {
     font-weight: 500;
     color: var(--color-black);
     margin-bottom: 0;
-    font-size: 1rem;
+    font-size: .9rem;
     font-family: 'poppins', sans-serif;
 }
 
@@ -1536,6 +1571,10 @@ input[type=radio] {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.mainproduct-price {
+    font-size: 1rem;
 }
 
 .payment-form {
@@ -1888,6 +1927,7 @@ input[type=radio] {
 #contact-us {
     padding: 4rem 6rem;
     margin-top: 8rem;
+    background-color: #f4fbf4;
 }
 
 .contact-top {
@@ -1900,7 +1940,9 @@ input[type=radio] {
 }
 
 .contact-map {
-    border: 1px solid;
+    padding: 1rem 1rem 2rem;
+    background-color: var(--color-white);
+    box-shadow: 0 2px 8px #e6e6e6;
 }
 
 .contact-us-design {
@@ -1957,15 +1999,16 @@ input[type=radio] {
     width: 100%;
 }
 
-.google-map {
+/* .google-map {
     border: 1px solid;
     margin: 2rem 1rem;
-}
+} */
 
 .contact-form {
     text-align: start;
     padding: 2rem;
-    border: 1px solid;
+    background-color: var(--color-white);
+    box-shadow: 0 2px 8px #e6e6e6;
 }
 
 .text-area {
@@ -2000,7 +2043,7 @@ input[type=radio] {
     }
 
     #profile, #login, #register, #cart {
-        margin-top: 4rem;
+        margin-top: 3.8rem;
     }
 
     #login {
@@ -2061,7 +2104,7 @@ input[type=radio] {
     }
 
     #profile, #login, #register, #cart, #favourite {
-        margin-top: 2rem;
+        margin-top: 1.8rem;
     }
 
     #login {
@@ -2100,7 +2143,6 @@ input[type=radio] {
 
     .product-price {
         font-size: 1rem;
-        padding-top: .4rem;
     }
 
     .product-button {
@@ -2353,8 +2395,8 @@ input[type=radio] {
 }
 
 .product2-container {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 50% 50%;
 }
 
 .product2-body {
@@ -2374,7 +2416,7 @@ input[type=radio] {
     font-family: 'halant', sans-serif;
     font-size: .9rem;
     font-weight: 400;
-    margin: 0 0 .8rem;
+    margin: .5rem 0 0;
     color: var(--color-black);
 }
 
@@ -2385,6 +2427,80 @@ input[type=radio] {
     transition: all 1s ease;
 }
 
+/* Men's Fashion */
+
+#men-product {
+    padding-bottom: 3rem;
+    text-align: center;
+    background-color: var(--color-white);
+    margin-top: 8rem;
+}
+
+.men-product-top {
+    margin-bottom: 3rem;
+    padding: 0 1rem;
+}
+
+.men-product-heading {
+    font-size: 2rem;
+    color: var(--color-primary);
+    letter-spacing: 4px;
+    margin-bottom: 1rem;
+}
+
+.men-image {
+    width: 100%;
+    margin-bottom: 3rem;
+}
+
+.men-display {
+    padding: 0 6rem;
+}
+
+/* Accessories */
+
+.accessHeading-container {
+    background-color: var(--color-bg2);
+    padding: 8px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.accessories-heading {
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    margin-bottom: 0;
+}
+
+.accessories-message {
+    background-color: transparent;
+}
+.accessories-message a {
+    transition: ease-in 300ms;
+    color: var(--color-black);
+}
+.accessories-message a:hover {
+    color: var(--color-primary);
+}
+
+.fa-chevron-right:before {
+    font-size: 14px;
+    margin-left: 4px;
+}
+
+/* Bag */
+
+.bagHeading-container {
+    background-color: var(--color-bg2);
+    padding: 8px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
 /* Product2 @media */
 
 @media screen and (max-width: 992px) {
@@ -2392,6 +2508,10 @@ input[type=radio] {
     .product-description {
         font-size: .9rem;
         margin: .4rem 0 .4rem;
+    }
+
+    #men-product {
+        margin-top: 3.8rem;
     }
 
 }
@@ -2414,6 +2534,35 @@ input[type=radio] {
 
     .product2-info {
         padding: 0 0 0 .3rem;
+    }
+
+    #men-product {
+        margin-top: 1.8rem;
+    }
+
+    .men-image {
+        width: 100%;
+        margin-bottom: 0;
+    }
+
+    .men-product-top {
+        margin-bottom: 1rem;
+    }
+
+    .men-product-heading {
+        font-size: 1.3rem;
+    }
+
+    .men-product-text {
+        font-size: .8rem;
+    }
+
+    .men-display {
+        padding: 0 .5rem;
+    }
+
+    .bagHeading-container {
+        margin-top: 3rem;
     }
 
 }

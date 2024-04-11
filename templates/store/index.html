@@ -127,8 +127,8 @@
               <p class="product-price">{{product.product_price|currency}}</p>
             </a>
               <div class="option-button">
-                <button><img src="{% static 'images/Black-heart.svg' %}"  class="nav-svg add_to_fav" id="{{product.id}}" alt="..."></button>
-                <button><img src="{% static 'images/Wheel-cart.svg' %}" class="nav-svg add_to_cart" id="{{product.id}}"  alt="..."></button>
+                <img src="{% static 'images/Black-heart.svg' %}"  class="nav-svg add_to_fav" id="{{product.id}}" alt="...">
+                <img src="{% static 'images/Wheel-cart.svg' %}" class="nav-svg add_to_cart" id="{{product.id}}"  alt="...">
               </div>
             </div>
           </div>
@@ -181,8 +181,8 @@
           <div class="card-body product2-body">
       </a>
             <div class="option2-button">
-              <button><img src="{% static 'images/Black-heart.svg' %}"  class="nav-svg add_to_fav" id="{{prod.id}}" alt="..."></button>
-              <button><img src="{% static 'images/Wheel-cart.svg' %}" class="nav-svg add_to_cart" id="{{prod.id}}"  alt="..."></button>
+              <img src="{% static 'images/Black-heart.svg' %}"  class="nav-svg add_to_fav" id="{{prod.id}}" alt="...">
+              <img src="{% static 'images/Wheel-cart.svg' %}" class="nav-svg add_to_cart" id="{{prod.id}}"  alt="...">
             </div>
             <div class="product2-info">
               <h3 class="product-title">{{prod.product_name}}</h3>
@@ -233,7 +233,7 @@
     </div>
 
     <div class="row g-4">
-      {%for handle in tags%}
+      {%for handle in tags|slice:":4"%}
       <div class="col-6 col-sm-6 col-md-6 col-lg-3 product-card">
         <a href="{{handle.tag_url}}">
         <div class="card instagram-design">

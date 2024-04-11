@@ -34,7 +34,7 @@
             <div class="singleproduct-details">
                 <h2 class="singleproduct-heading">PRODUCT DETAILS</h2>
                 <h3 class="singleproduct-name">{{product.product_name}}</h3>
-                <h3 class="singleproduct-price">₦{{product.product_price}}</h3>
+                <h3 class="singleproduct-price">{{product.product_price|currency}}</h3>
                 <p class="singleproduct-description"><strong>Description</strong></p>
                 <p class="singleproduct-description">{{product.product_description}} </p>
                 <hr class="description-line">
@@ -65,11 +65,11 @@
                         {%endif%}
                     </div>
 
-                    <button><img src="{% static 'images/greenheart.svg' %}" class="singleproduct-favourite-icon add_to_fav" id="{{product.id}}" alt=""></button>
+                    <img src="{% static 'images/greenheart.svg' %}" class="singleproduct-favourite-icon add_to_fav" id="{{product.id}}" alt="">
                     <div class="number">
                         <button type="button" id="decrement" class="goods-number" ><i  class="bi bi-dash " ></i></button>
                         
-                        <button type="button"><input name="quantity" type="hidden" id="input"  value={{item_qty}}> <p id="input_value">{{item_qty}}</p> </button>
+                        <span type="button"><input name="quantity" type="hidden" id="input"  value={{item_qty}}> <p id="input_value">{{item_qty}}</p> </span>
                         
                         <button type="button" id="increment" class="goods-number"><i  class="bi bi-plus " ></i></button>
                     </div>

@@ -135,7 +135,7 @@
     {%for item in cart.cartitems.all%}
     <div class="item" id="item_{{item.product.id}}">
       <div class="item-image">
-        <img src="../../media/{{item.product.product_img_1}}" alt="">
+        <img src="{{item.product.product_img_1.url}}" alt="">
       </div>
       <div class="item-name">
         {{item.product.product_name}}
@@ -169,7 +169,17 @@
   </div>
 </div>
 </div>
-  
+
+<div class="login-pop" id="pop_up_container">
+  <div class="login-message">
+      <p class="loginPop-message">You need to be logged in to save an item</p>
+      <a href="{% url 'login-page' %}"><button class="loginPop-button">Click here to Login</button></a>
+  </div>
+  <div class="close-container" id="pop_up_close">
+      <i class="bi bi-x"></i>
+  </div>
+</div>
+
 <body>
     {%block content%}
    
@@ -177,7 +187,9 @@
     
 </body>
 <footer id="footer">
-  <div class="main_pop_conainer" id="pop_up_container">
+
+  
+  <!-- <div class="main_pop_conainer" id="pop_up_container">
     <div class="pop_container">
     <div class="pop_title" >
       You need to be logged in to Save an Item
@@ -189,7 +201,7 @@
     <div class=" pop_close" id="pop_up_close">
       <svg height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg" aria-label="close" class="" name="close"><path d="M8.95 8l5.853-5.854a.671.671 0 1 0-.95-.95L8 7.05 2.146 1.198a.671.671 0 1 0-.95.95L7.05 8l-5.852 5.853a.671.671 0 0 0 .948.95L8 8.948l5.854 5.854a.671.671 0 1 0 .948-.95L8.95 8z" fill="#4A4A4A" fill-rule="nonzero" stroke="#4A4A4A"></path></svg>
     </div>
-   </div>
+   </div> -->
    
     <div class="row">
     <div class="col-lg-3 last-message">
