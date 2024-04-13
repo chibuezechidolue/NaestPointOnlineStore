@@ -111,13 +111,11 @@ def add_to_favourite(request):
     try:
         item.save()
     except IntegrityError:
-        print("there was an integrity error")
         return JsonResponse({"num_of_saved_items":"item_already_saved"})
 
     num_of_item=len(usr_saved_items)
     response={"num_of_saved_items":num_of_item }
     return JsonResponse(response)
-
 
 @login_required
 def rm_from_favourite(request):

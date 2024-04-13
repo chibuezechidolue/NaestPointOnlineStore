@@ -64,8 +64,11 @@
                         <button type="button"  class="measurement xl size_choice">XL</button>
                         {%endif%}
                     </div>
-
+                    {% if product in saved_items %}
+                    <img src="{% static 'images/favourite_activate.svg' %}"  class="singleproduct-favourite-icon add_to_fav" id="{{product.id}}" alt="...">
+                    {%else%}
                     <img src="{% static 'images/greenheart.svg' %}" class="singleproduct-favourite-icon add_to_fav" id="{{product.id}}" alt="">
+                    {%endif%}
                     <div class="number">
                         <button type="button" id="decrement" class="goods-number" ><i  class="bi bi-dash " ></i></button>
                         

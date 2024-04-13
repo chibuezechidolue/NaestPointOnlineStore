@@ -66,6 +66,6 @@ class SavedItems(models.Model):
     product=models.OneToOneField(Products,on_delete=models.CASCADE)
 
 
-    def __str__(self) -> str:
-        return self.product
+    # def __str__(self) -> str:
+    #     return self.product
 

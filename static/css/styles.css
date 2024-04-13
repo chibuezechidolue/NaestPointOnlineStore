@@ -1068,12 +1068,13 @@ hr {
     color: var(--color-primary);
 }
 
-.all {
+.enable {
     background-color: var(--color-primary2);
 }
-.all a {
+
+/* a.active {
     color: var(--color-white);
-}
+} */
 
 /* Collection */
 

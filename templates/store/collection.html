@@ -90,9 +90,12 @@
               <div class="product-info">
                 <p class="product-price">{{prod.product_price|currency}}</p>
                 <div class="option-button">
-                  <img src="{% static 'images/Black-heart.svg' %}"  class="nav-svg add_to_fav" id="{{prod.id}}" alt="...">
-                  <img src="{% static 'images/Wheel-cart.svg' %}" class="nav-svg refresh-cart add_to_cart" id="{{prod.id}}"  alt="...">
-                </div>
+                  {% if prod in saved_items %}
+              <img src="{% static 'images/favourite_activate.svg' %}"  class="nav-svg add_to_fav" id="{{prod.id}}" alt="...">
+              {%else%}
+              <img src="{% static 'images/Black-heart.svg' %}"  class="nav-svg add_to_fav" id="{{prod.id}}" alt="...">
+              {%endif%}
+              <img src="{% static 'images/Wheel-cart.svg' %}" class="nav-svg add_to_cart" id="{{prod.id}}"  alt="...">
               </div>
             </div>
           </div>

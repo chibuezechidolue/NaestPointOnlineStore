@@ -21,22 +21,69 @@
   <section id="shop-all">
     <div class="product-top">
       <div class="filter">
-        <button type="button" class="filtered all active"> <a href="{% url 'shop-all-page' category='all' %}">All</a></button>
-        <button type="button" class="filtered shirt"> <a href="{% url 'shop-all-page' category='shirt' %}">Shirt</a></button>
-        <button type="button" class="filtered polo"> <a href="{% url 'shop-all-page' category='polo' %}">Polo</a></button>
-        <button type="button" class="filtered trouser"> <a href="{% url 'shop-all-page' category='trouser' %}">Trouser</a></button>
-        <button type="button" class="filtered skirt"> <a href="{% url 'shop-all-page' category='skirt' %}">Skirt</a></button>
-        <button type="button" class="filtered gown"> <a href="{% url 'shop-all-page' category='gown' %}">Gown</a></button>
-        <button type="button" class="filtered suit"> <a href="{% url 'shop-all-page' category='suit' %}">Suit</a></button>
-        <button type="button" class="filtered sweater"> <a href="{% url 'shop-all-page' category='sweater' %}">Sweater</a></button>
-        <button type="button" class="filtered overall"> <a href="{% url 'shop-all-page' category='overall' %}">Overall</a></button>
-        <button type="button" class="filtered native"> <a href="{% url 'shop-all-page' category='Native' %}">Native</a></button>
-        <button type="button" class="filtered t-shirt"> <a href="{% url 'shop-all-page' category='shirt' %}">T-shirt</a></button>
+        {%if search_query == "All"%}        
+        <a href="{% url 'shop-all-page' category='all' %}"><button type="button" class="filtered all enable">All</button></a>
+        {%else%}
+        <a href="{% url 'shop-all-page' category='all' %}"><button type="button" class="filtered  ">All</button></a>
+        {%endif%}
+        {%if search_query == "Shirt"%}
+        <a href="{% url 'shop-all-page' category='shirt' %}"><button type="button" class="filtered all shirt enable">Shirt</button></a>
+        {%else%}
+        <a href="{% url 'shop-all-page' category='shirt' %}"><button type="button" class="filtered shirt ">Shirt</button></a>
+        {%endif%}
+        {%if search_query == "Polo"%}
+        <a href="{% url 'shop-all-page' category='polo' %}"><button type="button" class="filtered all polo enable">Polo</button></a>
+        {%else%}
+        <a href="{% url 'shop-all-page' category='polo' %}"><button type="button" class="filtered polo">Polo</button></a>
+        {%endif%}
+        {%if search_query == "Trouser"%}
+        <a href="{% url 'shop-all-page' category='trouser' %}"><button type="button" class="filtered trouser enable">Trouser</button></a>
+        {%else%}
+        <a href="{% url 'shop-all-page' category='trouser' %}"><button type="button" class="filtered trouser">Trouser</button></a>
+        {%endif%}
+        {%if search_query == "Skirt"%}
+        <a href="{% url 'shop-all-page' category='skirt' %}"><button type="button" class="filtered skirt enable">Skirt</button></a>
+        {%else%}
+        <a href="{% url 'shop-all-page' category='skirt' %}"><button type="button" class="filtered skirt">Skirt</button></a>
+        {%endif%}
+        {%if search_query == "Gown"%}
+        <a href="{% url 'shop-all-page' category='gown' %}"><button type="button" class="filtered gown enable">Gown</button></a>
+        {%else%}
+        <a href="{% url 'shop-all-page' category='gown' %}"><button type="button" class="filtered gown">Gown</button></a>
+        {%endif%}
+        {%if search_query == "Suit"%}
+        <a href="{% url 'shop-all-page' category='suit' %}"><button type="button" class="filtered suit enable">Suit</button></a>
+        {%else%}
+        <a href="{% url 'shop-all-page' category='suit' %}"><button type="button" class="filtered suit">Suit</button></a>
+        {%endif%}
+        {%if search_query == "Sweater"%}
+        <a href="{% url 'shop-all-page' category='sweater' %}"><button type="button" class="filtered sweater enable">Sweater</button></a>
+        {%else%}
+        <a href="{% url 'shop-all-page' category='sweater' %}"><button type="button" class="filtered sweater">Sweater</button></a>
+        {%endif%}
+        {%if search_query == "Overall"%}
+        <a href="{% url 'shop-all-page' category='overall' %}"><button type="button" class="filtered overall enable">Overall</button></a>
+        {%else%}
+        <a href="{% url 'shop-all-page' category='overall' %}"><button type="button" class="filtered overall">Overall</button></a>
+        {%endif%}
+        {%if search_query == "Native"%}
+        <a href="{% url 'shop-all-page' category='Native' %}"><button type="button" class="filtered native enable">Native</button></a>
+        {%else%}
+        <a href="{% url 'shop-all-page' category='Native' %}"><button type="button" class="filtered native">Native</button></a>
+        {%endif%}
+        {%if search_query == "T-shirt"%}
+        <a href="{% url 'shop-all-page' category='T-shirt' %}"><button type="button" class="filtered t-shirt enable">T-shirt</button></a>
+        {%else%}
+        <a href="{% url 'shop-all-page' category='shirt' %}"><button type="button" class="filtered t-shirt">T-shirt</button></a>
+        {%endif%}
       </div>
     </div>
 
     {%endif%}
     <div class="row g-4">
+      {%if 1 > page_obj|length%}
+      <p>There are no "{{search_query}}" items at the moment</p>
+      {%endif%}
       {% for prod in page_obj%}
       <div class="col-6 col-sm-6 col-md-6 col-lg-3 product-card">
         <a href="{%url 'single-prod-page' prod.product_name %}">
@@ -72,8 +119,12 @@
               <p class="product-price">{{prod.product_price|currency}}</p>
             </a>
               <div class="option-button">
-                <img src="{% static 'images/Black-heart.svg' %}"  class="nav-svg add_to_fav" id="{{prod.id}}" alt="...">
-                <img src="{% static 'images/Wheel-cart.svg' %}" class="nav-svg refresh-cart add_to_cart" id="{{prod.id}}"  alt="...">
+                {% if prod in saved_items %}
+              <img src="{% static 'images/favourite_activate.svg' %}"  class="nav-svg add_to_fav" id="{{prod.id}}" alt="...">
+              {%else%}
+              <img src="{% static 'images/Black-heart.svg' %}"  class="nav-svg add_to_fav" id="{{prod.id}}" alt="...">
+              {%endif%}
+              <img src="{% static 'images/Wheel-cart.svg' %}" class="nav-svg add_to_cart" id="{{prod.id}}"  alt="...">
               </div>
             </div>
           </div>

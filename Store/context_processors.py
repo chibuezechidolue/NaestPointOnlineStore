@@ -28,8 +28,9 @@ def nav_bar(request):
                 cart = Cart.objects.get(session_id=session,paid=False)
             except:
                 cart={"num_of_item":0}
+    user_saved_items=[item.product for item in usr_saved_items]
     return {'collections': Collection.objects.all(),
             "nav_advert":Advertisement.objects.get(advert_location="Nav_advert"),
-            "newsletterform":form,"cart":cart,"saved_items":usr_saved_items
+            "newsletterform":form,"cart":cart,"saved_items":user_saved_items
             }
 

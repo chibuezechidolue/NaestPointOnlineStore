@@ -160,19 +160,19 @@ function addToFav(e){
               if(data.num_of_saved_items==="user_not_authenticated"){
                 document.getElementById("pop_up_container").style.left="24px";
                 console.log(data.num_of_saved_items)
-
+              }
+              else if(data.num_of_saved_items==="item_already_saved"){
+                rmFromFav(e);
               }
               else{
               e.target.src="https://naestpoints3bucket.s3.amazonaws.com/static/images/favourite_activate.svg" 
               e.target.classList.add("fav_activate");
-              sleep(1000).then(() => { e.target.classList.remove("fav_activate"); 
-                                      e.target.src="https://naestpoints3bucket.s3.amazonaws.com/static/images/Black-heart.svg"});
+              sleep(1000).then(() => { e.target.classList.remove("fav_activate"); });
               document.getElementById('no_of_saved_items').innerHTML=data.num_of_saved_items;
             }
               
              
 })
-  
   .catch(error=>{console.log(error)})
 }
 
@@ -197,9 +197,12 @@ function rmFromFav(e){
 
   .then(res=>res.json())
   .then(data=>{
+              e.target.src="https://naestpoints3bucket.s3.amazonaws.com/static/images/Black-heart.svg";
               document.getElementById('no_of_saved_items').innerHTML=data.num_of_saved_items;
-              location.reload()
-             
+              let favRmvBtns=document.querySelectorAll(".rm_from_fav")
+              if(favRmvBtns.length > 0){
+                location.reload()
+              }            
 })
   .catch(error=>{console.log(error)})
 }

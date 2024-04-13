@@ -51,7 +51,7 @@ def shop_all_page(request,category):
     paginator = Paginator(products, 8)  # Show 8 products per page.
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
-    return render(request,"store/shop-all.html",{'page_obj':page_obj})
+    return render(request,"store/shop-all.html",{'page_obj':page_obj,"search_query":category.title()})
 
 
 def featured_prod_page(request):
@@ -72,6 +72,10 @@ def category_page(request,category):
         return render(request,"store/male-category.html",{"page_obj":page_obj})
     elif category=="ACCESSORIES":
         return render(request,"store/accessory-category.html",{"page_obj":page_obj})
+    else:
+        products=Products.objects.filter(product_gender="ACCESSORIES",product_name__contains=category)
+        return render(request,"store/accessory-category.html",{"page_obj":page_obj})
+
 
 
 def about_us_page(request):
