@@ -1,11 +1,13 @@
 from .models import Collection,Advertisement
 from User.forms import NewsLetterForm
 from Cart.models import Cart,CartItems, SavedItems
+from django.core.cache import cache
 import uuid
 
 
 
 
+CACHE_TIMEOUT=60*10
 
 form=NewsLetterForm()
 def nav_bar(request):
@@ -29,8 +31,12 @@ def nav_bar(request):
             except:
                 cart={"num_of_item":0}
     user_saved_items=[item.product for item in usr_saved_items]
-    return {'collections': Collection.objects.all(),
-            "nav_advert":Advertisement.objects.get(advert_location="Nav_advert"),
-            "newsletterform":form,"cart":cart,"saved_items":user_saved_items
+
+    
+    collections=cache.get_or_set("collections", Collection.objects.all(), CACHE_TIMEOUT)
+    nav_advert=cache.get_or_set("nav_advert",Advertisement.objects.get(advert_location="Nav_advert"),CACHE_TIMEOUT)
+    return {'collections': collections,
+            "nav_advert":nav_advert,"newsletterform":form,
+            "cart":cart,"saved_items":user_saved_items
             }
 

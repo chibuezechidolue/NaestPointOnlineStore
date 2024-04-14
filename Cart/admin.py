@@ -34,7 +34,7 @@ class UserCartItemsFilter(admin.SimpleListFilter):
 class CartItemAdmin(admin.ModelAdmin):
     list_display=("product","quantity",'cart','user')
     list_filter=(UserCartItemsFilter,'cart',"product",)
-    # search_fields=("product.product_name__contains",)
+    # search_fields=("product.product_name__icontains",)
     list_per_page=20
     # fields=("product_name","product_description","product_price",("product_img_1",'product_img_2','product_img_3'),"collection",("product_gender","prod_is_featured"))
     def user(self,obj):
@@ -44,7 +44,7 @@ class CartItemAdmin(admin.ModelAdmin):
 class CartAdmin(admin.ModelAdmin):
     list_display=("user","paid",'date','view_cart_items',)
     list_filter=('user',"paid",)
-    search_fields=("user__email__contains",)
+    search_fields=("user__email__icontains",)
     list_per_page=10
     actions=("set_cart_as_paid","set_cart_as_unpaid",)
 
@@ -69,7 +69,7 @@ class CartAdmin(admin.ModelAdmin):
 class SavedItemsAdmin(admin.ModelAdmin):
     list_display=("product",'user')
     list_filter=('user',"product",)
-    search_fields=("user__email__contains",)
+    search_fields=("user__email__icontains",)
     list_per_page=10
 
 admin.site.register(Cart,CartAdmin)

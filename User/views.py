@@ -63,7 +63,6 @@ class MyLoginView(LoginView):
 
 def register_page(request):
     form=CustomUserRegisterForm()
-
     if request.method == "POST":
         form = CustomUserRegisterForm(request.POST)
         print(form)

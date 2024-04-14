@@ -10,7 +10,7 @@ class AdvertAdmin(admin.ModelAdmin):
 
 class CollectionAdmin(admin.ModelAdmin):
     list_display=("collection_name","id")
-    search_fields=("collection_name__contains",)
+    search_fields=("collection_name__icontains",)
 
 
 admin.site.register(Advertisement,AdvertAdmin)

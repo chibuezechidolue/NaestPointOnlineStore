@@ -10,6 +10,7 @@ from django.contrib import messages
 
 
 # Create your views here.
+CACHE_TIMEOUT=60*10
 
 def single_product(request,prod_name):
     product=Products.objects.get(product_name=prod_name)
@@ -62,20 +63,19 @@ def single_product(request,prod_name):
 def search_product(request):
     if 'search_bar' in request.GET:
         search_input=request.GET.get('search_bar')
-        products=Products.objects.filter(product_name__contains=search_input)
+        products=Products.objects.filter(product_name__icontains=search_input)
         paginator = Paginator(products, 8)  # Show 8 products per page.
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
         context={'page_obj':page_obj,"search":True,"search_query":search_input}
-        cache.set("products",products,30)
-        cache.set("search_query",search_input,30)
+        cache.set("products",products,100)
+        cache.set("search_query",search_input,100)
     else:
         products=cache.get('products')
         paginator = Paginator(products, 8)  # Show 8 products per page.
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
         context={"page_obj":page_obj,"search":True,"search_query":cache.get('search_query')}
-        # context={'page_obj':page_obj,"search":True,"search_query":search_input}
     return render(request,"store/shop-all.html",context)
 
 
