@@ -23,7 +23,7 @@ def nav_bar(request):
         try:
             session=request.session['session_id']
         except:
-            request.session['session_id']=str(uuid.uuid4)
+            request.session['session_id']=str(uuid.uuid4())
             session=request.session.get('session_id')
         finally:
             try:

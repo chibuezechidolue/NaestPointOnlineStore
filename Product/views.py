@@ -64,18 +64,28 @@ def search_product(request):
     if 'search_bar' in request.GET:
         search_input=request.GET.get('search_bar')
         products=Products.objects.filter(product_name__icontains=search_input)
-        paginator = Paginator(products, 8)  # Show 8 products per page.
+        paginator = Paginator(products, 1)  # Show 8 products per page.
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
         context={'page_obj':page_obj,"search":True,"search_query":search_input}
-        cache.set("products",products,100)
-        cache.set("search_query",search_input,100)
+        if request.user.is_authenticated:
+            cache.set(f"{request.user.email}_search_result",products,100)
+            cache.set(f"{request.user.email}_search_query",search_input,100)
+        else:
+            cache.set(f"{request.session['session_id']}_search_result",products,100)
+            cache.set(f"{request.session['session_id']}_search_query",search_input,100)
     else:
-        products=cache.get('products')
-        paginator = Paginator(products, 8)  # Show 8 products per page.
+        if request.user.is_authenticated:
+            products = cache.get(f"{request.user.email}_search_result")
+            query_search=cache.get(f"{request.user.email}_search_query")
+        else:
+            products=cache.get(f"{request.session['session_id']}_search_result")
+            query_search=cache.get(f"{request.session['session_id']}_search_query")
+        # products=cache.get(f"{request.user.email}_search_result")
+        paginator = Paginator(products, 1)  # Show 8 products per page.
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
-        context={"page_obj":page_obj,"search":True,"search_query":cache.get('search_query')}
+        context={"page_obj":page_obj,"search":True,"search_query":query_search}
     return render(request,"store/shop-all.html",context)
 
 

@@ -173,7 +173,7 @@
 <div class="login-pop" id="pop_up_container">
   <div class="login-message">
       <p class="loginPop-message">You need to be logged in to save an item</p>
-      <a href="{% url 'login-page' %}"><button class="loginPop-button">Click here to Login</button></a>
+      <a href="{% url 'login-page' %}?next={{request.path}}"><button class="loginPop-button">Click here to Login</button></a>
   </div>
   <div class="close-container" id="pop_up_close">
       <i class="bi bi-x"></i>

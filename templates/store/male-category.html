@@ -14,7 +14,11 @@
     </div>
     <div class="men-product-top">
       <h2 class="men-product-heading">MEN'S FASHION</h2>
+      {%if page_obj|length > 0%}
       <P class="men-product-text">All kinds of men wears are available in all sizes, just make your choice</P>
+      {%else%}
+      <p>There are no Men products at the moment</p>
+      {%endif%}
     </div>
     <div class="row g-4 men-display">
         {%for prod in page_obj%}

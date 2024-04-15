@@ -11,10 +11,20 @@
     <div class="men-product-top">
         {%if FEMALE%}
         <h2 class="men-product-heading">WOMEN'S FASHION</h2>
+        {%if page_obj|length > 0%}
         <P class="men-product-text">All kinds of Women wears are available in all sizes, just make your choice</P>
+        {%else%}
+        <br><br>
+        <p>There are no Womens item at the moment</p>
+        {%endif%}
         {%elif KIDS%}
         <h2 class="men-product-heading">KIDS FASHION</h2>
+        {%if page_obj|length > 0%}
         <P class="men-product-text">Select adorable outfits for your kids </P>
+        {%else%}
+        <br><br>
+        <p>There are no Kids item at the moment</p>
+        {%endif%}
         {%endif%}
     </div>
     <div class="row g-4">

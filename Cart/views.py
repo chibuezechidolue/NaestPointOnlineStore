@@ -43,7 +43,7 @@ def add_to_cart(request):
         try:
             session=request.session['session_id']
         except:
-            session=request.session['session_id']=str(uuid.uuid4)
+            session=request.session['session_id']=str(uuid.uuid4())
         cart, created = Cart.objects.get_or_create(session_id=session,paid=False)
     cart_item, created=CartItems.objects.get_or_create(cart=cart,product=product)
     cart_item.quantity+=1
@@ -67,7 +67,7 @@ def rm_from_cart(request):
         try:
             session=request.session['session_id']
         except:
-            session=request.session['session_id']=str(uuid.uuid4)
+            session=request.session['session_id']=str(uuid.uuid4())
         cart, created = Cart.objects.get_or_create(session_id=session,paid=False)
         
     cart_item, created=CartItems.objects.get_or_create(cart=cart,product=product)

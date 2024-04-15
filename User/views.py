@@ -59,7 +59,9 @@ class MyLoginView(LoginView):
 # from django.http import HttpResponseRedirect
 # def logout_page(request):
 #     logout(request)
-#     return HttpResponseRedirect(request.path_info)
+#     print("i have been loged out")
+#     previous_page=request.META.get('HTTP_REFERER')
+#     return redirect(previous_page)
 
 def register_page(request):
     form=CustomUserRegisterForm()
