@@ -1068,13 +1068,12 @@ hr {
     color: var(--color-primary);
 }
 
-.enable {
+.all {
     background-color: var(--color-primary2);
 }
-
-/* a.active {
+.all a {
     color: var(--color-white);
-} */
+}
 
 /* Collection */
 
@@ -1414,11 +1413,10 @@ input[type=radio] {
 /* Login Popup */
 
 .login-pop {
-    width: 300px;
+    width: 250px;
     position: fixed;
     bottom: 24px;
     left: -324px;
-    /* left:24px; */
     display: grid;
     grid-template-columns: 85% 15%;
     z-index: 6;
@@ -2465,8 +2463,21 @@ input[type=radio] {
     padding: 8px 20px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     margin-top: 1rem;
+}
+
+.accessories-display {
+    padding: 0 6rem;
+}
+
+.accessories-left {
+    padding: 1rem 1rem;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 1rem;
+    background-color: var(--color-white);
+    box-shadow: 0 2px 8px #e6e6e6;
 }
 
 .accessories-heading {
@@ -2491,6 +2502,17 @@ input[type=radio] {
     margin-left: 4px;
 }
 
+.accessories-description {
+    display: flex;
+    align-items: center;
+    padding: 8px 15px;
+    cursor: pointer;
+    margin: .3rem 0;
+}
+.accessories-description:hover {
+    background-color: var(--color-bg2);
+}
+
 /* Bag */
 
 .bagHeading-container {
@@ -2513,6 +2535,10 @@ input[type=radio] {
 
     #men-product {
         margin-top: 3.8rem;
+    }
+
+    .accessories-display {
+        padding: 0 4rem;
     }
 
 }
@@ -2559,6 +2585,10 @@ input[type=radio] {
     }
 
     .men-display {
+        padding: 0 .5rem;
+    }
+
+    .accessories-display {
         padding: 0 .5rem;
     }
 
@@ -3164,5 +3194,7 @@ input[type=radio] {
     bottom: 0;
     
 }
-
+.enable {
+    background-color: var(--color-primary2);
+}
 

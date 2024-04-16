@@ -2,7 +2,7 @@
 <html>
     {% extends "base.html" %}
     {% load static %}
-    {%block title%} Shop all @ NaestPoint {%endblock title%}
+    {%block title%} Accessories @ NaestPoint {%endblock title%}
   
   <body>
   {%block content%}
@@ -16,257 +16,95 @@
       <h2 class="men-product-heading">ACCESSORIES</h2>
       <P class="men-product-text">We have Shoes, Bags, Sandals, Watches, Bangles and Glasses available for you</P>
     </div>
-    <div class="row g-4 men-display">
+    <div class="row g-4 accessories-display">
       <div class="accessHeading-container">
-        <h4 class="accessories-heading">BAGS</h4>
-        <button class="accessories-message"><a href="bags.html">See more  <i class="fa-solid fa-chevron-right"></i></a></button>
+        {%if query == "ACCESSORIES"%}
+        <h4 class="accessories-heading">ALL</h4>
+        {%else%}
+        <h4 class="accessories-heading">{{query}}</h4>
+        {%endif%}
       </div>
-        <div class="col-md-12 col-lg-6 product2-card">
-          <a href="">
-            <div class="card card-design product2-container">
-              <div class="card-img">
-                <img src="images/Accessories-bag.svg" class="card-img-top" alt="...">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+          <div class="accessories-left">
+            <div class="accessories-option1">
+              {%if query == 'ACCESSORIES' %}<div class="accessories-description intro">{%else%}<div class="accessories-description">{%endif%}
+                <a href="{% url 'category-page' 'ACCESSORIES'%}"><p class="account-info">All</p></a>
               </div>
-              <div class="card-body product2-body">
-                <div class="option2-button">
-                  <img src="./images/Black-heart.svg" class="nav-svg" alt="...">
-                  <img src="./images/Wheel-cart.svg" class="nav-svg" alt="...">
-                </div>
-                <div class="product2-info">
-                  <h3 class="product-title">Lauren Ralph Polo</h3>
-                  <p class="product-description">This material is meant from a jean factory in Naples, and it comes in many varieties of your choice</p>
-                  <p class="product-price">N9,900.50</p>
-                </div>
+              {%if query == 'BAGS' %}<div class="accessories-description intro">{%else%}<div class="accessories-description">{%endif%}
+                <a href="{% url 'category-page' 'BAGS'%}"><p class="account-info">Bags</p></a>
+              </div>
+              {%if query == 'GlASSESS' %}<div class="accessories-description intro">{%else%}<div class="accessories-description">{%endif%}
+                <a href="{% url 'category-page' 'GlASSESS'%}"><p class="account-info">Glasses</p></a>
+              </div>
+              {%if query == 'SHOES' %}<div class="accessories-description intro">{%else%}<div class="accessories-description">{%endif%}
+                <a href="{% url 'category-page' 'SHOES'%}"><p class="account-info">Shoes</p></a>
               </div>
             </div>
-          </a>
+            <div class="accessories-option2">
+              {%if query == 'WATCHES' %}<div class="accessories-description intro">{%else%}<div class="accessories-description">{%endif%}       
+                <a href="{% url 'category-page' 'WATCHES'%}"><p class="account-info">Watches</p></a>
+              </div>
+              {%if query == 'SANDALS' %}<div class="accessories-description intro">{%else%}<div class="accessories-description">{%endif%}
+                <a href="{% url 'category-page' 'SANDALS'%}"><p class="account-info">Sandals</p></a>
+              </div>
+              {%if query == 'BANGLES' %}<div class="accessories-description intro">{%else%}<div class="accessories-description">{%endif%}
+                <a href="{% url 'category-page' 'BANGLES'%}"><p class="account-info">Bangles</p></a>
+              </div>
+              <!-- <div class="accessories-description">       
+                <p class="account-info">Others</p>
+              </div> -->
+            </div>
+          </div>
         </div>
-        <div class="col-md-12 col-lg-6 product2-card">
+        {%if 0 == page_obj|length %}
+        <div class="col-sm-6 col-md-6 col-lg-4 product2-card">
+          <br><br>
+        <p>There are currently no {{query}} at the moment</p>
+        </div>
+        {%endif%}
+        {%for prod in page_obj%}
+        <div class="col-sm-6 col-md-6 col-lg-4 product2-card">
           <div class="card card-design product2-container">
             <div class="card-img">
-              <img src="images/Accessories-bag.svg" class="card-img-top" alt="...">
+              <img src="{{prod.product_img_1.url}}" class="card-img-top" alt="...">
             </div>
             <div class="card-body product2-body">
-              <div class="option2-button">
-                <img src="./images/Black-heart.svg" class="nav-svg" alt="...">
-                <img src="./images/Wheel-cart.svg" class="nav-svg" alt="...">
+              <div class="option-button2">
+                {% if prod in saved_items %}
+              <img src="{% static 'images/favourite_activate.svg' %}"  class="nav-svg add_to_fav" id="{{prod.id}}" alt="...">
+              {%else%}
+              <img src="{% static 'images/Black-heart.svg' %}"  class="nav-svg add_to_fav" id="{{prod.id}}" alt="...">
+              {%endif%}
+              <img src="{% static 'images/Wheel-cart.svg' %}" class="nav-svg add_to_cart" id="{{prod.id}}"  alt="...">
               </div>
               <div class="product2-info">
-                <h3 class="product-title">Lauren Ralph Polo</h3>
-                <p class="product-description">This material is meant from a jean factory in Naples, and it comes in many varieties of your choi
-                <p class="product-price">N9,900.50</p>
+                <h3 class="product-title">{{prod.product_name}}</h3>
+                <p class="product-description">{{prod.product_description}}</p>
+                <p class="product-price">{{prod.product_price|currency}}</p>
               </div>
             </div>
           </div>
         </div>
-        <div class="accessHeading-container">
-          <h4 class="accessories-heading">GLASSES</h4>
-          <button class="accessories-message">See more  <i class="fa-solid fa-chevron-right"></i></button>
-        </div>
-        <div class="col-md-12 col-lg-6 product2-card">
-          <div class="card card-design product2-container">
-            <div class="card-img">
-              <img src="images/Accessories-glasses.svg" class="card-img-top" alt="...">
-            </div>
-            <div class="card-body product2-body">
-              <div class="option2-button">
-                <img src="./images/Black-heart.svg" class="nav-svg" alt="...">
-                <img src="./images/Wheel-cart.svg" class="nav-svg" alt="...">
-              </div>
-              <div class="product2-info">
-                <h3 class="product-title">Lauren Ralph Polo</h3>
-                <p class="product-description">This material is meant from a jean factory in Naples, and it comes in many varieties of your choi
-                <p class="product-price">N9,900.50</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-12 col-lg-6 product2-card">
-          <div class="card card-design product2-container">
-            <div class="card-img">
-              <img src="images/Glasses2.png" class="card-img-top" alt="...">
-            </div>
-            <div class="card-body product2-body">
-              <div class="option2-button">
-                <img src="./images/Black-heart.svg" class="nav-svg" alt="...">
-                <img src="./images/Wheel-cart.svg" class="nav-svg" alt="...">
-              </div>
-              <div class="product2-info">
-                <h3 class="product-title">Lauren Ralph Polo</h3>
-                <p class="product-description">This material is meant from a jean factory in Naples, and it comes in many varieties of your choi
-                <p class="product-price">N9,900.50</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="accessHeading-container">
-          <h4 class="accessories-heading">SHOES</h4>
-          <button class="accessories-message">See more  <i class="fa-solid fa-chevron-right"></i></button>
-        </div>
-        <div class="col-md-12 col-lg-6 product2-card">
-            <a href="">
-              <div class="card card-design product2-container">
-                <div class="card-img">
-                  <img src="images/Accessories-shoe.png" class="card-img-top" alt="...">
-                </div>
-                <div class="card-body product2-body">
-                  <div class="option2-button">
-                    <img src="./images/Black-heart.svg" class="nav-svg" alt="...">
-                    <img src="./images/Wheel-cart.svg" class="nav-svg" alt="...">
-                  </div>
-                  <div class="product2-info">
-                    <h3 class="product-title">Lauren Ralph Polo</h3>
-                    <p class="product-description">This material is meant from a jean factory in Naples, and it comes in many varieties of your choice</p>
-          
-                    <p class="product-price">N9,900.50</p>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-12 col-lg-6 product2-card">
-            <div class="card card-design product2-container">
-              <div class="card-img">
-                <img src="images/Accessories-shoe.png" class="card-img-top" alt="...">
-              </div>
-              <div class="card-body product2-body">
-                <div class="option2-button">
-                  <img src="./images/Black-heart.svg" class="nav-svg" alt="...">
-                  <img src="./images/Wheel-cart.svg" class="nav-svg" alt="...">
-                </div>
-                <div class="product2-info">
-                  <h3 class="product-title">Lauren Ralph Polo</h3>
-                  <p class="product-description">This material is meant from a jean factory in Naples, and it comes in many varieties of your choice</p>
-                  <p class="product-price">N9,900.50</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="accessHeading-container">
-            <h4 class="accessories-heading">WATCHES</h4>
-            <button class="accessories-message">See more  <i class="fa-solid fa-chevron-right"></i></button>
-          </div>
-          <div class="col-md-12 col-lg-6 product2-card">
-            <div class="card card-design product2-container">
-              <div class="card-img">
-                <img src="images/Accessories-watch.svg" class="card-img-top" alt="...">
-              </div>
-              <div class="card-body product2-body">
-                <div class="option2-button">
-                  <img src="./images/Black-heart.svg" class="nav-svg" alt="...">
-                  <img src="./images/Wheel-cart.svg" class="nav-svg" alt="...">
-                </div>
-                <div class="product2-info">
-                  <h3 class="product-title">Lauren Ralph Polo</h3>
-                  <p class="product-description">This material is meant from a jean factory in Naples, and it comes in many varieties of your choice</p>
-                  <p class="product-price">N9,900.50</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-12 col-lg-6 product2-card">
-            <div class="card card-design product2-container">
-              <div class="card-img">
-                <img src="images/Accessories-watch.svg" class="card-img-top" alt="...">
-              </div>
-              <div class="card-body product2-body">
-                <div class="option2-button">
-                  <img src="./images/Black-heart.svg" class="nav-svg" alt="...">
-                  <img src="./images/Wheel-cart.svg" class="nav-svg" alt="...">
-                </div>
-                <div class="product2-info">
-                  <h3 class="product-title">Lauren Ralph Polo</h3>
-                  <p class="product-description">This material is meant from a jean factory in Naples, and it comes in many varieties of your choice</p>
-                  <p class="product-price">N9,900.50</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="accessHeading-container">
-            <h4 class="accessories-heading">SANDALS</h4>
-            <button class="accessories-message">See more  <i class="fa-solid fa-chevron-right"></i></button>
-          </div>
-          <div class="col-md-12 col-lg-6 product2-card">
-              <a href="">
-                <div class="card card-design product2-container">
-                  <div class="card-img">
-                    <img src="images/Sandals1.png" class="card-img-top" alt="...">
-                  </div>
-                  <div class="card-body product2-body">
-                    <div class="option2-button">
-                      <img src="./images/Black-heart.svg" class="nav-svg" alt="...">
-                      <img src="./images/Wheel-cart.svg" class="nav-svg" alt="...">
-                    </div>
-                    <div class="product2-info">
-                      <h3 class="product-title">Lauren Ralph Polo</h3>
-                      <p class="product-description">This material is meant from a jean factory in Naples, and it comes in many varieties of your choice</p>
-            
-                      <p class="product-price">N9,900.50</p>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-md-12 col-lg-6 product2-card">
-              <div class="card card-design product2-container">
-                <div class="card-img">
-                  <img src="images/Sandals2.png" class="card-img-top" alt="...">
-                </div>
-                <div class="card-body product2-body">
-                  <div class="option2-button">
-                    <img src="./images/Black-heart.svg" class="nav-svg" alt="...">
-                    <img src="./images/Wheel-cart.svg" class="nav-svg" alt="...">
-                  </div>
-                  <div class="product2-info">
-                    <h3 class="product-title">Lauren Ralph Polo</h3>
-                    <p class="product-description">This material is meant from a jean factory in Naples, and it comes in many varieties of your choice</p>
-                    <p class="product-price">N9,900.50</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="accessHeading-container">
-              <h4 class="accessories-heading">BANGLES</h4>
-              <button class="accessories-message">See more  <i class="fa-solid fa-chevron-right"></i></button>
-            </div>
-            <div class="col-md-12 col-lg-6 product2-card">
-              <div class="card card-design product2-container">
-                <div class="card-img">
-                  <img src="images/Bangle1.png" class="card-img-top" alt="...">
-                </div>
-                <div class="card-body product2-body">
-                  <div class="option2-button">
-                    <img src="./images/Black-heart.svg" class="nav-svg" alt="...">
-                    <img src="./images/Wheel-cart.svg" class="nav-svg" alt="...">
-                  </div>
-                  <div class="product2-info">
-                    <h3 class="product-title">Lauren Ralph Polo</h3>
-                    <p class="product-description">This material is meant from a jean factory in Naples, and it comes in many varieties of your choice</p>
-                    <p class="product-price">N9,900.50</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 col-lg-6 product2-card">
-              <div class="card card-design product2-container">
-                <div class="card-img">
-                  <img src="images/Bangle2.png" class="card-img-top" alt="...">
-                </div>
-                <div class="card-body product2-body">
-                  <div class="option2-button">
-                    <img src="./images/Black-heart.svg" class="nav-svg" alt="...">
-                    <img src="./images/Wheel-cart.svg" class="nav-svg" alt="...">
-                  </div>
-                  <div class="product2-info">
-                    <h3 class="product-title">Lauren Ralph Polo</h3>
-                    <p class="product-description">This material is meant from a jean factory in Naples, and it comes in many varieties of your choice</p>
-                    <p class="product-price">N9,900.50</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+        {%endfor%}     
     </div>
+    {%if page_obj.0%}      
+      <div class="pages">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}"><button type="button" class="directions"><i class="bi bi-chevron-left"></i></button></a>
+            <a href="?page={{ page_obj.previous_page_number }}"><button type="button" class="page three"> {{page_obj.previous_page_number }}</button></a> 
+            {% endif %}
+  
+            <a href="?page={{ page_obj.number }}"><button type="button" class="page one"> {{page_obj.number}}.</button></a>
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}"><button type="button" class="page two"> {{page_obj.next_page_number }}</button></a>
+            <a href="?page={{ page_obj.next_page_number }}"><button type="button" class="directions"><i class="bi bi-chevron-right"></i></button></a>
+            {% endif %}
+        </span>
+    </div>
+    {%endif%} 
   </section>
+
 {%endblock content%}
 </body>
 </html>

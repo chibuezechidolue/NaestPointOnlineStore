@@ -64,7 +64,7 @@ def search_product(request):
     if 'search_bar' in request.GET:
         search_input=request.GET.get('search_bar')
         products=Products.objects.filter(product_name__icontains=search_input)
-        paginator = Paginator(products, 1)  # Show 8 products per page.
+        paginator = Paginator(products, 8)  # Show 8 products per page.
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
         context={'page_obj':page_obj,"search":True,"search_query":search_input}
@@ -82,7 +82,7 @@ def search_product(request):
             products=cache.get(f"{request.session['session_id']}_search_result")
             query_search=cache.get(f"{request.session['session_id']}_search_query")
         # products=cache.get(f"{request.user.email}_search_result")
-        paginator = Paginator(products, 1)  # Show 8 products per page.
+        paginator = Paginator(products, 8)  # Show 8 products per page.
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
         context={"page_obj":page_obj,"search":True,"search_query":query_search}

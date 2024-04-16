@@ -79,10 +79,13 @@ def category_page(request,category):
     elif category=="MALE":
         return render(request,"store/male-category.html",{"page_obj":page_obj})
     elif category=="ACCESSORIES":
-        return render(request,"store/accessory-category.html",{"page_obj":page_obj})
-    # else:  
-    #     # products=Products.objects.filter(product_gender="ACCESSORIES",product_name__icontains=category)
-        # return render(request,"store/accessory-category.html",{"page_obj":page_obj})
+        return render(request,"store/accessory-category.html",{"page_obj":page_obj,"query":category})
+    else:  
+        products=Products.objects.filter(product_gender="ACCESSORIES",product_name__icontains=category)
+        paginator = Paginator(products, 10)  # Show 10 products per page.
+        page_number = request.GET.get("page")
+        page_obj = paginator.get_page(page_number)
+        return render(request,"store/accessory-category.html",{"page_obj":page_obj,"query":category})
 
 
 
