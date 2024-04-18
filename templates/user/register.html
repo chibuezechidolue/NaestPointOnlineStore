@@ -49,13 +49,15 @@
           <div class="mb-3">
             {{form.password1.errors}}
             <label for="{{form.password1.id_for_label}}" class="form-label">Password</label>
-            <input type="password" class="form-control payment-form" {{form.password1}}
+            <input type="password" class="form-control payment-form" id="{{form.password1.auto_id}}" {{form.password1}} 
+            <div class="psw_toggle">show</div>
           </div>
 
           <div class="mb-3">
             {{form.password2.errors}}
             <label for="{{form.password1.id_for_label}}" class="form-label">Confirm Password</label>
-            <input type="password" class="form-control payment-form" {{form.password2}}
+            <input type="password" class="form-control payment-form" id="{{form.password2.auto_id}}" {{form.password2}} 
+            <div class="psw_toggle">show</div>
           </div>
           <button type="submit" class="register-button">REGISTER</button>
         </form>

@@ -18,10 +18,10 @@ class Products(models.Model):
     product_img_2=models.ImageField(upload_to=f"images/product",default="default.jpg",null=True)
     product_img_3=models.ImageField(upload_to=f"images/product",default="default.jpg",null=True)
     product_gender=models.CharField(max_length=50,choices=(
-        ('1', u'MALE'),
-        ('2', u'FEMALE'),
-        ('3', u'KIDS'),
-        ('4', u'ACCESSORIES'),
+        ('MALE', u'MALE'),
+        ('FEMALE', u'FEMALE'),
+        ('KIDS', u'KIDS'),
+        ('ACCESSORIES', u'ACCESSORIES'),
     ))
     prod_is_featured=models.BooleanField(default=False)
     collection = models.ForeignKey(Collection, on_delete=models.CASCADE,default=0)

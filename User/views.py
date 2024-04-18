@@ -1,4 +1,5 @@
 from django.contrib.auth.forms import AuthenticationForm
+from django.forms.forms import BaseForm
 from django.shortcuts import render,redirect
 from User.models import NewsLetterSubscribers
 from .forms import CustomUserRegisterForm, NewsLetterForm,UpdateUserInfoForm,UpdatePasswordForm
@@ -34,6 +35,16 @@ from django.http import HttpResponse, HttpResponseRedirect,HttpResponseForbidden
 
 
 class MyLoginView(LoginView):
+
+    def form_valid(self, form: AuthenticationForm) -> HttpResponse:
+        response=super().form_valid(form)
+
+        if self.request.POST.get("remember_me"):
+            self.request.session.set_expiry(604800)
+        else:
+            #This part of code means, close session when browser is closed.
+            self.request.session.set_expiry(0)
+        return response
    
     def get_success_url(self) -> str:
         response= super().get_success_url()

@@ -79,7 +79,9 @@
             <h4 class="mainproduct-price" id="main_total_checkout_cost">{{cart.total_checkout_cost.1}}</h4>
           </div>
         </div>
+        {%if cart.num_of_item > 0 %}
         <button type="submit" class="payment-button">PROCEED TO CHECKOUT</button>
+        {%endif%}
       </div>
     </div>
   </div>

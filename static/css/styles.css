@@ -3198,3 +3198,19 @@ input[type=radio] {
     background-color: var(--color-primary2);
 }
 
+
+.psw_toggle{
+    cursor: pointer;
+    /* top: 50%; */
+    position: absolute;
+    transform: translateY(-140%);
+    right: 460px;
+    background-size: cover;
+    font-size: smaller;
+
+}
+
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}

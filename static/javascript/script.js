@@ -229,6 +229,21 @@ window.onload = () => {
 };
 
 
+// password toggle functionality
+const pswToggleBtns=document.querySelectorAll(".psw_toggle")
+
+pswToggleBtns.forEach(btn=>{btn.addEventListener("click",()=>{
+  let toggleInput = btn.previousElementSibling
+  if (toggleInput.type==="password"){
+    btn.textContent="hide"
+    console.log(btn.previousElementSibling.id)
+    toggleInput.setAttribute("type","text");
+  }else{
+    btn.textContent="show"
+    toggleInput.setAttribute("type","password");
+  }
+})})
+
 
 // Responsive Search button
 window.addEventListener('DOMContentLoaded', () => {

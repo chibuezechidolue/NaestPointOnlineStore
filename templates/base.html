@@ -99,14 +99,11 @@
                   <ul class="dropdown-menu collection">
                     <div class="collection-list">
                       {%for brand in collections|slice:"1:"%}
-                      <li><a class="dropdown-item" href="{% url 'collection-page' collection_name=brand.collection_name %}" onmouseenter="changeImg('../../media/{{brand.collection_img_1}}')">{{brand.collection_name}}</a></li>
+                      <li><a class="dropdown-item" href="{% url 'collection-page' collection_name=brand.collection_name %}" onmouseenter="changeImg('{{brand.collection_img_1.url}}')">{{brand.collection_name}}</a></li>
                       {%endfor%}
-                      <!-- <li><a class="dropdown-item" href="cart.html" onmouseenter="changeImg('static/images/Shopnow2.svg')">SEAMLESS COUTURE</a></li>
-                      <li><a class="dropdown-item" href="profile.html" onmouseenter="changeImg('static/images/Leo-design.png')">LEO DESIGN</a></li>
-                      <li><a class="dropdown-item" href="#" onmouseenter="changeImg('static/images/Shopnow4.svg')">SOPHIE LINE</a></li> -->
                     </div>
                     <div class="collection-image">
-                    <img src="static/images/Shopnow.svg" class="img-hover hover1" alt="" id="slider">
+                    <img src="{%static 'images/Shopnow.svg'%}" class="img-hover hover1" alt="" id="slider">
                     </div>
                   </ul>
                 </li>
