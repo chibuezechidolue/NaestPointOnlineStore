@@ -159,7 +159,6 @@ function addToFav(e){
   .then(data=>{
               if(data.num_of_saved_items==="user_not_authenticated"){
                 document.getElementById("pop_up_container").style.left="24px";
-                console.log(data.num_of_saved_items)
               }
               else if(data.num_of_saved_items==="item_already_saved"){
                 rmFromFav(e);
@@ -236,7 +235,6 @@ pswToggleBtns.forEach(btn=>{btn.addEventListener("click",()=>{
   let toggleInput = btn.previousElementSibling
   if (toggleInput.type==="password"){
     btn.textContent="hide"
-    console.log(btn.previousElementSibling.id)
     toggleInput.setAttribute("type","text");
   }else{
     btn.textContent="show"
@@ -274,6 +272,22 @@ window.addEventListener('DOMContentLoaded', () => {
           cartTab.classList.remove('showcart')
       }
 
+
+    // Scroll reveal
+
+    const sr = ScrollReveal({
+      origin: 'top',
+      distance: '40px',
+      duration: '2500',
+      reset: true
+    })
+    
+    sr.reveal ('.about-container',{delay:100});
+    sr.reveal ('.product-top',{delay:200});
+    sr.reveal ('.carousel-inner',{delay:100});
+    sr.reveal ('.promotion-image',{delay:100});
+    sr.reveal ('.main-advert',{delay:100});
+    
     // View Product thumbnail
 
     mainImg = document.getElementById('mainImg');
@@ -582,20 +596,4 @@ customElements.define('special-footer', SpecialFooter)
 function changeImg(imgchanger) {
   document.getElementById('slider').src = imgchanger;
 }
-
-// Scroll reveal
-
-const sr = ScrollReveal({
-  origin: 'top',
-  distance: '40px',
-  duration: '2500',
-  reset: true
-})
-
-sr.reveal ('.about-container',{delay:100});
-sr.reveal ('.product-top',{delay:200});
-sr.reveal ('.carousel-inner',{delay:100});
-sr.reveal ('.promotion-image',{delay:100});
-sr.reveal ('.main-advert',{delay:100});
-
 

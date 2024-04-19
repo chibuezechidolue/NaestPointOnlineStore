@@ -551,6 +551,10 @@ header.hide {
         right: 26px;
     }
 
+    .fav_number-display {
+        right: 70px;
+    }
+
     #navbar-second {
         position: unset;
         padding: .3rem 1rem;
@@ -1804,7 +1808,8 @@ input[type=radio] {
 #login {
     text-align: center;
     margin-top: 8rem;
-    background-image: url(../images/naestpoint-lemon-color.svg);
+    /* background-image: url("{% static 'images/naestpoint-lemon-color.svg' %}"); */
+    /* background-image: url(https://naestpoints3bucket.s3.amazonaws.com/static/images/naestpoint-lemon-color.svg); */
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -1812,7 +1817,7 @@ input[type=radio] {
 #register {
     text-align: center;
     margin-top: 8rem;
-    background-image: url(../images/naestpoint-lemon-color.svg);
+    /* background-image: url(https://naestpoints3bucket.s3.amazonaws.com/static/images/naestpoint-lemon-color.svg); */
     background-size: contain;
     background-repeat: no-repeat;
     
@@ -3152,7 +3157,7 @@ input[type=radio] {
     border-radius: 50%;
     position: absolute;
     top: 0;
-    right: 50px;
+    right: 30px;
 }
 
 
