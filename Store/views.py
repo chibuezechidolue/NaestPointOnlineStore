@@ -42,7 +42,7 @@ def whats_hot_page(request):
     all_products=cache.get_or_set("all_products",Products.objects.all().order_by("-id"), CACHE_TIMEOUT)
     
     # advert=Advertisement.objects.get(advert_location="whats_hot_advert")
-    advert=cache.get_or_set("advert",Advertisement.objects.get(advert_location="whats_hot_advert"), CACHE_TIMEOUT)
+    advert=cache.get_or_set("advert",Advertisement.objects.get(advert_location="whats-hot_advert"), CACHE_TIMEOUT)
     paginator = Paginator(all_products, 10)  # Show 10 products per page.
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)

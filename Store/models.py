@@ -1,18 +1,18 @@
 from django.db import models
-
-# Create your models here.
+from django.contrib.postgres.fields import ArrayField
 
 class Advertisement(models.Model):
     advert_title=models.CharField(max_length=100,default="no advert title")
     advert_text=models.CharField(max_length=250,default="no advert text")
     advert_location=models.CharField(max_length=150,choices=(
-        ('1', 'Nav_advert'),
-        ('2', u'CAROUSEL'),
-        ('3', u'sec2_advert'),
-        ('4', u'sec3_advert'),
-        ('5', u'sec4_advert'),
-        ('6', 'whats-hot_advert'),))
+        ('Nav_advert', 'Nav_advert'),
+        ('CAROUSEL', u'CAROUSEL'),
+        ('sec2_advert', u'sec2_advert'),
+        ('sec3_advert', u'sec3_advert'),
+        ('sec4_advert', u'sec4_advert'),
+        ('whats-hot_advert', 'whats-hot_advert'),))
     advert_img=models.ImageField(upload_to="images/advert",default="default_carousel.jpg")
+    advert_url=models.URLField(max_length=500,blank=True,null=True)
 
 class Collection(models.Model):
     collection_name=models.CharField(max_length=100,default="no name",unique=True)
