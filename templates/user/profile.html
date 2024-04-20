@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  {% extends "base.html" %}
+  {% extends "user/header.html" %}
   {% load static %}
   {%block title%} {{user.first_name.title}}'s Profile  {%endblock title%}
 <body>
@@ -8,7 +8,7 @@
 
 <section id="profile">
   <div class="cart-top">
-    <img src=" {% static 'images/Profile-image.png'%" class="cart-image" alt="">
+    <img src=" {% static 'images/Profile-image.png'%}" class="cart-image" alt="">
   </div>
   <div class="row g-4 cart-container">
     <!-- display flash messages -->

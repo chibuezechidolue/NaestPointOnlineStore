@@ -52,10 +52,11 @@ class MyLoginView(LoginView):
             session_cart=Cart.objects.get(session_id=self.request.session.get('session_id'),paid=False)
             if Cart.objects.filter(user=self.request.user,paid=False).exists():
                 user_cart=Cart.objects.get(user=self.request.user,paid=False)
+                user_cart_prod=[item.product for item in user_cart.cartitems.all()]
                 for item in session_cart.cartitems.all():
-                    cart_items=CartItems(cart=user_cart,product=item.product,quantity=item.quantity)
-                    cart_items.save()
-                    session_cart.save()
+                    if not item.product in user_cart_prod:
+                        cart_items=CartItems(cart=user_cart,product=item.product,quantity=item.quantity)
+                        cart_items.save()
                 if session_cart!=user_cart:
                     session_cart.delete()
             else:
