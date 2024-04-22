@@ -5,6 +5,7 @@ from django.views import generic
 from django.core.cache import cache
 from Cart.models import CartItems,Cart
 from django.contrib import messages
+import uuid
 
 
 
@@ -35,7 +36,11 @@ def single_product(request,prod_name):
         if request.user.is_authenticated:
             cart=Cart.objects.get(user=request.user,paid=False)
         else:
-            cart=Cart.objects.get(session_id=request.session['session_id'],paid=False)
+            try:
+                session=request.session['session_id']
+            except:
+                session=request.session['session_id']=str(uuid.uuid4())
+            cart, created = Cart.objects.get_or_create(session_id=session,paid=False)
 
         item=CartItems(cart=cart,product=product,quantity=prod_qty,size=prod_size)
         exist=False

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Products
+from .models import Products,SocialMediaTag
 
 
 # Register your models here.
@@ -24,3 +24,4 @@ class ProductAdmin(admin.ModelAdmin):
     set_prod_to_unfeatured.short_description="Set Selected Product as Unfeatured"
 
 admin.site.register(Products,ProductAdmin)
+admin.site.register(SocialMediaTag)

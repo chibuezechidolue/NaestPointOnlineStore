@@ -35,5 +35,8 @@ class SocialMediaTag(models.Model):
     tag_url=models.URLField(null=True)
     tag_img=models.ImageField(upload_to=f"images/socialmedia",default="default.jpg")
 
+    def __str__(self) -> str:
+         return self.tag_handle
+
 
 
