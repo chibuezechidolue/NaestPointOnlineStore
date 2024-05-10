@@ -50,6 +50,9 @@
               {%if query == 'BANGLES' %}<div class="accessories-description intro">{%else%}<div class="accessories-description">{%endif%}
                 <a href="{% url 'category-page' 'BANGLES'%}"><p class="account-info">Bangles</p></a>
               </div>
+              {%if query == 'PERFUMES' %}<div class="accessories-description intro">{%else%}<div class="accessories-description">{%endif%}
+                <a href="{% url 'category-page' 'PERFUMES'%}"><p class="account-info">Perfumes</p></a>
+              </div>
               <!-- <div class="accessories-description">       
                 <p class="account-info">Others</p>
               </div> -->
@@ -97,7 +100,7 @@
             <a href="?page={{ page_obj.previous_page_number }}"><button type="button" class="page three"> {{page_obj.previous_page_number }}</button></a> 
             {% endif %}
   
-            <a href="?page={{ page_obj.number }}"><button type="button" class="page one"> {{page_obj.number}}.</button></a>
+            <a href="?page={{ page_obj.number }}"><button type="button" class="page one current-page"> {{page_obj.number}}</button></a>
             {% if page_obj.has_next %}
             <a href="?page={{ page_obj.next_page_number }}"><button type="button" class="page two"> {{page_obj.next_page_number }}</button></a>
             <a href="?page={{ page_obj.next_page_number }}"><button type="button" class="directions"><i class="bi bi-chevron-right"></i></button></a>

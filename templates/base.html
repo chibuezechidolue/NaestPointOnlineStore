@@ -126,9 +126,9 @@
   <h2 class="cart-title">SHOPPING CART</h2> 
   <div class="listCart">
     {%if cart.num_of_item > 0%}
-    <a href="{% url 'delete-cart' %}"><button>Clear Cart</button></a>
+    <a href="{% url 'delete-cart' %}"><button class="cart-clear">Clear Cart</button></a>
     {%endif%}
-    <span class="position-absolute  end-0"><a href="{% url 'cart-page' %}"><button>View FullPage</button></a></span>
+    <span class="position-absolute"><a href="{% url 'cart-page' %}"><button class="full-page">View Full Page</button></a></span>
     {%for item in cart.cartitems.all%}
     <div class="item" id="item_{{item.product.id}}">
       <div class="item-image">
@@ -146,25 +146,32 @@
         <span id="quantity{{item.product.id}}">{{item.quantity}}</span>
         <button><span id="{{item.product.id}}" class="plus add_to_cart">+</span></button>
       </div>
-  </div>
-    {%endfor%}
-  <div>
-  <span>Sub Total:</span><span id="total_cart_sum"> {{cart.total_cart_sum.1}} </span>
-  </div>
-  <div>
-    <span>Discount:</span><span id="total_cart_sum_discount">{{cart.total_cart_sum_discount.1}} </span>
-  </div>
-  <div>
-    <span>Shipping:</span><span id="total_cart_sum_shipping_fee">{{cart.total_cart_sum_shipping_fee.1}} </span>
-  </div>
-  <div>
-    <span>Total Checkout:</span><span id="total_checkout_cost">{{cart.total_checkout_cost.1}} </span>
+    </div>
+      {%endfor%}
+      {%if cart.num_of_item == 0 %}
+      <div>
+          <p> Your Cart is currently empty</p>
+        </div>
+          {%endif%}
+    <div class="cartCheckout-details">
+      <div class="subtotal">
+        <span>Sub Total:</span><span id="total_cart_sum"> {{cart.total_cart_sum.1}} </span>
+      </div>
+      <div class="subtotal">
+        <span>Discount:</span><span id="total_cart_sum_discount">{{cart.total_cart_sum_discount.1}} </span>
+      </div>
+      <div class="subtotal">
+        <span>Shipping:</span><span id="total_cart_sum_shipping_fee">{{cart.total_cart_sum_shipping_fee.1}} </span>
+      </div>
+      <div class="last-total subtotal">
+        <span>Total Checkout:</span><span id="total_checkout_cost">{{cart.total_checkout_cost.1}} </span>
+      </div>
+    </div>
   </div>
   <div class="cart-btn">
     <button class="closeCart"> CLOSE</button>
     <button class="checkOut"> CHECK OUT</button>
   </div>
-</div>
 </div>
 
 <div class="login-pop" id="pop_up_container">
@@ -185,20 +192,6 @@
 </body>
 <footer id="footer">
 
-  
-  <!-- <div class="main_pop_conainer" id="pop_up_container">
-    <div class="pop_container">
-    <div class="pop_title" >
-      You need to be logged in to Save an Item
-    </div>
-    <div class="pop_link">
-      <a href="{% url 'login-page' %}"><button>Click here to Login</button></a>
-    </div>
-  </div>
-    <div class=" pop_close" id="pop_up_close">
-      <svg height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg" aria-label="close" class="" name="close"><path d="M8.95 8l5.853-5.854a.671.671 0 1 0-.95-.95L8 7.05 2.146 1.198a.671.671 0 1 0-.95.95L7.05 8l-5.852 5.853a.671.671 0 0 0 .948.95L8 8.948l5.854 5.854a.671.671 0 1 0 .948-.95L8.95 8z" fill="#4A4A4A" fill-rule="nonzero" stroke="#4A4A4A"></path></svg>
-    </div>
-   </div> -->
    
     <div class="row">
     <div class="col-lg-3 last-message">
@@ -213,20 +206,20 @@
         <div class="footer-link">
         <h6 class="link-title">HELP</h6>
         <p class="link-main">About us</p>
-        <p class="link-main">Contact us</p>
-        <p class="link-main">My account</p>
-        <p class="link-main">Size guide</p>
-        <p class="link-main">FAQs</p>
+        <a href=""><p class="link-main">Contact us</p></a>
+        <a href="{% url 'user-profile' %}"><p class="link-main">My account</p></a>
+        <a href=""><p class="link-main">Size guide</p></a>
+        <a href=""><p class="link-main">FAQs</p></a>
         </div>
     </div>
     <div class="col-lg-2 col-md-6 col-sm-6 second-link">
         <div class="footer-link2">
         <h6 class="link-title">SERVICES</h6>
-        <p class="link-main">What's hot</p>
-        <p class="link-main">Shop all</p>
-        <p class="link-main">Collection</p>
-        <p class="link-main">Single product</p>
-        <p class="link-main">Favourite</p>
+        <a href="{% url 'whats-hot-page' %}"><p class="link-main">What's hot</p></a>
+        <a href="{% url 'shop-all-page' category='all' %}"><p class="link-main">Shop all</p></a>
+        <a href=""><p class="link-main">Collection</p></a>
+        <a href=""><p class="link-main">Single product</p></a>
+        <a href="{% url 'favourite-page' %}"><p class="link-main">Favourite</p></a>
         </div>
     </div>
 

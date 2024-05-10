@@ -66,13 +66,13 @@
     <div class="row about-container about-group">
       <div class="col-7 col-sm-7 col-md-7 col-lg-7 about-left">
         <div class="about-first-writeup">
-          <a href=""><img src="{{sec2_ads.0.advert_img.url}}" class="d-block w-100" alt=""></a>
+          <a href="{{sec2_ads.0.advert_url}}"><img src="{{sec2_ads.0.advert_img.url}}" class="d-block w-100" alt=""></a>
         </div>
       </div>
 
       <div class="col-5 col-sm-5 col-md-5 col-lg-5 about-right">
         <div class="about-second-writeup">
-          <a href=""><img src="{{sec2_ads.1.advert_img.url}}" class="d-block w-100" alt=""></a>
+          <a href="{{sec2_ads.1.advert_url}}"><img src="{{sec2_ads.1.advert_img.url}}" class="d-block w-100" alt=""></a>
         </div>
       </div>
     </div>
@@ -156,7 +156,7 @@
           <div class="promotion-info">
             <h2 class="promotion-title">THE BEST DEAL OF THE DAY</h2>
             <p class="promotion-text">At Naesta Store we give you deals you can never say no to, that is one of the ways we say thank you to our customers. We sell all kinds of wears, ranging from bags, shoes, watches, jewelries, bangles and other accessories.</p>
-            <button type="button" class="promotion-cta"> <a href="#">MORE PROMOS</a></button>
+            <button type="button" class="promotion-cta"> <a href="{{sec3_ads.0.advert_url}}">MORE PROMOS</a></button>
           </div>
         </div>
       </div>
@@ -173,22 +173,13 @@
 
     <div class="row g-4">
       {%for prod in mens_prod|slice:":4"%}
-      <div class="col-md-12 col-lg-6 product2-card">
+      <div class="col-sm-6 col-md-6 col-lg-4 product2-card">
         <a href="{% url 'single-prod-page' prod_name=prod.product_name %}">
         <div class="card card-design product2-container">
           <div class="card-img">
             <img src="{{prod.product_img_1.url}}" class="card-img-top" alt="...">
           </div>
           <div class="card-body product2-body">
-      </a>
-            <div class="option2-button">
-              {% if prod in saved_items %}
-              <img src="{% static 'images/favourite_activate.svg' %}"  class="nav-svg add_to_fav" id="{{prod.id}}" alt="...">
-              {%else%}
-              <img src="{% static 'images/Black-heart.svg' %}"  class="nav-svg add_to_fav" id="{{prod.id}}" alt="...">
-              {%endif%}
-              <img src="{% static 'images/Wheel-cart.svg' %}" class="nav-svg add_to_cart" id="{{prod.id}}"  alt="...">
-            </div>
             <div class="product2-info">
               <h3 class="product-title">{{prod.product_name}}</h3>
               <p class="product-description">{{prod.product_description}}</p>
@@ -196,7 +187,15 @@
             </div>
           </div>
         </div>
-
+        </a>
+      <div class="option2-button">
+        {% if prod in saved_items %}
+        <img src="{% static 'images/favourite_activate.svg' %}"  class="nav-svg add_to_fav" id="{{prod.id}}" alt="...">
+        {%else%}
+        <img src="{% static 'images/Black-heart.svg' %}"  class="nav-svg add_to_fav" id="{{prod.id}}" alt="...">
+        {%endif%}
+        <img src="{% static 'images/Wheel-cart.svg' %}" class="nav-svg add_to_cart" id="{{prod.id}}"  alt="...">
+      </div>
       </div>
       {%endfor%}
     </div>

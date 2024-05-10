@@ -117,6 +117,12 @@ p {
     padding: 0;
 }
 
+.current-page {
+    background-color: transparent !important;
+    color: var(--color-primary) !important;
+    border-bottom: 2px solid var(--color-primary) !important;
+}
+
 /* Navbar */
 
 header {
@@ -266,6 +272,7 @@ header.hide {
 .listCart {
     padding: 0 12px;
     overflow: auto;
+    position: relative;
 }
 .listCart::-webkit-scrollbar {
     width: 0;
@@ -292,6 +299,43 @@ header.hide {
 
 .listCart .item:nth-child(odd) {
     background-color: var(--color-bg2);
+}
+
+.cart-clear {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: .3rem 1rem;
+    margin: 1rem 0;
+    border-radius: 4px;
+    font-size: .8rem;
+}
+
+.full-page {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: .3rem 1rem;
+    margin: 1rem 0;
+    border-radius: 4px;
+    font-size: .8rem;
+}
+
+.position-absolute {
+    right: 12px;
+}
+
+.cartCheckout-details {
+    margin: 1.5rem 0.5rem;
+}
+
+.last-total {
+    font-weight: 600;
+}
+
+.subtotal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 8rem;
 }
 
 .link-socials {
@@ -552,7 +596,7 @@ header.hide {
     }
 
     .fav_number-display {
-        right: 70px;
+        right: 56px !important;
     }
 
     #navbar-second {
@@ -852,27 +896,6 @@ header.hide {
     text-align: left;
     padding: 16px 16px 8px;
 }
-/* 
-.behance {
-    font-family: 'josefin sans', sans-serif;
-    background-color: transparent;
-    border: 1px var(--color-black) solid;
-    padding: 4px 12px;
-    margin-right: 16px;
-    transition: ease-in 400ms;
-}
-.behance:hover {
-    background-color: var(--color-primary);
-    border: 1px var(--color-primary) solid;
-}
-.behance a {
-    text-decoration: none;
-    color: var(--color-black);
-}
-
-.behance a:hover {
-    color: var(--color-white);
-} */
 
 .product-title {
     color: var(--color-black);
@@ -936,7 +959,7 @@ hr {
     text-decoration: none;
     letter-spacing: 1px;
     border: 1.5px var(--color-primary) solid;
-    color: var(--color-black);
+    color: var(--color-primary);
     padding: 12px 24px;
     transition: ease-out 500ms;
     margin-top: 1rem;
@@ -999,6 +1022,7 @@ hr {
     border: none;
     padding: 8px 16px;
     transition: ease-out 500ms;
+    color: var(--color-white);
 }
 .page:hover {
     transform: translateY(-3px);
@@ -1055,6 +1079,7 @@ hr {
     font-family: 'poppins', sans-serif;
     font-size: .8rem;
     background-color: var(--color-white);
+    color: var(--color-primary);
     text-decoration: none;
     box-shadow: 0 4px 8px var(--color-primary2);
     letter-spacing: 1px;
@@ -1120,6 +1145,7 @@ hr {
     font-family: 'poppins', sans-serif;
     font-size: .7rem;
     font-weight: 600;
+    color: var(--color-primary);
     background-color: transparent;
     text-decoration: none;
     letter-spacing: 1px;
@@ -1212,13 +1238,18 @@ input[type=radio] {
 
 .singleproduct-button {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-around;
     align-items: center;
 }
 
 .size-description {
     margin-bottom: 4px;
     margin-right: 1rem;
+}
+
+#input_value {
+    margin: 0 .5rem;
+    color: var(--color-primary);
 }
 
 .addtocart-button {
@@ -1228,7 +1259,7 @@ input[type=radio] {
     text-decoration: none;
     letter-spacing: 1px;
     border: none;
-    color: var(--color-black);
+    color: var(--color-white);
     padding: 8px 16px;
     transition: ease-out 500ms;
 }
@@ -1253,7 +1284,7 @@ input[type=radio] {
 
 .goods-number {
     font-size: 16px;
-    padding: 2px 8px;
+    padding: 2px 6px;
     color: var(--color-primary);
     background-color: transparent;
     border: 1.5px var(--color-primary) solid;
@@ -1599,6 +1630,7 @@ input[type=radio] {
 
 .mb-3 {
     text-align: start;
+    position: relative;
 }
 
 .card-number {
@@ -1758,9 +1790,10 @@ input[type=radio] {
 .account-info {
     font-family: 'poppins', sans-serif;
     font-weight: 400;
+    color: var(--color-black);
 }
 
-.bi-person-square, .bi-bag-check, .bi-file-lock2, .bi-box-arrow-left {
+.bi-person-square, .bi-bag-check, .bi-file-lock2, .bi-box-arrow-left, .bi-trash {
     font-size: 24px;
     margin-right: 16px;
     display: flex;
@@ -1794,13 +1827,67 @@ input[type=radio] {
 }
 
 .bi-pencil-square {
-    position: absolute;
-    top: 4rem;
-    right: 3rem;
-    font-size: 24px;
+    font-size: 20px;
     display: flex;
-    color: var(--color-primary);
+    color: var(--color-white);
     cursor: pointer;
+}
+
+.profileEdit-button {
+    position: absolute;
+    top: 3rem;
+    right: 3rem;
+    font-family: 'poppins', sans-serif;
+    font-size: .9rem;
+    background-color: var(--color-primary);
+    text-decoration: none;
+    letter-spacing: 1px;
+    border: none;
+    color: var(--color-white);
+    padding: 8px 16px;
+    transition: ease-out 500ms;
+    display: flex;
+    align-items: center;
+    column-gap: .8rem;
+}
+
+.profileEdit-button:hover {
+    transform: translateY(-3px);
+}
+
+.details-edit {
+    font-weight: 400;
+}
+
+.orderHistory-display {
+    font-size: 1.1rem;
+}
+
+.accDelete-message {
+    margin-bottom: 1rem;
+}
+
+.accDelete-button {
+    padding: .5rem 2rem;
+    background-color: #de1010;
+    color: var(--color-white);
+    margin: 0 4px 6px 0;
+    transition: ease-out 500ms;
+}
+.accDelete-button:hover {
+    transform: translateY(-3px);
+}
+
+.noDelete-button {
+    padding: .5rem 2rem;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    transition: ease-out 500ms;
+}
+.noDelete-button:hover {
+    transform: translateY(-3px);
+    color: var(--color-white);
 }
 
 /* Login and Register */
@@ -1836,11 +1923,11 @@ input[type=radio] {
     color: var(--color-primary);
 }
 
-/* .password-admin {
+.password-admin {
     display: flex;
-    align-items: baseline;
+    align-items: stretch;
     justify-content: space-between;
-} */
+}
 
 .forgot-password {
     font-family: 'halant', sans-serif;
@@ -2231,7 +2318,7 @@ input[type=radio] {
         padding: 2rem 0.5rem;
     }
 
-    .bi-pencil-square {
+    .profileEdit-button {
         right: .5rem;
     }
 
@@ -3128,7 +3215,7 @@ input[type=radio] {
 
 
 .activate {
-    color: blue;
+    color: var(--color-white);
     background-color: #2e7a62;
     transform: translateY(-3px);
     /* color: var(--color-black); */
@@ -3157,7 +3244,7 @@ input[type=radio] {
     border-radius: 50%;
     position: absolute;
     top: 0;
-    right: 30px;
+    right: 34px;
 }
 
 
@@ -3201,18 +3288,17 @@ input[type=radio] {
 }
 .enable {
     background-color: var(--color-primary2);
+    color: var(--color-white);
 }
 
-
-.psw_toggle{
+.psw_toggle {
     cursor: pointer;
-    /* top: 50%; */
+    top: 63px;
     position: absolute;
     transform: translateY(-140%);
-    right: 460px;
+    right: 14px;
     background-size: cover;
     font-size: smaller;
-
 }
 
 input::-ms-reveal,

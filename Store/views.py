@@ -55,7 +55,7 @@ def shop_all_page(request,category):
     else:
         products=Products.objects.filter(product_name__icontains=category)
     
-    paginator = Paginator(products, 8)  # Show 8 products per page.
+    paginator = Paginator(products, 12)  # Show 8 products per page.
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     return render(request,"store/shop-all.html",{'page_obj':page_obj,"search_query":category.title()})
@@ -64,14 +64,14 @@ def shop_all_page(request,category):
 def featured_prod_page(request):
     # all_featured=Products.objects.filter(prod_is_featured=True)
     all_featured=cache.get_or_set("all_featured",Products.objects.filter(prod_is_featured=True), CACHE_TIMEOUT)
-    paginator = Paginator(all_featured, 10)  # Show 10 products per page.
+    paginator = Paginator(all_featured, 12)  # Show 10 products per page.
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     return render(request,'store/shop-all.html',{"page_obj":page_obj,"featured":True})
 
 def category_page(request,category):
     products=Products.objects.filter(product_gender=category)
-    paginator = Paginator(products, 10)  # Show 10 products per page.
+    paginator = Paginator(products, 12)  # Show 10 products per page.
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     if category=="FEMALE" or category=="KIDS":
@@ -83,7 +83,7 @@ def category_page(request,category):
     else:  
         category_options={"BAGS":"Bag","GLASSES":"Glass","SHOES":"Shoe","WATCHES":"Watch","SANDALS":"Sandal","BANGLES":"Bangle"}
         products=Products.objects.filter(product_gender="ACCESSORIES",product_name__icontains=category_options[category])
-        paginator = Paginator(products, 10)  # Show 10 products per page.
+        paginator = Paginator(products, 12)  # Show 10 products per page.
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
         return render(request,"store/accessory-category.html",{"page_obj":page_obj,"query":category})
