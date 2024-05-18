@@ -40,7 +40,7 @@
                 </div>
                 <div class="product2-info">
                   <h3 class="product-title">{{prod.product_name}}</h3>
-                  <p class="product-description">{{prod.product_description}}</p>
+                  <p class="product-description">{{prod.product_description|slice:54}}</p>
                   <div class="sizes">
                     {%if 'SM' in prod.product_sizes %}
                       <button type="button" class="size sm active"> SM</button>

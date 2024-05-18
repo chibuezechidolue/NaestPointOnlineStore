@@ -929,6 +929,9 @@ header.hide {
     overflow: hidden;
     border-radius: 0;
     background-color: lightgray;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .card-img img {
@@ -1863,6 +1866,63 @@ input[type=radio] {
     font-size: 1.1rem;
 }
 
+.order-heading {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    align-items: center;
+    text-align: start;
+    padding: 1.5rem 0 .5rem .7rem;
+    font-weight: 500;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-size: .9rem;
+}
+
+.order-details {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    align-items: center;
+    text-align: start;
+    padding: 1.5rem 0 .5rem .7rem;
+    font-size: .9rem;
+}
+
+.mainID {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+.primaryID {
+    font-size: 1.3rem;
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+}
+
+.primaryOrder-heading {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    align-items: center;
+    text-align: start;
+    padding: 1.5rem 0 .5rem .7rem;
+    font-weight: 500;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-size: .9rem;
+}
+
+.primaryOrder-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    align-items: center;
+    text-align: start;
+    padding: 1.5rem 0 .5rem .7rem;
+    font-size: .9rem;
+}
+
 .accDelete-message {
     margin-bottom: 1rem;
 }
@@ -2494,6 +2554,9 @@ input[type=radio] {
     background-color: transparent;
     text-align: left;
     padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .product2-info {
