@@ -3,6 +3,8 @@ from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
 from Cart import views
+import Product.views 
+
 
 admin.site.site_header="NAESTpoint Admin"
 admin.site.site_title="NAESTpoint Administration"
@@ -11,6 +13,8 @@ admin.site.index_title="NAESTpoint Administration"
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path('FAQ/',Product.views.faq_page,name='faq-page'),
+    path('size-guide/',Product.views.size_guide_page,name='size-guide'),
     path("", include("Store.urls")),
     path("product/", include("Product.urls")),
     path("user/",include("User.urls")),

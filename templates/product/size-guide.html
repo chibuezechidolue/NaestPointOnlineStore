@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  {% extends "base.html" %}
+  {% load static %}
+  {%block title%} {{user.first_name.title}}'s Profile  {%endblock title%}
+<body>
+{%block content%}
+
+  <section id="size-guide">
+    <div class="whatshot-product-top">
+      <h2 class="whats-hot-title">SIZE GUIDE</h2>
+      <p class="product-message">CHECK OUT VARIOUS SIZES FOR OUR ITEMS</p>
+    </div>
+    <div class="sex-guides">
+      <h4 class="size-header">Women Size chart</h4>
+      <img src="{% static 'images/Women-sizeguide.jpg' %}" class="guide-image" alt="">
+    </div>
+    <div class="sex-guides">
+      <h4 class="size-header">Men Size chart</h4>
+      <img src="{% static 'images/Men-sizeguide.jpg' %}" class="guide-image" alt="">
+    </div>
+    <div class="sex-guides">
+      <h4 class="size-header">Kids Size chart</h4>
+      <img src="{% static 'images/Kids-sizeguide.jpg' %}" class="guide-image" alt="">
+    </div>
+  </section>
+
+  <!-- Footer -->
+
+  {%endblock content%}  
+
+</body>
+</html>

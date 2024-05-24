@@ -94,3 +94,8 @@ def search_product(request):
     return render(request,"store/shop-all.html",context)
 
 
+def faq_page(request):
+    return render(request,"product/faq.html")
+
+def size_guide_page(request):
+    return render(request,'product/size-guide.html')
