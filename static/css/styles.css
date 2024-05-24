@@ -329,13 +329,15 @@ header.hide {
 
 .last-total {
     font-weight: 600;
+    color: var(--color-primary);
 }
 
 .subtotal {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
     align-items: center;
-    justify-content: space-between;
-    padding-right: 8rem;
+    text-align: start;
 }
 
 .link-socials {
@@ -932,6 +934,7 @@ header.hide {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    height: 100%;
 }
 
 .card-img img {
@@ -1060,7 +1063,7 @@ hr {
 /* Shop All */
 
 #shop-all {
-    padding: 4rem 6rem 4rem;
+    padding: 2rem 6rem 4rem;
     text-align: center;
     background-color: var(--color-white);
     margin-top: 8rem;
@@ -2715,7 +2718,7 @@ input[type=radio] {
     }
 
     .product2-info {
-        padding: 0 0 0 .3rem;
+        padding: 1rem .3rem 0 .3rem;
     }
 
     #men-product {
@@ -2739,12 +2742,16 @@ input[type=radio] {
         font-size: .8rem;
     }
 
+    .first-menDisplay {
+        padding: 0 1.5rem;
+    }
+
     .men-display {
-        padding: 0 .5rem;
+        padding: 0 1.5rem;
     }
 
     .accessories-display {
-        padding: 0 .5rem;
+        padding: 0 2rem;
     }
 
     .bagHeading-container {
@@ -3367,4 +3374,57 @@ input[type=radio] {
 input::-ms-reveal,
 input::-ms-clear {
   display: none;
+}
+
+/* FAQ */
+
+#faq {
+    padding: 4rem 6rem 4rem;
+    text-align: center;
+    background-color: var(--color-white);
+    margin-top: 8rem;
+}
+
+.accordion-button {
+    font-weight: 500;
+}
+
+.accordion-button:not(.collapsed) {
+    color: var(--color-primary);
+    background-color: var(--color-bg3);
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: var(--bs-accordion-btn-icon);
+}
+
+.accordion-body {
+    text-align: start;
+}
+
+/* Size Guide */
+
+#size-guide {
+    padding: 4rem 6rem 4rem;
+    text-align: center;
+    background-color: var(--color-white);
+    margin-top: 8rem;
+}
+
+.sex-guides {
+    margin-top: 3rem;
+}
+
+.size-header {
+    text-align: start;
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.guide-image {
+    width: 100%;
 }
