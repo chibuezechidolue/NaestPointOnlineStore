@@ -1,12 +1,13 @@
+from typing import Any
 from django.contrib.auth.forms import AuthenticationForm
 from django.forms.forms import BaseForm
 from django.shortcuts import render,redirect
-from User.models import NewsLetterSubscribers
+from User.models import CustomUser, NewsLetterSubscribers
 from .forms import CustomUserRegisterForm, NewsLetterForm,UpdateUserInfoForm,UpdatePasswordForm
 from Cart.models import Cart,CartItems
 from django.contrib import messages
 from django.contrib.auth import authenticate, login ,logout,get_user
-from django.contrib.auth.views import PasswordChangeView,LoginView
+from django.contrib.auth.views import PasswordChangeView,LoginView,PasswordResetView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse, HttpResponseRedirect,HttpResponseForbidden
@@ -38,7 +39,7 @@ class MyLoginView(LoginView):
 
     def form_valid(self, form: AuthenticationForm) -> HttpResponse:
         response=super().form_valid(form)
-
+        # form.cleaned_data.get("remember_me")
         if self.request.POST.get("remember_me"):
             self.request.session.set_expiry(604800)
         else:
@@ -68,6 +69,20 @@ class MyLoginView(LoginView):
         return response
 
 
+class MyPasswordResetView(PasswordResetView):
+
+    
+    def form_valid(self, form: Any) -> HttpResponse:
+        response = super().form_valid(form)
+        # email=self.request.POST.get("email")
+        email=form.cleaned_data["email"]
+        if CustomUser.objects.filter(email=email).exists():
+            return response
+        else:
+            messages.add_message(self.request, messages.WARNING, "The Email provided is not valid, please confirm your email")
+            return super().form_invalid(form)
+        
+        
 # from django.http import HttpResponseRedirect
 # def logout_page(request):
 #     logout(request)
