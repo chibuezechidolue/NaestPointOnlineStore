@@ -18,7 +18,7 @@
   {%else%}
   <section id="shop-all">
     <div class="whatshot-product-top">
-      <h2 class="product2-heading">ALL CLOTHING ITEMS IN STORE</h2>
+      <h2 class="product2-heading">ALL ITEMS IN STORE</h2>
     </div>
     <div class="product-top">
       <div class="filter">
@@ -83,7 +83,7 @@
     {%endif%}
     <div class="row g-4">
       {%if 1 > page_obj|length%}
-      <p>There are no "{{search_query}}" items at the moment</p>
+      <h3 class="orderHistory-display">There are no "{{search_query}}" items at the moment</h3>
       {%endif%}
       {% for prod in page_obj%}
       <div class="col-6 col-sm-6 col-md-6 col-lg-3 product-card">

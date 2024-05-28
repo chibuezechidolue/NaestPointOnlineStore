@@ -121,6 +121,8 @@ p {
     background-color: transparent !important;
     color: var(--color-primary) !important;
     border-bottom: 2px solid var(--color-primary) !important;
+    margin: 2px 8px !important;
+    padding: 0 10px !important;
 }
 
 /* Navbar */
@@ -1812,7 +1814,7 @@ input[type=radio] {
 }
 
 .first-name, .last-name {
-    width: 48%;
+    width: 50%;
 }
 
 .account-submit-button {
@@ -1960,7 +1962,7 @@ input[type=radio] {
     margin-top: 8rem;
     /* background-image: url("{% static 'images/naestpoint-lemon-color.svg' %}"); */
     /* background-image: url(https://naestpoints3bucket.s3.amazonaws.com/static/images/naestpoint-lemon-color.svg); */
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
 }
 
@@ -2028,6 +2030,13 @@ input[type=radio] {
 }
 .register-button:hover {
     transform: translateY(-3px);
+}
+
+.login-error {
+    font-family: 'halant', sans-serif;
+    font-size: .9rem;
+    font-weight: 400;
+    color: #de1010;
 }
 
 /* Password */
@@ -2184,7 +2193,7 @@ input[type=radio] {
 
 @media screen and (max-width: 992px) {
 
-    #whats-hot {
+    #whats-hot, #faq, #size-guide {
         margin-top: 3rem;
     }
 
@@ -2212,6 +2221,10 @@ input[type=radio] {
         padding: 3rem 10rem
     }
 
+    .first-name {
+        width: 80%;
+    }
+
     .favourite-image {
         width: 90%;
     }
@@ -2224,7 +2237,7 @@ input[type=radio] {
         padding: 3rem .5rem 4rem;
     }
 
-    #whats-hot {
+    #whats-hot, #faq, #size-guide {
         padding: 4rem .5rem 3rem;
         margin-top: 0;
     }
@@ -2379,6 +2392,10 @@ input[type=radio] {
 
     .account-right {
         padding: 2rem 0.5rem;
+    }
+
+    .first-name {
+        width: 90%;
     }
 
     .profileEdit-button {
@@ -2551,6 +2568,7 @@ input[type=radio] {
 .product2-container {
     display: grid;
     grid-template-columns: 50% 50%;
+    height: 90%;
 }
 
 .product2-body {
@@ -3427,4 +3445,16 @@ input::-ms-clear {
 
 .guide-image {
     width: 100%;
+}
+
+@media screen and (max-width: 992px) {
+    .size-header {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .size-header {
+        font-size: .8rem;
+    }
 }
