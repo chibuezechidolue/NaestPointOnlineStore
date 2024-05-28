@@ -2032,11 +2032,12 @@ input[type=radio] {
     transform: translateY(-3px);
 }
 
-.login-error {
+.error-message ul{
     font-family: 'halant', sans-serif;
     font-size: .9rem;
     font-weight: 400;
     color: #de1010;
+    padding: 0;
 }
 
 /* Password */

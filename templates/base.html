@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
+    <!-- custom favicon link  -->
+    <link rel="icon" href="{%static 'images/NaestPoint-favicon.ico' %}">
 </head>
 <header id="header">
     <section class="navbar-one">
@@ -184,11 +186,12 @@
   </div>
 </div>
 
-<body>
+<body >
+  <div class="body">
     {%block content%}
    
     {%endblock content%}
-    
+  </div>
 </body>
 <footer id="footer">
 
@@ -229,7 +232,7 @@
         <P class="link-main newsletter-text">Get the lates stories, highlights, products to love and recomendations that are chosen for you</P>
         <form class="newsletter-form" method="post" action="{% url 'subscribe-newsletter' %}">
           {%csrf_token%}
-          {{newsletterform.email.errors}}
+          <div class="error-message">{{newsletterform.email.errors}}</div>
             <!-- <input for="{{newsletterform.email.id_for_label}}" class="email-input" type="email" placeholder="Enter your email"  -->
             {{newsletterform.email}}
             <button class="newsletter-button" type="submit"><i class="bi bi-arrow-right"></i></button>
@@ -253,7 +256,7 @@
         </div>
         <div class="socials linked-in">
             <div class="linked-in-icon">
-            <a href="#"><i class="fa-brands fa-linkedin-in fa-lg"></i></a>
+            <a href="#"><i class="fa-brands fa-whatsapp fa-lg"></i></a>
             </div>
         </div>
         </div>
