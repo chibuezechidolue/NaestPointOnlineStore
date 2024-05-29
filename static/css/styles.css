@@ -2039,6 +2039,10 @@ input[type=radio] {
     color: #de1010;
 }
 
+.login-error ul {
+    padding: 0;
+}
+
 /* Password */
 
 .password-message {
@@ -2717,6 +2721,10 @@ input[type=radio] {
         padding: 0 4rem;
     }
 
+    .product2-container {
+        height: 95%;
+    }
+
 }
 
 
@@ -2724,6 +2732,10 @@ input[type=radio] {
 
     #product2 {
         padding: 3rem .5rem;
+    }
+
+    .product2-container {
+        height: 100%;
     }
 
     .product2-body {
