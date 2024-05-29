@@ -251,6 +251,7 @@ window.addEventListener('DOMContentLoaded', () => {
   let searchBox = document.querySelector('.searchBox');
   let cartIcon = document.querySelector('.cartIcon');
   let closeCart = document.querySelector('.closeCart');
+  let closeCart2= document.querySelector('.body')
   let cartTab = document.querySelector('.cartTab');
   
       searchBtn.onclick = function () {
@@ -272,6 +273,9 @@ window.addEventListener('DOMContentLoaded', () => {
           cartTab.classList.remove('showcart')
       }
 
+      closeCart2.onclick = function () {
+        cartTab.classList.remove('showcart')
+    }
 
     // Scroll reveal
 
@@ -310,6 +314,23 @@ window.addEventListener('DOMContentLoaded', () => {
     })
 }, false)
 // Navbar disappear
+let prevScrollpos = window.pageYOffset;
+
+window.addEventListener('scroll', () => {
+    
+    const header = document.querySelector('header');
+
+    let currentScrollPos = window.pageYOffset;
+
+
+    if (prevScrollpos < currentScrollPos) {
+        header.classList.add('hide');
+    } else {
+        header.classList.remove('hide');
+    }
+
+    prevScrollpos = currentScrollPos
+})
 
 
 // Start of single_product quantity selection section
@@ -368,24 +389,6 @@ function sizeSelection(e){
 
 
 
-
-let prevScrollpos = window.pageYOffset;
-
-window.addEventListener('scroll', () => {
-    
-    const header = document.querySelector('header');
-
-    let currentScrollPos = window.pageYOffset;
-
-
-    if (prevScrollpos < currentScrollPos) {
-        header.classList.add('hide');
-    } else {
-        header.classList.remove('hide');
-    }
-
-    prevScrollpos = currentScrollPos
-})
 
 
 // Dynamic Header and Footer 
