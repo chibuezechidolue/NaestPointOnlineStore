@@ -53,7 +53,7 @@
       </div>
       <div class="col-6 col-sm-6 col-md-6 col-lg-3">
         <div class="card service-card-design main-feature">
-          <img src="{% static 'images/Responsive website.svg' %}" class="d-block w-100" alt="">
+          <img src="{% static 'images/Responsive-website.svg' %}" class="d-block w-100" alt="">
         </div>
       </div>
     </div>
@@ -93,6 +93,9 @@
         <a href="{% url 'single-prod-page' prod_name=product.product_name %}">
         <div class="card card-design">
           <div class="card-img">
+            <div class="collectionTag-box">
+              <img src="/media/images/collection/Toprose-logo.svg" class="collection-tag" alt="">
+            </div>
             <img src="{{product.product_img_1.url}}" class="card-img-top" alt="...">
           </div>
           <div class="card-body product-body">
@@ -177,6 +180,9 @@
         <a href="{% url 'single-prod-page' prod_name=prod.product_name %}">
         <div class="card card-design product2-container">
           <div class="card-img">
+            <div class="collectionTag-box">
+              <img src="/media/images/collection/Collife-logo.svg" class="collection-tag" alt="">
+            </div>
             <img src="{{prod.product_img_1.url}}" class="card-img-top" alt="...">
           </div>
           <div class="card-body product2-body">

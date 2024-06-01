@@ -86,6 +86,12 @@
                 <a href="{% url 'single-prod-page' prod_name=prod.product_name %}">
                   <h3 class="product-title">{{prod.product_name}}</h3>
                   <p class="product-description">{{prod.product_description|slice:54}}</p>
+                  <div class="sizes">
+                    <button type="button" class="size color-box rd active"> <a href="#"></a></button>
+                    <button type="button" class="size color-box bl"> <a href="#"></a></button>
+                    <button type="button" class="size color-box gr"> <a href="#"></a></button>
+                    <button type="button" class="size color-box yl"> <a href="#"></a></button>
+                  </div>
                   <p class="product-price">{{prod.product_price|currency}}</p>
                 </a>
               </div>
