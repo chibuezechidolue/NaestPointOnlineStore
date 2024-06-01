@@ -43,25 +43,31 @@
                 <div class="singleproduct-button">                    
                     <div class="size-description">
                         <input name="size_choice" type="hidden" id="choice_size" value="">
-                        {%if not 'SM' in product.product_sizes%}
-                        <button type="button" class="measurement sm size_choice deactivate" disabled> SM</button>
+                        {%if product.product_sizes.1|length > 2 %}
+                          {%for color in product.product_sizes %}
+                            <button type="button" class="measurement size_choice active" style="background-color: {{color}};color: transparent;"> SM</button>
+                          {%endfor%}
                         {%else%}
-                        <button type="button"  class="measurement sm size_choice">SM</button>
-                        {%endif%}
-                        {%if not 'MD' in product.product_sizes%} 
-                          <button type="button" class="measurement md size_choice deactivate" disabled> MD</button>
-                        {%else%}
-                        <button type="button"  class="measurement md size_choice activate">MD</button>
-                        {%endif%}
-                        {%if not 'LG' in product.product_sizes%} 
-                          <button type="button" class="measurement lg size_choice deactivate" disabled> LG</button>
-                        {%else%}
-                        <button type="button"  class="measurement lg size_choice">LG</button>
-                        {%endif%}
-                        {%if not 'XL' in product.product_sizes%} 
-                          <button type="button" class="measurement xl size_choice deactivate" disabled>XL</button>
-                        {%else%}
-                        <button type="button"  class="measurement xl size_choice">XL</button>
+                          {%if 'SM' in product.product_sizes %}
+                            <button type="button" class="measurement size_choice active"> SM</button>
+                          {%else%}
+                            <button type="button" class="measurement deactivate"  disabled> SM</button>
+                          {%endif%}
+                          {%if 'MD' in product.product_sizes %}
+                            <button type="button" class="measurement size_choice active"> MD</button>
+                          {%else%} 
+                            <button type="button" class="measurement deactivate" disabled> MD</button>
+                          {%endif%}
+                          {%if 'LG' in product.product_sizes %}
+                            <button type="button" class="measurement size_choice active"> LG</button>
+                          {%else%} 
+                            <button type="button" class="measurement deactivate" disabled> LG</button>
+                          {%endif%}
+                          {%if 'XL' in product.product_sizes %}
+                            <button type="button" class="measurement size_choice active"> XL</button>
+                          {%else%} 
+                            <button type="button" class="measurement deactivate" disabled>XL</button>
+                          {%endif%}
                         {%endif%}
                     </div>
                     {% if product in saved_items %}

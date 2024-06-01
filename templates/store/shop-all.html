@@ -99,26 +99,32 @@
           <div class="card-body product-body">
             <h3 class="product-title">{{prod.product_name|truncatechars:19}}</h3>
             <div class="sizes">
-              {%if 'SM' in prod.product_sizes %}
-                <button type="button" class="size sm active"> SM</button>
+              {%if prod.product_sizes.1|length > 2 %}
+                {%for color in prod.product_sizes %}
+                  <button type="button" class="size sm deactivate" style="background-color: {{color}};color: transparent;"> SM</button>
+                {%endfor%}
               {%else%}
-                <button type="button" class="size sm deactivate" disabled> SM</button>
-              {%endif%}
-              {%if 'MD' in prod.product_sizes %}
-                <button type="button" class="size sm active"> MD</button>
-              {%else%} 
-                <button type="button" class="size md deactivate" disabled> MD</button>
-              {%endif%}
-              {%if 'LG' in prod.product_sizes %}
-                <button type="button" class="size sm active"> LG</button>
-              {%else%} 
-                <button type="button" class="size lg deactivate" disabled> LG</button>
-              {%endif%}
-              {%if 'XL' in prod.product_sizes %}
-                <button type="button" class="size sm active"> XL</button>
-              {%else%} 
-                <button type="button" class="size xl deactivate" disabled>XL</button>
-              {%endif%}
+                {%if 'SM' in prod.product_sizes %}
+                  <button type="button" class="size sm active"> SM</button>
+                {%else%}
+                  <button type="button" class="size sm deactivate"  disabled> SM</button>
+                {%endif%}
+                {%if 'MD' in prod.product_sizes %}
+                  <button type="button" class="size sm active"> MD</button>
+                {%else%} 
+                  <button type="button" class="size md deactivate" disabled> MD</button>
+                {%endif%}
+                {%if 'LG' in prod.product_sizes %}
+                  <button type="button" class="size sm active"> LG</button>
+                {%else%} 
+                  <button type="button" class="size lg deactivate" disabled> LG</button>
+                {%endif%}
+                {%if 'XL' in prod.product_sizes %}
+                  <button type="button" class="size sm active"> XL</button>
+                {%else%} 
+                  <button type="button" class="size xl deactivate" disabled>XL</button>
+                {%endif%}
+            {%endif%}
             </div>
             <div class="product-info">
               <p class="product-price">{{prod.product_price|currency}}</p>
