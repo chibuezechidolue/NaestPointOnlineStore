@@ -84,7 +84,7 @@
               </div>
               <div class="product2-info">
                 <a href="{% url 'single-prod-page' prod_name=prod.product_name %}">
-                  <h3 class="product-title">{{prod.product_name}}</h3>
+                  <h3 class="product-title">{{prod.product_name|truncatechars:19}}</h3>
                   <p class="product-description">{{prod.product_description|slice:54}}</p>
                   <p class="product-price">{{prod.product_price|currency}}</p>
                 </a>

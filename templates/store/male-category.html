@@ -39,7 +39,7 @@
                   <img src="{% static 'images/Wheel-cart.svg' %}" class="nav-svg add_to_cart" id="{{prod.id}}"  alt="...">
                 </div>
                 <div class="product2-info">
-                  <h3 class="product-title">{{prod.product_name}}</h3>
+                  <h3 class="product-title">{{prod.product_name|truncatechars:19}}</h3>
                   <p class="product-description">{{prod.product_description|slice:54}}</p>
                   <div class="sizes">
                     {%if 'SM' in prod.product_sizes %}

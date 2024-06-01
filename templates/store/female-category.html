@@ -36,7 +36,7 @@
               <img src="{{prod.product_img_1.url}}" class="card-img-top" alt="...">
             </div>
             <div class="card-body product-body">
-              <h3 class="product-title">{{prod.product_name}}</h3>
+              <h3 class="product-title">{{prod.product_name|truncatechars:19}}</h3>
               <div class="sizes">
                 {%if 'SM' in prod.product_sizes %}
                   <button type="button" class="size sm active"> SM</button>

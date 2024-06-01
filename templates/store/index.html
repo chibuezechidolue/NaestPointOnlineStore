@@ -14,6 +14,7 @@
     <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         {%for ads in carousel%}
+        <a href="">
         {%if ads == carousel.first%}
         <div class="carousel-item active">
           <img src="{{ads.advert_img.url}}" class="d-block w-100" alt="...">
@@ -23,6 +24,7 @@
           <img src="{{ads.advert_img.url}}" class="d-block w-100" alt="...">
         </div>
         {%endif%}
+      </a>
         {%endfor%}
       </div>
     </div>
@@ -96,7 +98,7 @@
             <img src="{{product.product_img_1.url}}" class="card-img-top" alt="...">
           </div>
           <div class="card-body product-body">
-            <h3 class="product-title">{{product.product_name}}</h3>
+            <h3 class="product-title">{{product.product_name|truncatechars:19}}</h3>
             <div class="sizes">
               {%if 'SM' in product.product_sizes %}
                 <button type="button" class="size sm active"> SM</button>
@@ -191,7 +193,7 @@
             </div>
             <div class="product2-info">
             <a href="{% url 'single-prod-page' prod_name=prod.product_name %}">
-              <h3 class="product-title">{{prod.product_name}}</h3>
+              <h3 class="product-title">{{prod.product_name|truncatechars:19}}</h3>
               <p class="product-description">{{prod.product_description|slice:54}}</p>
               <div class="sizes">
                 {%if 'SM' in prod.product_sizes %}
