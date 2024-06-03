@@ -18,6 +18,9 @@
     <div class="row g-4 images">
         <div class="col-12 col-sm-12 col-md-12 col-lg-5 product-card">
             <div class="main-image">
+              <div class="collectionTag-box">
+                <img src="{{product.collection.collection_tag.url}}" class="collection-tag" alt="">
+              </div>
               <img src="{{product.product_img_1.url}}" class="card-img-top" alt="..." id="mainImg">
             </div>
             <div class="other-images">
@@ -45,7 +48,7 @@
                         <input name="size_choice" type="hidden" id="choice_size" value="">
                         {%if product.product_sizes.1|length > 2 %}
                           {%for color in product.product_sizes %}
-                            <button type="button" class="measurement size_choice active" style="background-color: {{color}};color: transparent;"> SM</button>
+                            <button type="button" class="measurement size_choice color-box active" style="background-color: {{color}};color: transparent;"> {{color}}</button>
                           {%endfor%}
                         {%else%}
                           {%if 'SM' in product.product_sizes %}

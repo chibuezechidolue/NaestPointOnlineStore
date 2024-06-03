@@ -120,11 +120,11 @@
       {%if specific_order%}
       <h3 class="primaryID">Order ID: {{cart_items.1.cart_id}}</h3>
       <div class="primaryOrder-heading">
-      <span> Product Name</span> <span>Product Price</span> <span>Product Qty</span>
+      <span> Product Name</span> <span>Product Price</span> <span>Product Qty</span> <span>Product Choice</span>
       </div>
       {%for item in cart_items%}
       <div class="primaryOrder-details">
-      <span> {{item.product.product_name}}</span> <span>{{item.product.product_price|currency}}</span> <span>{{item.quantity}}</span>
+      <span> {{item.product.product_name}}</span> <span>{{item.product.product_price|currency}}</span> <span>{{item.quantity}}</span> <span>{{item.size}}</span>
       </div>
       {%endfor%}
       {%else%}

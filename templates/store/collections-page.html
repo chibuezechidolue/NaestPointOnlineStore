@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  {% extends "base.html" %}
+  {% load static %}
+  {%block title%} {{product}} @ NaestPoint {%endblock title%}
+
+<body>
+{%block content%}
+  <!-- Collection Page -->
+
+  <section id="whats-hot">
+    <div class="men-top">
+      <h2 class="whats-hot-title">ALL COLLECTIONS</h2>
+    </div>
+    <div class="collection-padding">
+      {%for brand in collection_page_obj|slice:":"%}
+      <div class="collectionList-container">
+        <div class="collection-listing">
+          <div class="collection-name">
+            <h6 class="collection-heading">{{brand.collection_name}}</h6>
+          </div>
+          <div class="collection-logo">
+            <img src="{{brand.collection_img_1.url}}" class="collPage-img" alt="">
+          </div>
+          <div class="collection-button">
+            <button type="button" class="coll-button"> <a href="{% url 'collection-page' collection_name=brand.collection_name %}">View Products</a></button>
+          </div>
+        </div>
+      </div>
+      {%endfor%}
+        </div>
+        <div class="pages">
+          <span class="step-links">
+              {% if collection_page_obj.has_previous %}
+              <a href="?page={{ collection_page_obj.previous_page_number }}"><button type="button" class="directions"><i class="bi bi-chevron-left"></i></button></a>
+              <a href="?page={{ collection_page_obj.previous_page_number }}"><button type="button" class="page three"> {{collection_page_obj.previous_page_number }}</button></a> 
+              {% endif %}
+    
+              <a href="?page={{ collection_page_obj.number }}"><button type="button" class="page one current-page"> {{collection_page_obj.number}}</button></a>
+              {% if collection_page_obj.has_next %}
+              <a href="?page={{ collection_page_obj.next_page_number }}"><button type="button" class="page two"> {{collection_page_obj.next_page_number }}</button></a>
+              <a href="?page={{ collection_page_obj.next_page_number }}"><button type="button" class="directions"><i class="bi bi-chevron-right"></i></button></a>
+              {% endif %}
+          </span>
+      </div>
+ 
+  </section>
+  {%endblock content%}
+</body>
+</html>

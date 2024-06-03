@@ -28,6 +28,7 @@ def single_product(request,prod_name):
     # context={"product":product,"prod_suggestions":prod_suggestions,"item_qty":item_qty}
     if request.method=="POST":
         prod_size=request.POST.get('size_choice')
+        print(prod_size)
         prod_qty=request.POST.get('quantity')
         if int(prod_qty)<=0:
             messages.add_message(request, messages.WARNING, "Minimum quantity that can be added to cart is 1")

@@ -51,7 +51,7 @@
 {%endif%}
   </section>
   <section id="items">
-    <div class="product-top">
+    <div class="product2-top">
         <h2 class="collection-heading">ITEMS FROM {{design_brand.collection_name}}</h2>
     </div>
 
@@ -61,6 +61,9 @@
         <a href="{%url 'single-prod-page' prod.product_name %}">
           <div class="card card-design">
             <div class="card-img">
+              <div class="collectionTag-box">
+                <img src="{{prod.collection.collection_tag.url}}" class="collection-tag" alt="">
+              </div>
               <img src="{{prod.product_img_1.url}}" class="card-img-top" alt="...">
             </div>
             <div class="card-body product-body">
@@ -68,7 +71,7 @@
               <div class="sizes">
                 {%if prod.product_sizes.1|length > 2 %}
                   {%for color in prod.product_sizes %}
-                    <button type="button" class="size sm deactivate" style="background-color: {{color}};color: transparent;"> SM</button>
+                  <button type="button" class="size color-box deactivate" style="background-color: {{color}};"></button>
                   {%endfor%}
                 {%else%}
                   {%if 'SM' in prod.product_sizes %}

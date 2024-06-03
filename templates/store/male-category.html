@@ -26,6 +26,9 @@
             <a href="{% url 'single-prod-page' prod_name=prod.product_name %}">
             <div class="card card-design product2-container">
               <div class="card-img">
+                <div class="collectionTag-box">
+                  <img src="{{prod.collection.collection_tag.url}}" class="collection-tag" alt="">
+                </div>
                 <img src="{{prod.product_img_1.url}}" class="card-img-top" alt="...">
               </div>
               <div class="card-body product2-body">
@@ -44,7 +47,7 @@
                   <div class="sizes">
                     {%if prod.product_sizes.1|length > 2 %}
                       {%for color in prod.product_sizes %}
-                        <button type="button" class="size sm deactivate" style="background-color: {{color}};color: transparent;"> SM</button>
+                      <button type="button" class="size color-box deactivate" style="background-color: {{color}};"></button>
                       {%endfor%}
                     {%else%}
                       {%if 'SM' in prod.product_sizes %}

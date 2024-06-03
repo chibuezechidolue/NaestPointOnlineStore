@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Quicksand:wght@300..700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -58,7 +60,7 @@ a {
 }
 
 h1 {
-    font-family: 'halant', sans-serif;
+    font-family: 'quicksand', sans-serif;
     color: var(--color-black);
     font-weight: 600;
     font-size: 3rem;
@@ -76,7 +78,7 @@ h2 {
 }
 
 h3 {
-    font-family: 'halant', sans-serif;
+    font-family: 'quicksand', sans-serif;
     font-weight: 500;
     font-size: 2rem;
     color: var(--color-black);
@@ -91,7 +93,7 @@ h4 {
 }
 
 h5 {
-    font-family: 'halant', sans-serif;
+    font-family: 'quicksand', sans-serif;
     font-weight: 400;
     font-size: 1.5rem;
     color: var(--color-black);
@@ -303,6 +305,10 @@ header.hide {
     background-color: var(--color-bg2);
 }
 
+.cart-empty {
+    margin-top: 4rem;
+}
+
 .cart-clear {
     background-color: var(--color-primary);
     color: var(--color-white);
@@ -447,6 +453,10 @@ header.hide {
 
 .collection-list {
     width: 50%;
+}
+
+.coll-button {
+    margin: 1rem;
 }
 
 .collection-image {
@@ -743,7 +753,7 @@ header.hide {
 }
 
 .feature-text {
-    font-family: 'halant', sans-serif;
+    font-family: 'quicksand', sans-serif;
     font-size: .9rem;
     color: var(--color-white);
     margin: 0;
@@ -903,8 +913,8 @@ header.hide {
 
 .product-title {
     color: var(--color-black);
-    font-size: 1rem;
-    font-weight: 500;
+    font-size: .9rem;
+    font-weight: 600;
 }
 
 .product-info {
@@ -915,7 +925,7 @@ header.hide {
 }
 
 .product-price {
-    font-family: 'halant', sans-serif;
+    font-family: 'quicksand', sans-serif;
     font-size: 1.1rem;
     font-weight: 600;
     color: var(--color-primary);
@@ -937,6 +947,7 @@ header.hide {
     flex-direction: column;
     justify-content: center;
     height: 100%;
+    position: relative;
 }
 
 .card-img img {
@@ -993,7 +1004,7 @@ hr {
     color: var(--color-primary);
     letter-spacing: 4px;
     margin: 0;
-    font-size: 2rem;
+    font-size: 1.3rem;
     line-height: 1.4;
     margin-bottom: 1rem;
 }
@@ -1019,6 +1030,7 @@ hr {
 
 .pages {
     text-align: center;
+    margin-top: 1rem;
 }
 
 .page {
@@ -1241,7 +1253,7 @@ input[type=radio] {
 }
 
 .singleproduct-description {
-    font-family: 'halant', sans-serif;
+    font-family: 'quicksand', sans-serif;
 }
 
 .singleproduct-button {
@@ -1356,7 +1368,7 @@ input[type=radio] {
 }
 
 .suggestion-price {
-    font-family: 'halant', sans-serif;
+    font-family: 'quicksand', sans-serif;
     font-size: 1rem;
     font-weight: 600;
     color: var(--color-primary);
@@ -1374,6 +1386,10 @@ input[type=radio] {
     text-align: center;
     margin-top: 8rem;
     padding-bottom: 4rem;
+}
+
+.noItem-text {
+    padding: 1rem;
 }
 
 .listFavourite {
@@ -1995,7 +2011,7 @@ input[type=radio] {
 }
 
 .forgot-password {
-    font-family: 'halant', sans-serif;
+    font-family: 'quicksand', sans-serif;
     font-size: .9rem;
 }
 
@@ -2033,7 +2049,7 @@ input[type=radio] {
 }
 
 .error-message ul{
-    font-family: 'halant', sans-serif;
+    font-family: 'quicksand', sans-serif;
     font-size: .9rem;
     font-weight: 400;
     color: #de1010;
@@ -2073,7 +2089,6 @@ input[type=radio] {
 .pass-msg {
     font-family: 'poppins', sans-serif;
     font-weight: 400;
-    font-size: 1.5rem;
     color: var(--color-primary);
     text-align: center;
     line-height: 1.5;
@@ -2148,7 +2163,7 @@ input[type=radio] {
 }
 
 .contact-title {
-    font-family: 'halant', sans-serif;
+    font-family: 'quicksand', sans-serif;
     font-size: 1rem;
     font-weight: 500;
     text-decoration: none;
@@ -2305,7 +2320,7 @@ input[type=radio] {
     }
 
     .product-title {
-        font-size: .8rem;
+        font-size: .76rem;
         font-weight: 600;
     }
 
@@ -2487,10 +2502,10 @@ input[type=radio] {
 }
 
 .promotion-text {
-    font-family: 'halant', sans-serif;
+    font-family: 'quicksand', sans-serif;
     color: var(--color-white);
     font-weight: 400;
-    font-size: 1rem;
+    font-size: .93rem;
     margin: 2rem 0;
     line-height: 1.8;
 }
@@ -2593,9 +2608,9 @@ input[type=radio] {
 }
 
 .product-description {
-    font-family: 'halant', sans-serif;
-    font-size: .9rem;
-    font-weight: 400;
+    font-family: 'quicksand', sans-serif;
+    font-size: .8rem;
+    font-weight: 500;
     margin: .5rem 0 0;
     color: var(--color-black);
 }
@@ -2694,15 +2709,82 @@ input[type=radio] {
     background-color: var(--color-bg2);
 }
 
-/* Bag */
+.color-box {
+    height: 14px;
+    width: 18px;
+    margin: 0 2px;
+}
 
-.bagHeading-container {
-    background-color: var(--color-bg2);
+.rd {background-color: red;}
+.bl {background-color: blue;}
+.gr {background-color: green;}
+.yl {background-color: yellow;}
+
+/* Collection Page */
+
+.collection-padding {
+    padding: 0 3rem;
+}
+
+.collectionList-container {
     padding: 8px 20px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin-top: 1rem;
+    justify-content: space-between;
+    margin-top: 2rem;
+    border-bottom: 1.5px solid #adadad;
+}
+
+.collection-heading {
+    letter-spacing: 2px;
+    margin-bottom: 0;
+    text-align: start;
+}
+
+.collection-listing {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    text-align: center;
+    align-items: center;
+}
+
+.collection-button {
+    text-align: end;
+}
+
+.coll-button {
+    font-family: 'poppins', sans-serif;
+    font-size: .9rem;
+    background-color: transparent;
+    text-decoration: none;
+    letter-spacing: 1px;
+    border: 1.5px var(--color-primary) solid;
+    color: var(--color-black);
+    padding: 8px 16px;
+    transition: ease-out 500ms;
+}
+.coll-button:hover {
+    transform: translateY(-3px);
+}
+.coll-button a {
+    text-decoration: none;
+    color: var(--color-primary);
+}
+
+.collPage-img {
+    width: 40%;
+}
+
+.collectionTag-box {
+    position: absolute;
+    width: 20%;
+    top: 8px;
+    left: 8px;
+}
+
+.collection-tag {
+    width: 70%;
 }
 
 /* Product2 @media */
@@ -2724,6 +2806,10 @@ input[type=radio] {
 
     .product2-container {
         height: 95%;
+    }
+
+    .collection-padding {
+        padding: 0;
     }
 
 }
@@ -2785,9 +2871,17 @@ input[type=radio] {
         padding: 0 2rem;
     }
 
-    .bagHeading-container {
-        margin-top: 3rem;
+    /* Collection Page */
+
+    .coll-button {
+        font-size: .7rem;
+        padding: 4px 8px;
     }
+
+    .collPage-img {
+        width: 100%;
+    }
+
 
 }
 
@@ -2815,7 +2909,7 @@ input[type=radio] {
 }
 
 .advert-title {
-    font-family: 'halant', sans-serif;
+    font-family: 'quicksand', sans-serif;
     margin-bottom: unset;
     color: var(--color-black);
     font-size: .9rem;
@@ -2824,7 +2918,7 @@ input[type=radio] {
 }
 
 .advert-text {
-    font-family: 'halant', sans-serif;
+    font-family: 'quicksand', sans-serif;
     font-size: 1rem;
     font-weight: 500;
     color: var(--color-black);
@@ -2923,7 +3017,7 @@ input[type=radio] {
 }
 
 .instagram-message {
-    font-family: 'halant', sans-serif;
+    font-family: 'quicksand', sans-serif;
     font-size: 1.2rem;
     font-weight: 400;
     color: var(--color-black);
@@ -2973,6 +3067,10 @@ input[type=radio] {
 
     #instagram {
         padding: 4rem .5rem;
+    }
+
+    .instagram-message {
+        font-size: 1rem;
     }
 
     .insta-text {
@@ -3028,7 +3126,7 @@ input[type=radio] {
 }
 
 .link-main {
-    font-family: 'halant', sans-serif;
+    font-family: 'quicksand', sans-serif;
     margin-bottom: unset;
     color: var(--color-white);
     font-size: 1rem;
@@ -3152,7 +3250,7 @@ input[type=radio] {
 }
 
 .terms-text {
-    font-family: 'halant', sans-serif;
+    font-family: 'quicksand', sans-serif;
     margin-bottom: unset;
     color: var(--color-white);
     font-size: .8rem;

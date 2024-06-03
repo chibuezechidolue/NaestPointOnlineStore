@@ -22,6 +22,7 @@ class Collection(models.Model):
     collection_img_3=models.FileField(upload_to="images/collection",default="default_collection.jpg",null=True)
     collection_img_4=models.FileField(upload_to="images/collection",default="default_collection.jpg",null=True)
     collection_img_5=models.FileField(upload_to="images/collection",default="default_collection.jpg",null=True)
+    collection_tag=models.FileField(upload_to="images/collection",default="default_collection.jpg",null=True)
     # collection = models.ForeignKey(Products, on_delete=models.CASCADE)
 
     
