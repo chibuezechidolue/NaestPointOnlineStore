@@ -1153,7 +1153,7 @@ hr {
     border-top: 2px var(--color-primary) solid;
 }
 
-.collection-heading {
+.collectionItems-heading {
     font-size: 1.1rem;
     letter-spacing: 3px;
     margin-bottom: 2rem;
@@ -1198,31 +1198,13 @@ input[type=radio] {
     cursor: pointer;
 }
 
-/* input[type=radio]:checked {border: 2px solid var(--color-black);}
-
-.display-image {
-    width: 100%;
-    height: 671.22px;
-    border: 1px solid var(--color-black);
+.main-image {
+    position: relative;
 }
 
-#thumb-one {
-    background-image: url(../images/brownandorange.png);
-    background-size: cover;
+.main-image .collectionTag-box {
+    width: 56px;
 }
-#thumb-two {
-    background-image: url(../images/redgown-pinkbackground.svg);
-    background-size: cover;
-}
-#thumb-three {
-    background-image: url(../images/white-yellow.svg);
-    background-size: cover;
-}
-
-#thumb-one:checked ~ .display-image {background-image: url(../images/brownandorange.png);}
-#thumb-two:checked ~ .display-image {background-image: url(../images/redgown-pinkbackground.svg);}
-#thumb-three:checked ~ .display-image {background-image: url(../images/white-yellow.svg);} */
-
 
 .other-images {
     display: flex;
@@ -1923,7 +1905,7 @@ input[type=radio] {
 
 .primaryOrder-heading {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 10px;
     align-items: center;
     text-align: start;
@@ -1936,7 +1918,7 @@ input[type=radio] {
 
 .primaryOrder-details {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 10px;
     align-items: center;
     text-align: start;
@@ -2778,13 +2760,14 @@ input[type=radio] {
 
 .collectionTag-box {
     position: absolute;
-    width: 20%;
+    width: 32px;
     top: 8px;
     left: 8px;
+    z-index: 1;
 }
 
 .collection-tag {
-    width: 70%;
+    width: 100%;
 }
 
 /* Product2 @media */
