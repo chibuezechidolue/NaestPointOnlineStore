@@ -49,16 +49,16 @@ def whats_hot_page(request):
     return render(request,"store/whats-hot.html",{"page_obj": page_obj,"advert":advert})
 
 def shop_all_page(request,category):
-    if category=="all":
+    filter_option=["All","Shirt","Polo","Trouser","Skirt","Gown","Suit","Sweater","Jump-Suit","Native","jacket"]
+    if category=="All":
         # products=Products.objects.all().order_by("-id")
         products=cache.get_or_set("products",Products.objects.all().order_by("-id"), CACHE_TIMEOUT)
     else:
         products=Products.objects.filter(product_name__icontains=category)
-    
     paginator = Paginator(products, 12)  # Show 8 products per page.
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
-    return render(request,"store/shop-all.html",{'page_obj':page_obj,"search_query":category.title()})
+    return render(request,"store/shop-all.html",{'page_obj':page_obj,"search_query":category.title(),"filter_option":filter_option})
 
 
 def featured_prod_page(request):
@@ -70,23 +70,26 @@ def featured_prod_page(request):
     return render(request,'store/shop-all.html',{"page_obj":page_obj,"featured":True})
 
 def category_page(request,category):
-    products=Products.objects.filter(product_gender=category)
+    category_options={"All":'Accessories',"Bags":"Bag","Glasses":"Glass","Shoes":"Shoe","Watches":"Watch","Sandals":"Sandal","Bangles":"Bangle","Perfumes":"Perfume"}
+    if category=='All':
+        category='accessories'
+    products=Products.objects.filter(product_gender=category.upper())
     paginator = Paginator(products, 12)  # Show 10 products per page.
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
-    if category=="FEMALE" or category=="KIDS":
-        return render(request,'store/female-category.html',{"page_obj":page_obj,category:True})
-    elif category=="MALE":
+    if category=="female" or category=="kids":
+        return render(request,'store/female-category.html',{"page_obj":page_obj,category.upper():True})
+    elif category=="male":
         return render(request,"store/male-category.html",{"page_obj":page_obj})
-    elif category=="ACCESSORIES":
-        return render(request,"store/accessory-category.html",{"page_obj":page_obj,"query":category})
+    elif category=="accessories" or category=="All":
+        category='All'
+        return render(request,"store/accessory-category.html",{"page_obj":page_obj,"query":category,'category_options':category_options})
     else:  
-        category_options={"BAGS":"Bag","GLASSES":"Glass","SHOES":"Shoe","WATCHES":"Watch","SANDALS":"Sandal","BANGLES":"Bangle","PERFUMES":"Perfumes"}
         products=Products.objects.filter(product_gender="ACCESSORIES",product_name__icontains=category_options[category])
         paginator = Paginator(products, 12)  # Show 10 products per page.
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
-        return render(request,"store/accessory-category.html",{"page_obj":page_obj,"query":category})
+        return render(request,"store/accessory-category.html",{"page_obj":page_obj,"query":category,'category_options':category_options})
 
 
 

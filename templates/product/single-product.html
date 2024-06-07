@@ -51,26 +51,13 @@
                             <button type="button" class="measurement size_choice color-box active" style="background-color: {{color}};color: transparent;"> {{color}}</button>
                           {%endfor%}
                         {%else%}
-                          {%if 'SM' in product.product_sizes %}
-                            <button type="button" class="measurement size_choice active"> SM</button>
+                          {%for size in size_options%}
+                          {%if size in product.product_sizes%}
+                            <button type="button" class="measurement size_choice active">{{size}}</button>
                           {%else%}
-                            <button type="button" class="measurement deactivate"  disabled> SM</button>
-                          {%endif%}
-                          {%if 'MD' in product.product_sizes %}
-                            <button type="button" class="measurement size_choice active"> MD</button>
-                          {%else%} 
-                            <button type="button" class="measurement deactivate" disabled> MD</button>
-                          {%endif%}
-                          {%if 'LG' in product.product_sizes %}
-                            <button type="button" class="measurement size_choice active"> LG</button>
-                          {%else%} 
-                            <button type="button" class="measurement deactivate" disabled> LG</button>
-                          {%endif%}
-                          {%if 'XL' in product.product_sizes %}
-                            <button type="button" class="measurement size_choice active"> XL</button>
-                          {%else%} 
-                            <button type="button" class="measurement deactivate" disabled>XL</button>
-                          {%endif%}
+                            <button type="button" class="measurement  deactivate"  disabled>{{size}}</button>
+                          {%endif%} 
+                          {%endfor%}
                         {%endif%}
                     </div>
                     {% if product in saved_items %}
@@ -112,6 +99,9 @@
         <a href="{% url 'single-prod-page' prod_name=prod.product_name %}">
         <div class="card card-design">
           <div class="card-img">
+            <div class="collectionTag-box">
+              <img src="{{prod.collection.collection_tag.url}}" class="collection-tag" alt="">
+            </div>
             <img src="{{prod.product_img_1.url}}" class="card-img-top" alt="...">
           </div>
           <div class="card-body suggestion-body">

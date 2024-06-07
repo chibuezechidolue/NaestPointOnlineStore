@@ -21,25 +21,28 @@
     {% endif %}
     <div class="col-12 col-sm-12 col-md-12 col-lg-3">
       <div class="account-left">
-              <div class="account-option">
-          {%if not order_history and not delete_account and not change_password%}<div class="account-description intro ">{%else%}<div class="account-description ">{%endif%}
-            <i class="bi bi-person-square"></i>
-             <a href="{% url 'user-profile' %}"><p class="account-info profile_focus">My Details</p></a>
-          </div>
-          {%if order_history%}<div class="account-description intro ">{%else%}<div class="account-description ">{%endif%}
+          <div class="account-option">
+            <a href="{% url 'user-profile' %}">{%if not order_history and not delete_account and not change_password%}<div class="account-description intro ">{%else%}<div class="account-description ">{%endif%}
+          <i class="bi bi-person-square"></i>
+          <p class="account-info profile_focus">My Details</p>
+        </div>
+        </a>
+        <a href="{% url 'user-profile-edit' 'order_history' %}">{%if order_history%}<div class="account-description intro ">{%else%}<div class="account-description ">{%endif%}
             <i class="bi bi-bag-check"></i>
-            <a href="{% url 'user-profile-edit' 'order_history' %}"><p class="account-info profile_focus">Order History</p></a>
+            <p class="account-info profile_focus">Order History</p>
           </div>
-          {%if change_password%}<div class="account-description intro ">{%else%}<div class="account-description ">{%endif%}
+        </a>
+        <a href="{% url 'change-password' %}">{%if change_password%}<div class="account-description intro ">{%else%}<div class="account-description ">{%endif%}
             <i class="bi bi-file-lock2"></i>
             <!-- <a href="{% url 'user-profile-edit' option='change_password' %}"><p class="account-info">Change password</p></a> -->
-            <a href="{% url 'change-password' %}"><p class="account-info profile_focus">Change password</p></a>
+            <p class="account-info profile_focus">Change password</p>
           </div>
-          {%if delete_account%}<div class="account-description intro ">{%else%}<div class="account-description ">{%endif%}
+        </a>
+        <a href="{% url 'user-profile-edit' 'delete_account' %}">{%if delete_account%}<div class="account-description intro ">{%else%}<div class="account-description ">{%endif%}
             <i class="bi bi-trash"></i>
-            <a href="{% url 'user-profile-edit' 'delete_account' %}"><p class="account-info profile_focus">Delete Account</p></a>
-            
+            <p class="account-info profile_focus">Delete Account</p>
           </div>
+        </a>
           <div class="account-description">
             <i class="bi bi-box-arrow-left"></i>
             <a href="{%url 'logout-page' %}"><p class="account-info profile_focus">Logout</p></a>

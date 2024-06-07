@@ -2,6 +2,7 @@
 <html>
     {% extends "base.html" %}
     {% load static %}
+    {% load custom_tag %}
     {%block title%} Accessories @ NaestPoint {%endblock title%}
   
   <body>
@@ -18,46 +19,30 @@
     </div>
     <div class="row g-4 accessories-display">
       <div class="accessHeading-container">
-        {%if query == "ACCESSORIES"%}
-        <h4 class="accessories-heading">ALL</h4>
-        {%else%}
-        <h4 class="accessories-heading">{{query}}</h4>
-        {%endif%}
+        <h4 class="accessories-heading">{{query|upper}}</h4>
       </div>
         <div class="col-12 col-sm-12 col-md-12 col-lg-4">
           <div class="accessories-left">
             <div class="accessories-option1">
-              {%if query == 'ACCESSORIES' %}<div class="accessories-description intro">{%else%}<div class="accessories-description">{%endif%}
-                <a href="{% url 'category-page' 'ACCESSORIES'%}"><p class="account-info">All</p></a>
+              {%for k, v in category_options|split_dict:0%}
+              <a href="{% url 'category-page-accessory' k %}">
+              {%if query == k %}<div class="accessories-description intro">{%else%}<div class="accessories-description">{%endif%}
+                <p class="account-info">{{k}}</p>
               </div>
-              {%if query == 'BAGS' %}<div class="accessories-description intro">{%else%}<div class="accessories-description">{%endif%}
-                <a href="{% url 'category-page' 'BAGS'%}"><p class="account-info">Bags</p></a>
-              </div>
-              {%if query == 'GLASSES' %}<div class="accessories-description intro">{%else%}<div class="accessories-description">{%endif%}
-                <a href="{% url 'category-page' 'GLASSES'%}"><p class="account-info">Glasses</p></a>
-              </div>
-              {%if query == 'SHOES' %}<div class="accessories-description intro">{%else%}<div class="accessories-description">{%endif%}
-                <a href="{% url 'category-page' 'SHOES'%}"><p class="account-info">Shoes</p></a>
-              </div>
-            </div>
-            <div class="accessories-option2">
-              {%if query == 'WATCHES' %}<div class="accessories-description intro">{%else%}<div class="accessories-description">{%endif%}       
-                <a href="{% url 'category-page' 'WATCHES'%}"><p class="account-info">Watches</p></a>
-              </div>
-              {%if query == 'SANDALS' %}<div class="accessories-description intro">{%else%}<div class="accessories-description">{%endif%}
-                <a href="{% url 'category-page' 'SANDALS'%}"><p class="account-info">Sandals</p></a>
-              </div>
-              {%if query == 'BANGLES' %}<div class="accessories-description intro">{%else%}<div class="accessories-description">{%endif%}
-                <a href="{% url 'category-page' 'BANGLES'%}"><p class="account-info">Bangles</p></a>
-              </div>
-              {%if query == 'PERFUMES' %}<div class="accessories-description intro">{%else%}<div class="accessories-description">{%endif%}
-                <a href="{% url 'category-page' 'PERFUMES'%}"><p class="account-info">Perfumes</p></a>
-              </div>
-              <!-- <div class="accessories-description">       
-                <p class="account-info">Others</p>
-              </div> -->
-            </div>
+            </a>
+            {%endfor%}
           </div>
+
+          <div class="accessories-option2">
+            {%for k, v in category_options|split_dict:1%}
+            <a href="{% url 'category-page-accessory' k %}">
+            {%if query == k %}<div class="accessories-description intro">{%else%}<div class="accessories-description">{%endif%}
+              <p class="account-info">{{k}}</p>
+            </div>
+          </a>
+          {%endfor%}
+        </div>
+        </div>
         </div>
         {%if 0 == page_obj|length %}
         <div class="col-sm-6 col-md-6 col-lg-4 product2-card">
@@ -95,27 +80,14 @@
                         <button type="button" class="size color-box deactivate" style="background-color: {{color}};"></button>
                       {%endfor%}
                     {%else%}
-                      {%if 'SM' in prod.product_sizes %}
-                        <button type="button" class="size sm active"> SM</button>
+                      {%for size in size_options%}
+                      {%if size in prod.product_sizes%}
+                        <button type="button" class="size sm active">{{size}}</button>
                       {%else%}
-                        <button type="button" class="size sm deactivate"  disabled> SM</button>
-                      {%endif%}
-                      {%if 'MD' in prod.product_sizes %}
-                        <button type="button" class="size sm active"> MD</button>
-                      {%else%} 
-                        <button type="button" class="size md deactivate" disabled> MD</button>
-                      {%endif%}
-                      {%if 'LG' in prod.product_sizes %}
-                        <button type="button" class="size sm active"> LG</button>
-                      {%else%} 
-                        <button type="button" class="size lg deactivate" disabled> LG</button>
-                      {%endif%}
-                      {%if 'XL' in prod.product_sizes %}
-                        <button type="button" class="size sm active"> XL</button>
-                      {%else%} 
-                        <button type="button" class="size xl deactivate" disabled>XL</button>
-                      {%endif%}
-                  {%endif%}
+                        <button type="button" class="size sm deactivate"  disabled>{{size}}</button>
+                      {%endif%} 
+                      {%endfor%}
+                    {%endif%}
                   </div>
 
                   <p class="product-price">{{prod.product_price|currency}}</p>

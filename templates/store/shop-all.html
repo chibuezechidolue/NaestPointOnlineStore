@@ -7,8 +7,7 @@
 
 <body>
 {%block content%}
-  <!-- Products-1 -->
-  
+
   {%if search%}
   <section id="shop-all">
     <div class="whatshot-product-top">
@@ -26,61 +25,13 @@
     </div>
     <div class="product-top">
       <div class="filter">
-        {%if search_query == "All"%}        
-        <a href="{% url 'shop-all-page' category='all' %}"><button type="button" class="filtered all enable">All</button></a>
-        {%else%}
-        <a href="{% url 'shop-all-page' category='all' %}"><button type="button" class="filtered  ">All</button></a>
-        {%endif%}
-        {%if search_query == "Shirt"%}
-        <a href="{% url 'shop-all-page' category='shirt' %}"><button type="button" class="filtered all shirt enable">Shirt</button></a>
-        {%else%}
-        <a href="{% url 'shop-all-page' category='shirt' %}"><button type="button" class="filtered shirt ">Shirt</button></a>
-        {%endif%}
-        {%if search_query == "Polo"%}
-        <a href="{% url 'shop-all-page' category='polo' %}"><button type="button" class="filtered all polo enable">Polo</button></a>
-        {%else%}
-        <a href="{% url 'shop-all-page' category='polo' %}"><button type="button" class="filtered polo">Polo</button></a>
-        {%endif%}
-        {%if search_query == "Trouser"%}
-        <a href="{% url 'shop-all-page' category='trouser' %}"><button type="button" class="filtered trouser enable">Trouser</button></a>
-        {%else%}
-        <a href="{% url 'shop-all-page' category='trouser' %}"><button type="button" class="filtered trouser">Trouser</button></a>
-        {%endif%}
-        {%if search_query == "Skirt"%}
-        <a href="{% url 'shop-all-page' category='skirt' %}"><button type="button" class="filtered skirt enable">Skirt</button></a>
-        {%else%}
-        <a href="{% url 'shop-all-page' category='skirt' %}"><button type="button" class="filtered skirt">Skirt</button></a>
-        {%endif%}
-        {%if search_query == "Gown"%}
-        <a href="{% url 'shop-all-page' category='gown' %}"><button type="button" class="filtered gown enable">Gown</button></a>
-        {%else%}
-        <a href="{% url 'shop-all-page' category='gown' %}"><button type="button" class="filtered gown">Gown</button></a>
-        {%endif%}
-        {%if search_query == "Suit"%}
-        <a href="{% url 'shop-all-page' category='suit' %}"><button type="button" class="filtered suit enable">Suit</button></a>
-        {%else%}
-        <a href="{% url 'shop-all-page' category='suit' %}"><button type="button" class="filtered suit">Suit</button></a>
-        {%endif%}
-        {%if search_query == "Sweater"%}
-        <a href="{% url 'shop-all-page' category='sweater' %}"><button type="button" class="filtered sweater enable">Sweater</button></a>
-        {%else%}
-        <a href="{% url 'shop-all-page' category='sweater' %}"><button type="button" class="filtered sweater">Sweater</button></a>
-        {%endif%}
-        {%if search_query == "Overall"%}
-        <a href="{% url 'shop-all-page' category='overall' %}"><button type="button" class="filtered overall enable">Overall</button></a>
-        {%else%}
-        <a href="{% url 'shop-all-page' category='overall' %}"><button type="button" class="filtered overall">Overall</button></a>
-        {%endif%}
-        {%if search_query == "Native"%}
-        <a href="{% url 'shop-all-page' category='Native' %}"><button type="button" class="filtered native enable">Native</button></a>
-        {%else%}
-        <a href="{% url 'shop-all-page' category='Native' %}"><button type="button" class="filtered native">Native</button></a>
-        {%endif%}
-        {%if search_query == "T-shirt"%}
-        <a href="{% url 'shop-all-page' category='T-shirt' %}"><button type="button" class="filtered t-shirt enable">T-shirt</button></a>
-        {%else%}
-        <a href="{% url 'shop-all-page' category='shirt' %}"><button type="button" class="filtered t-shirt">T-shirt</button></a>
-        {%endif%}
+        {%for option in filter_option%}
+          {%if search_query == option %}
+          <a href="{% url 'shop-all-page' option %}"><button type="button" class="filtered enable">{{option}}</button></a>
+          {%else%}
+          <a href="{% url 'shop-all-page' option %}"><button type="button" class="filtered ">{{option}}</button></a>
+          {%endif%}
+        {%endfor%}
       </div>
     </div>
 
@@ -107,27 +58,14 @@
                 <button type="button" class="size color-box deactivate" style="background-color: {{color}};"></button>
                 {%endfor%}
               {%else%}
-                {%if 'SM' in prod.product_sizes %}
-                  <button type="button" class="size sm active"> SM</button>
-                {%else%}
-                  <button type="button" class="size sm deactivate"  disabled> SM</button>
-                {%endif%}
-                {%if 'MD' in prod.product_sizes %}
-                  <button type="button" class="size sm active"> MD</button>
-                {%else%} 
-                  <button type="button" class="size md deactivate" disabled> MD</button>
-                {%endif%}
-                {%if 'LG' in prod.product_sizes %}
-                  <button type="button" class="size sm active"> LG</button>
-                {%else%} 
-                  <button type="button" class="size lg deactivate" disabled> LG</button>
-                {%endif%}
-                {%if 'XL' in prod.product_sizes %}
-                  <button type="button" class="size sm active"> XL</button>
-                {%else%} 
-                  <button type="button" class="size xl deactivate" disabled>XL</button>
-                {%endif%}
-            {%endif%}
+                {%for size in size_options%}
+                  {%if size in prod.product_sizes%}
+                    <button type="button" class="size sm active">{{size}}</button>
+                  {%else%}
+                    <button type="button" class="size sm deactivate"  disabled>{{size}}</button>
+                  {%endif%} 
+                {%endfor%}
+              {%endif%}  
             </div>
             <div class="product-info">
               <p class="product-price">{{prod.product_price|currency}}</p>
@@ -143,7 +81,6 @@
             </div>
           </div>
         </div>
-      
       </div>
       {% endfor %}
       

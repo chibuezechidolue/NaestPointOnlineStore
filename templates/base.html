@@ -79,10 +79,10 @@
                   All Category
                   <i class="bi bi-chevron-down"></i></a>
                 <ul class="dropdown-menu category">
-                  <li><a class="dropdown-item" href="{% url 'category-page' 'MALE' %}">Men's Fahion</a></li>
-                  <li><a class="dropdown-item" href="{% url 'category-page' 'FEMALE' %}">Women's Fashion</a></li>
-                  <li><a class="dropdown-item" href="{% url 'category-page' 'KIDS' %}">Kids Fashion</a></li>
-                  <li><a class="dropdown-item" href="{% url 'category-page' 'ACCESSORIES' %}">Accessories</a></li>
+                  <li><a class="dropdown-item" href="{% url 'category-page' 'male' %}">Men's Fahion</a></li>
+                  <li><a class="dropdown-item" href="{% url 'category-page' 'female' %}">Women's Fashion</a></li>
+                  <li><a class="dropdown-item" href="{% url 'category-page' 'kids' %}">Kids Fashion</a></li>
+                  <li><a class="dropdown-item" href="{% url 'category-page' 'accessories' %}">Accessories</a></li>
                 </ul>
               </li>
             </div>
@@ -95,7 +95,7 @@
                   <a class="nav-link" href="{% url 'whats-hot-page' %}">WHAT'S HOT</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'shop-all-page' category='all' %}">SHOP ALL</a>
+                  <a class="nav-link" href="{% url 'shop-all-page' category='All' %}">SHOP ALL</a>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link nav-shopall" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -222,7 +222,7 @@
         <div class="footer-link2">
         <h6 class="link-title">SERVICES</h6>
         <a href="{% url 'whats-hot-page' %}"><p class="link-main">What's hot</p></a>
-        <a href="{% url 'shop-all-page' category='all' %}"><p class="link-main">Shop all</p></a>
+        <a href="{% url 'shop-all-page' category='All' %}"><p class="link-main">Shop all</p></a>
         <a href="{% url 'collections-page' %}"><p class="link-main">Collections</p></a>
         <a href="{% url 'favourite-page' %}"><p class="link-main">Favourite</p></a>
         </div>

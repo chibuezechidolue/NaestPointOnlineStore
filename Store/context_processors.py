@@ -33,7 +33,7 @@ def nav_bar(request):
                 cart={"num_of_item":0}
     user_saved_items=[item.product for item in usr_saved_items]
 
-    
+    size_options=['SM','MD','LG','XL']
     collections=cache.get_or_set("collections", Collection.objects.all(), CACHE_TIMEOUT).order_by('id')[1:]
     collection_paginator = Paginator(collections, 6)  # Show 10 products per page.
     page_number = request.GET.get("page")
@@ -41,6 +41,7 @@ def nav_bar(request):
     nav_advert=cache.get_or_set("nav_advert",Advertisement.objects.get(advert_location="Nav_advert"),CACHE_TIMEOUT)
     return {'collection_page_obj': collection_page_obj,
             "nav_advert":nav_advert,"newsletterform":form,
-            "cart":cart,"saved_items":user_saved_items
+            "cart":cart,"saved_items":user_saved_items,
+            "size_options":size_options
             }
 
