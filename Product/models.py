@@ -12,7 +12,7 @@ class Products(models.Model):
     product_description=models.CharField(max_length=300)
     product_price=models.CharField(max_length=200)
     product_sizes = ArrayField(
-        models.CharField(max_length=10,blank=True),blank=True,default=get_default_choice
+        models.CharField(max_length=10,blank=True),blank=True,default=get_default_choice,verbose_name="Product Sizes/Colours"
     )
     product_img_1=models.FileField(upload_to=f"images/product",default="default.jpg")
     product_img_2=models.FileField(upload_to=f"images/product",default="default.jpg",null=True)
