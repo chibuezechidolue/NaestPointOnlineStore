@@ -6,9 +6,10 @@ from Cart import views
 import Product.views 
 
 
-admin.site.site_header="NAESTpoint Admin"
-admin.site.site_title="NAESTpoint Administration"
-admin.site.index_title="NAESTpoint Administration"
+admin.site.site_header="NaestPoint Administration"
+admin.site.site_title="NaestPoint Administration"
+admin.site.index_title="NaestPoint Admin"
+admin.site.empty_value_display = "(None)"
 
 
 urlpatterns = [

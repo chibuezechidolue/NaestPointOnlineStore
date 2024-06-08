@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from phonenumber_field.modelfields import PhoneNumberField       #pip install "django-phonenumber-field[phonenumbers]"
 from django.core.mail import send_mail
+from Store.models import Collection
 
 
 class CustomUser(AbstractUser):
@@ -9,6 +10,7 @@ class CustomUser(AbstractUser):
     email=models.EmailField(unique=True)
     phone_no = PhoneNumberField(null=True, unique=False)
     address=models.TextField()
+    collection=models.ForeignKey(Collection, on_delete=models.CASCADE,blank=True,null=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS=["username"]
