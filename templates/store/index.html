@@ -121,7 +121,7 @@
               <p class="product-price">{{prod.product_price|currency}}</p>
             </a>
               <div class="option-button">
-                {% if product in saved_items %}
+                {% if prod in saved_items %}
               <img src="{% static 'images/favourite_activate.svg' %}"  class="nav-svg add_to_fav" id="{{prod.id}}" alt="...">
               {%else%}
               <img src="{% static 'images/Black-heart.svg' %}"  class="nav-svg add_to_fav" id="{{prod.id}}" alt="...">
