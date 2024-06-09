@@ -7,7 +7,7 @@ from django.utils.html import format_html
 # Register your models here.
 
 class UserCartItemsFilter(admin.SimpleListFilter):
-    title = _("user email")
+    title = _("user email/session_id")
     parameter_name = "user cart"
     def lookups(self, request, model_admin):
         # Example:
@@ -17,7 +17,15 @@ class UserCartItemsFilter(admin.SimpleListFilter):
         #   ('AFRICA', 'AFRICA - ALL')]
 
         carts = set([cart_items.cart for cart_items in model_admin.model.objects.all()])
-        return [(cart.id, cart.user.email) for cart in carts]
+        # return [(cart.id, cart.user.email) for cart in carts]
+        filter=[]
+        for cart in carts:
+            try:
+                cart_mail=cart.user.email
+            except:
+                cart_mail= cart.session_id
+            filter.append((cart.id,cart_mail))
+        return filter
     
     def queryset(self, request, queryset):
         # to decide how to filter the queryset.
@@ -47,6 +55,8 @@ class CartAdmin(admin.ModelAdmin):
     search_fields=("user__email__icontains",)
     list_per_page=10
     actions=("set_cart_as_paid","set_cart_as_unpaid",)
+    ordering=['-date']
+
 
 
     def view_cart_items(self,obj):

@@ -15,7 +15,7 @@ CACHE_TIMEOUT=60*10
 
 def single_product(request,prod_name):
     product=Products.objects.get(product_name=prod_name)
-    prod_suggestions=Products.objects.filter(product_gender=product.product_gender)[:6]
+    prod_suggestions=Products.objects.filter(product_gender=product.product_gender).order_by("-id")[:6]
     # if request.user.is_authenticated:
     #     cart=Cart.objects.get(user=request.user,paid=False)
     # else:
@@ -35,7 +35,7 @@ def single_product(request,prod_name):
             previous_page=request.META.get('HTTP_REFERER')
             return redirect(previous_page)
         if request.user.is_authenticated:
-            cart=Cart.objects.get(user=request.user,paid=False)
+            cart, created = Cart.objects.get_or_create(user=request.user,paid=False)
         else:
             try:
                 session=request.session['session_id']
@@ -69,7 +69,7 @@ def single_product(request,prod_name):
 def search_product(request):
     if 'search_bar' in request.GET:
         search_input=request.GET.get('search_bar')
-        products=Products.objects.filter(product_name__icontains=search_input)
+        products=Products.objects.filter(product_name__icontains=search_input).order_by("-id")
         paginator = Paginator(products, 8)  # Show 8 products per page.
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)

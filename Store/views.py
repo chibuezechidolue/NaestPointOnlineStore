@@ -10,10 +10,10 @@ import os
 CACHE_TIMEOUT=60*10
 
 def home_page(request):
-    all_product=cache.get_or_set("all_product", Products.objects.all(), CACHE_TIMEOUT)
+    all_product=cache.get_or_set("all_product", Products.objects.all(), CACHE_TIMEOUT).order_by('-id')
     
-    all_adds=cache.get_or_set("all_adds", Advertisement.objects.all(), CACHE_TIMEOUT)
-    tags=cache.get_or_set("tags", SocialMediaTag.objects.all(), CACHE_TIMEOUT)
+    all_adds=cache.get_or_set("all_adds", Advertisement.objects.all(), CACHE_TIMEOUT).order_by('id')
+    tags=cache.get_or_set("tags", SocialMediaTag.objects.all(), CACHE_TIMEOUT).order_by('-id')
     # featured_prod=all_product.filter(prod_is_featured=True)
     # mens_product=all_product.filter(product_gender="MALE")
     context={'featured':all_product.filter(prod_is_featured=True),
@@ -29,7 +29,7 @@ def home_page(request):
 
 def collection_page(request,collection_name):
     brand=Collection.objects.get(collection_name=collection_name)
-    collection_prods=Products.objects.filter(collection_id=brand.id)
+    collection_prods=Products.objects.filter(collection_id=brand.id).order_by('-id')
 
     paginator = Paginator(collection_prods, 8)  # Show 8 products per page.
     page_number = request.GET.get("page")
@@ -63,7 +63,7 @@ def shop_all_page(request,category):
 
 def featured_prod_page(request):
     # all_featured=Products.objects.filter(prod_is_featured=True)
-    all_featured=cache.get_or_set("all_featured",Products.objects.filter(prod_is_featured=True), CACHE_TIMEOUT)
+    all_featured=cache.get_or_set("all_featured",Products.objects.filter(prod_is_featured=True).order_by("-id"), CACHE_TIMEOUT)
     paginator = Paginator(all_featured, 12)  # Show 10 products per page.
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
@@ -73,7 +73,7 @@ def category_page(request,category):
     category_options={"All":'Accessories',"Bags":"Bag","Glasses":"Glass","Shoes":"Shoe","Watches":"Watch","Sandals":"Sandal","Bangles":"Bangle","Perfumes":"Perfume"}
     if category=='All':
         category='accessories'
-    products=Products.objects.filter(product_gender=category.upper())
+    products=Products.objects.filter(product_gender=category.upper()).order_by("-id")
     paginator = Paginator(products, 12)  # Show 10 products per page.
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
@@ -85,7 +85,7 @@ def category_page(request,category):
         category='All'
         return render(request,"store/accessory-category.html",{"page_obj":page_obj,"query":category,'category_options':category_options})
     else:  
-        products=Products.objects.filter(product_gender="ACCESSORIES",product_name__icontains=category_options[category])
+        products=Products.objects.filter(product_gender="ACCESSORIES",product_name__icontains=category_options[category]).order_by("-id")
         paginator = Paginator(products, 12)  # Show 10 products per page.
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
@@ -115,9 +115,5 @@ def contact_us_page(request):
 
 
 def collections_page(request):
-    # collections=Collection.objects.all().order_by('id')
-    # paginator = Paginator(collections, 2)  # Show 10 products per page.
-    # page_number = request.GET.get("page")
-    # page_obj = paginator.get_page(page_number)
     return render(request,'store/collections-page.html')
 

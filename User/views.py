@@ -114,7 +114,7 @@ def user_profile(request,option:str=None):
     elif option=="delete_account":
         arguement={"delete_account":True}
     elif option=="order_history":
-        order_history=Cart.objects.filter(user=request.user,paid=True)
+        order_history=Cart.objects.filter(user=request.user,paid=True).order_by("-date")
         arguement={"order_history":True,"processed_orders":order_history}
     elif type(option)==str:
         cart_items=CartItems.objects.filter(cart_id=option)
