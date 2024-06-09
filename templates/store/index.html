@@ -14,7 +14,7 @@
     <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         {%for ads in carousel%}
-        <a href="">
+        <a href="{{ads.advert_url}}">
         {%if ads == carousel.first%}
         <div class="carousel-item active">
           <img src="{{ads.advert_img.url}}" class="d-block w-100" alt="...">
