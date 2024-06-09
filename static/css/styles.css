@@ -2263,6 +2263,10 @@ input[type=radio] {
         padding: 3rem 0.5rem 3rem;;
     }
 
+    .suggestion-body {
+        padding: 8px;
+    }
+
     #collection {
         padding: 4rem 0.5rem;
         margin-top: 0;
