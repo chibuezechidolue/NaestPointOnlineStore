@@ -4,7 +4,7 @@ from .models import CustomUser,NewsLetterSubscribers,NewsLetters
 # Register your models here.
 
 class CustomUserAdmin(admin.ModelAdmin):
-    list_display=("username","email","phone_no")
+    list_display=("email","phone_no","address")
     list_filter=("is_staff","is_active","last_login")
     search_fields=("username__icontains","first_name__icontains","last_name__icontains",)
     list_per_page=10
