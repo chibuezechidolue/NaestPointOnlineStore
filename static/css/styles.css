@@ -271,6 +271,7 @@ header.hide {
 
 .cartTab .listCart .item img {
     width: 100%;
+    background-color: lightgray;
 }
 
 .listCart {
@@ -1200,6 +1201,7 @@ input[type=radio] {
 
 .main-image {
     position: relative;
+    background-color: lightgray;
 }
 
 .main-image .collectionTag-box {
@@ -1216,6 +1218,7 @@ input[type=radio] {
     width: 30%;
     margin: 20px 0;
     cursor: pointer;
+    background-color: lightgray;
 }
 
 .singleproduct-details {
@@ -1392,6 +1395,7 @@ input[type=radio] {
 
 #favourite .listFavourite .favourite img {
     width: 70%;
+    background-color: lightgray;
 }
 
 .favourite-image {
@@ -1555,6 +1559,7 @@ input[type=radio] {
 
 #cart .listItems .item img {
     width: 100%;
+    background-color: lightgray;
 }
 
 .listItems .cartItem-quantity span {
@@ -2185,6 +2190,58 @@ input[type=radio] {
     font-family: 'poppins', sans-serif;
 }
 
+/* Payment */
+
+.payment-container {
+    padding: 3rem 28rem;
+    text-align: center;
+}
+
+.payment-message {
+    font-family: 'poppins', sans-serif;
+    font-weight: 500;
+    color: var(--color-primary);
+    text-align: center;
+    line-height: 1.5;
+    background-color: #f4fbfe;
+    box-shadow: 0 2px 8px #e6e6e6;
+    margin-top: 3rem;
+    padding: 1rem;
+}
+
+.payment-message2 {
+    margin: 1rem 0 6rem 0;
+}
+
+.payment-cta {
+    font-family: 'poppins', sans-serif;
+    font-size: .9rem;
+    background-color: transparent;
+    border: 1.5px var(--color-primary) solid;
+    padding: 7px 16px;
+    margin-top: 16px;
+    transition: ease-in 400ms;
+}
+.payment-cta:hover {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.payment-cta a {
+    text-decoration: none;
+    color: var(--color-primary);
+}
+.payment-cta a:hover {
+    color: var(--color-white);
+}
+
+.pay-success-button {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
 /* Product @media */
 
 @media screen and (max-width: 992px) {
@@ -2213,7 +2270,7 @@ input[type=radio] {
         margin: 1rem 0 2.5rem;
     }
 
-    .login-container, .register-container, .password-container{
+    .login-container, .register-container, .payment-container, .password-container{
         padding: 3rem 10rem
     }
 
@@ -2391,8 +2448,13 @@ input[type=radio] {
         text-align: start;
     }
 
-    .login-container, .register-container, .password-container {
+    .login-container, .register-container, .payment-container, .password-container {
         padding: 3rem 1rem
+    }
+
+    .pay-success-button {
+        flex-direction: column;
+        align-items: center;
     }
 
     .account-right {
@@ -2589,7 +2651,7 @@ input[type=radio] {
     display: flex;
     flex-direction: column;
     text-align: start;
-    padding: 1rem 1rem 0 0.5rem;
+    padding: 1rem 0.3rem 0 0.5rem;
 }
 
 .product-description {
