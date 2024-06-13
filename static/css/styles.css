@@ -1864,6 +1864,11 @@ input[type=radio] {
 
 .details-edit {
     font-weight: 400;
+    font-size: 1rem;
+}
+
+.details-edit2 {
+    font-size: 1rem;
 }
 
 .orderHistory-display {
@@ -2349,14 +2354,6 @@ input[type=radio] {
 
     .name-input {
         display: grid;
-    }
-
-    .payment-form {
-        width: 250px;
-    }
-
-    .details-edit, .details-edit2 {
-        font-size: 1rem;
     }
 
     .about-collection {
