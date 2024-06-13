@@ -77,7 +77,7 @@ def checkout(request):
                 },
                 "configurations": {
                     "session_duration": 10, #Session timeout in minutes (maxValue: 1440 minutes)    
-                    "max_retry_attempt": 1, #Max retry (int)
+                    "max_retry_attempt": 4, #Max retry (int)
                 }, 
             }
         
