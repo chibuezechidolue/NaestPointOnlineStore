@@ -137,16 +137,21 @@
     <span class="position-absolute"><a href="{% url 'cart-page' %}"><button class="full-page">View Full Page</button></a></span>
     {%for item in cart.cartitems.all%}
     <div class="item" id="item_{{item.product.id}}">
+    <a href="{%url 'single-prod-page' item.product.product_name %}">
       <div class="item-image">
         <img src="{{item.product.product_img_1.url}}" alt="">
       </div>
+    </a>
+    <a href="{%url 'single-prod-page' item.product.product_name %}">
       <div class="item-name">
         {{item.product.product_name}}
       </div>
+    </a>
+    <a href="{%url 'single-prod-page' item.product.product_name %}">
       <div class="item-price">
         {{item.product.product_price|currency}}
       </div>
-      <!-- </a> -->
+    </a>
       <div class="item-quantity">
         <button><span id="{{item.product.id}}" class="minus rm_from_cart">-</span></button>
         <span id="quantity{{item.product.id}}">{{item.quantity}}</span>

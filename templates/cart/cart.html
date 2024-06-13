@@ -25,15 +25,21 @@
         <div class="listItems">
           {%for item in cart.cartitems.all%}
           <div class="item" id="main_item_{{item.product.id}}">
+            <a href="{%url 'single-prod-page' item.product.product_name %}">
             <div class="cartItem-image">
               <img src="{{item.product.product_img_1.url}}" alt="">
             </div>
+            </a>
+            <a href="{%url 'single-prod-page' item.product.product_name %}">
             <div class="cartItem-name">
               {{item.product.product_name}}
             </div>
+            </a>
+            <a href="{%url 'single-prod-page' item.product.product_name %}">
             <div class="cartItem-price">
               {{item.product.product_price|currency}}
             </div>
+            </a>
             <div class="cartItem-quantity">
                 <button><span id="{{item.product.id}}" class="minus rm_from_cart">-</span></button>
                 <span id="main_quantity{{item.product.id}}">{{item.quantity}}</span>
