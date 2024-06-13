@@ -2345,6 +2345,18 @@ input[type=radio] {
         background-position: top;
     }
 
+    .name-input {
+        display: grid;
+    }
+
+    .payment-form {
+        width: 250px;
+    }
+
+    .details-edit, .details-edit2 {
+        font-size: 1rem;
+    }
+
     .about-collection {
         padding: 4rem 0;
     }
@@ -2774,7 +2786,7 @@ input[type=radio] {
 }
 
 .collectionList-container {
-    padding: 8px 20px;
+    padding: 8px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -2800,7 +2812,7 @@ input[type=radio] {
     text-align: end;
 }
 
-.coll-button {
+.collPage-button {
     font-family: 'poppins', sans-serif;
     font-size: .9rem;
     background-color: transparent;
@@ -2810,11 +2822,12 @@ input[type=radio] {
     color: var(--color-black);
     padding: 8px 16px;
     transition: ease-out 500ms;
+    margin: .5rem 0 .5rem .5rem;
 }
-.coll-button:hover {
+.collPage-button:hover {
     transform: translateY(-3px);
 }
-.coll-button a {
+.collPage-button a {
     text-decoration: none;
     color: var(--color-primary);
 }
@@ -2858,6 +2871,10 @@ input[type=radio] {
 
     .collection-padding {
         padding: 0;
+    }
+
+    .collPage-img {
+        width: 70%;
     }
 
 }
@@ -2921,13 +2938,18 @@ input[type=radio] {
 
     /* Collection Page */
 
-    .coll-button {
+    .collPage-button {
         font-size: .7rem;
         padding: 4px 8px;
+        line-height: 1.3;
     }
 
     .collPage-img {
         width: 100%;
+    }
+
+    .collection-heading {
+        font-size: .85rem;
     }
 
 
