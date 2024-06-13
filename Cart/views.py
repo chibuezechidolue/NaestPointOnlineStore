@@ -68,7 +68,7 @@ def checkout(request):
                 },
                 "customer": {
                     "email": request.user.email,
-                    "phonenumber": request.user.phone_no,
+                    "phonenumber": str(request.user.phone_no),  # needs to str and not Object of type PhoneNumber
                     "name": request.user.first_name
                 },
                 "customizations": {

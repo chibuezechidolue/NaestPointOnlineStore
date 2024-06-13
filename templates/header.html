@@ -6,6 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{%block title%}{%endblock title%}</title>
+    <!-- ScrollReveal  -->
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
   
     <link href="https://fonts.googleapis.com/css2?family=Halant:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -126,9 +128,9 @@
   <h2 class="cart-title">SHOPPING CART</h2> 
   <div class="listCart">
     {%if cart.num_of_item > 0%}
-    <a href="{% url 'delete-cart' %}"><button>Clear Cart</button></a>
+    <a href="{% url 'delete-cart' %}"><button class="cart-clear">Clear Cart</button></a>
     {%endif%}
-    <span class="position-absolute  end-0"><a href="{% url 'cart-page' %}"><button>View FullPage</button></a></span>
+    <span class="position-absolute"><a href="{% url 'cart-page' %}"><button class="full-page">View Full Page</button></a></span>
     {%for item in cart.cartitems.all%}
     <div class="item" id="item_{{item.product.id}}">
       <div class="item-image">
@@ -146,25 +148,38 @@
         <span id="quantity{{item.product.id}}">{{item.quantity}}</span>
         <button><span id="{{item.product.id}}" class="plus add_to_cart">+</span></button>
       </div>
-  </div>
-    {%endfor%}
-  <div>
-  <span>Sub Total:</span><span id="total_cart_sum"> {{cart.total_cart_sum.1}} </span>
-  </div>
-  <div>
-    <span>Discount:</span><span id="total_cart_sum_discount">{{cart.total_cart_sum_discount.1}} </span>
-  </div>
-  <div>
-    <span>Shipping:</span><span id="total_cart_sum_shipping_fee">{{cart.total_cart_sum_shipping_fee.1}} </span>
-  </div>
-  <div>
-    <span>Total Checkout:</span><span id="total_checkout_cost">{{cart.total_checkout_cost.1}} </span>
+    </div>
+      {%endfor%}
+      {%if cart.num_of_item == 0 %}
+      <div>
+          <p class="cart-empty"> Your Cart is currently empty</p>
+        </div>
+          {%endif%}
+    <div class="cartCheckout-details">
+      <div class="subtotal">
+        <span>Sub Total:</span><span id="total_cart_sum"> {{cart.total_cart_sum.1}} </span>
+      </div>
+      <div class="subtotal">
+        <span>Discount:</span><span id="total_cart_sum_discount">{{cart.total_cart_sum_discount.1}} </span>
+      </div>
+      <div class="subtotal">
+        <span>Shipping:</span><span id="total_cart_sum_shipping_fee">{{cart.total_cart_sum_shipping_fee.1}} </span>
+      </div>
+      <div class="last-total subtotal">
+        <span>Total:</span><span id="total_checkout_cost">{{cart.total_checkout_cost.1}} </span>
+      </div>
+    </div>
   </div>
   <div class="cart-btn">
     <button class="closeCart"> CLOSE</button>
+    {%if cart.num_of_item > 0%}
+    <form action="{%url 'checkout-page' %}" method="post">
+      {%csrf_token%}
+      <input name="total_checkout_cost" hidden type="text" value="{{cart.total_checkout_cost.0}}">
     <button class="checkOut"> CHECK OUT</button>
+    </form>
+    {%endif%}
   </div>
-</div>
 </div>
 
 <div class="login-pop" id="pop_up_container">
