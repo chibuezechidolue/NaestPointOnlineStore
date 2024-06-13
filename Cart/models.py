@@ -12,6 +12,8 @@ class Cart(models.Model):
     session_id=models.CharField(max_length=150,null=True,blank=True)
     paid=models.BooleanField(default=False)
     date=models.DateField(auto_now=True)
+    transaction_id=models.CharField(max_length=200,blank=True,null=True)
+    tx_ref=models.CharField(max_length=200,blank=True,null=True)
 
 
     def __str__(self) -> str:

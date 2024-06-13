@@ -10,6 +10,7 @@ urlpatterns = [
     path("register/", views.register_page, name="register-page"),
     path("profile/", views.user_profile, name="user-profile"),
     path("profile/<option>", views.user_profile, name="user-profile-edit"),
+    path("profile/order-history/<option>", views.user_profile, name="user-order-history"),
     path("profile/change-password/",views.ChangePasswordView.as_view(extra_context={"change_password":True},success_url=reverse_lazy("user-profile")),name="change-password"),
     # path("logout/", views.logout_page, name="logout-page"),
     path('logout/',auth_views.LogoutView.as_view(),name="logout-page"),

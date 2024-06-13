@@ -176,7 +176,11 @@
   </div>
   <div class="cart-btn">
     <button class="closeCart"> CLOSE</button>
+    <form action="{%url 'checkout-page' %}" method="post">
+      {%csrf_token%}
+      <input name="total_checkout_cost" hidden type="text" value="{{cart.total_checkout_cost.0}}">
     <button class="checkOut"> CHECK OUT</button>
+    </form>
   </div>
 </div>
 

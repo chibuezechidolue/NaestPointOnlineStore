@@ -1,15 +1,100 @@
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse,HttpResponseRedirect
 from django.shortcuts import redirect, render
+from dotenv import load_dotenv
 from Product.models import Products
 from django.contrib.auth.decorators import login_required
 from .models import Cart,CartItems, SavedItems
 from django.contrib import messages
 from django.db.utils import IntegrityError
+from django.urls import reverse
 import json
 import uuid
+import requests
+import os
 
 
-def cart_page(request):
+load_dotenv()
+
+
+def checkout_complete(request):
+    status=request.GET.get('status', None)
+    if status=="successful":
+        tx_ref=request.GET.get('tx_ref', None)
+        transaction_id=request.GET["transaction_id"]
+        # reconfirm/verify transaction
+        url=f"https://api.flutterwave.com/v3/transactions/{transaction_id}/verify"    #verify by transcation_id(params not required)
+        # url="https://api.flutterwave.com/v3/transactions/verify_by_reference"       #verify by tx-ref(params required)
+        
+        header={
+                "Authorization": "Bearer " + os.environ.get("FLUTTER_API_KEY")
+            }
+        params={"tx_ref":tx_ref}
+        response=requests.get(url=url,headers=header,params=params)
+        response=response.json()
+        cart_id=response['data']['meta']['cart_id']
+        cart = Cart.objects.get(id=cart_id,paid=False)
+        if response['data']['status'] == "successful" and response['data']['amount'] >= cart.total_checkout_cost[0] and response['data']['currency'] == "NGN":
+            transaction_id=response['data'].get("id")
+            cart.paid,cart.transaction_id,cart.tx_ref = True,transaction_id,tx_ref
+            cart.save()
+            return render(request,'cart/checkout-complete.html',{"order_id":cart_id})
+    else:
+        messages.add_message(request, messages.WARNING, "Transaction Failed!!!  Your payment was not successfull")
+        return redirect('cart-page')
+
+
+    
+
+@login_required()
+def checkout(request):
+    if request.method=="POST":
+        total_cost=request.POST.get("total_checkout_cost")
+        cart = Cart.objects.get(user=request.user,paid=False)
+        redirect_url=request.build_absolute_uri(reverse('checkout-complete-page'))
+        
+        url="https://api.flutterwave.com/v3/payments"
+        header={
+                "Authorization": "Bearer " + os.environ.get("FLUTTER_API_KEY")
+            }
+        data= {
+                "tx_ref": str(uuid.uuid4()),
+                "amount": total_cost,
+                "currency": "NGN",
+                "redirect_url": redirect_url,
+                "meta": {
+                    "consumer_id": request.user.pk,
+                    # "consumer_mac": "92a3-912ba-1192a",
+                    "cart_id":str(cart.id)
+                },
+                "customer": {
+                    "email": request.user.email,
+                    "phonenumber": request.user.phone_no,
+                    "name": request.user.first_name
+                },
+                "customizations": {
+                    'title': "NaestPoint Product Payment",
+                    "logo": "https://nastpoints3bucket.s3.eu-north-1.amazonaws.com/static/images/NaestPoint-favicon.ico"
+                },
+                "configurations": {
+                    "session_duration": 10, #Session timeout in minutes (maxValue: 1440 minutes)    
+                    "max_retry_attempt": 1, #Max retry (int)
+                }, 
+            }
+        
+
+        try:
+            response=requests.post(url=url,headers=header,json=data)
+        except Exception as e:
+            print(f"An error occured when fetching payment confirmation,this is the error: {e}")
+
+        response=response.json()
+        flutter_link=response["data"]["link"]
+        return HttpResponseRedirect(flutter_link)
+
+
+
+
+def cart_page(request):  
     return render(request,'cart/cart.html')
 
 def delete_cart(request):

@@ -43,10 +43,10 @@ function addToCart(e){
   .then(res=>res.json())
   // .then(json => console.log(JSON.stringify(json.item_qty)))
   .then(data=>{
-              e.target.src="https://naestpoints3bucket.s3.amazonaws.com/static/images/cart_activate.svg"
+              e.target.src="https://nastpoints3bucket.s3.eu-north-1.amazonaws.com/static/images/cart_activate.svg"
               e.target.classList.add("cart_activate");
               sleep(1000).then(() => { e.target.classList.remove("cart_activate");
-                                      e.target.src="https://naestpoints3bucket.s3.amazonaws.com/static/images/Wheel-cart.svg" });
+                                      e.target.src="https://nastpoints3bucket.s3.eu-north-1.amazonaws.com/static/images/Wheel-cart.svg" });
               document.getElementById('no_of_cart_items').innerHTML=data.num_of_cart_items;
               document.getElementById("quantity"+data.item_prod_id).innerHTML=data.item_qty;
               document.getElementById("total_cart_sum").innerHTML=data.total_cart_sum;
@@ -164,7 +164,7 @@ function addToFav(e){
                 rmFromFav(e);
               }
               else{
-              e.target.src="https://naestpoints3bucket.s3.amazonaws.com/static/images/favourite_activate.svg" 
+              e.target.src="https://nastpoints3bucket.s3.eu-north-1.amazonaws.com/static/images/favourite_activate.svg" 
               e.target.classList.add("fav_activate");
               sleep(1000).then(() => { e.target.classList.remove("fav_activate"); });
               document.getElementById('no_of_saved_items').innerHTML=data.num_of_saved_items;
@@ -196,7 +196,7 @@ function rmFromFav(e){
 
   .then(res=>res.json())
   .then(data=>{
-              e.target.src="https://naestpoints3bucket.s3.amazonaws.com/static/images/Black-heart.svg";
+              e.target.src="https://nastpoints3bucket.s3.eu-north-1.amazonaws.com/static/images/Black-heart.svg";
               document.getElementById('no_of_saved_items').innerHTML=data.num_of_saved_items;
               let favRmvBtns=document.querySelectorAll(".rm_from_fav")
               if(favRmvBtns.length > 0){

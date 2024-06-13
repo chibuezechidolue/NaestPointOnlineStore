@@ -7,6 +7,13 @@
 <body>
 {%block content%}
 <section id="cart">
+  {% if messages %}
+        {% for message in messages%}
+          <div class="alert alert-{{message.tags}}">
+            {{message}}
+          </div>
+        {% endfor %}
+        {% endif %}
   <div class="cart-top">
     <img src="{% static 'images/cart-top-img.svg'%" class="cart-image" alt="">
   </div>
@@ -76,12 +83,16 @@
           <hr class="item-line">
           <div class="price-info">
             <h4 class="mainproduct-price">TOTAL:</h4>
-            <h4 class="mainproduct-price" id="main_total_checkout_cost">{{cart.total_checkout_cost.1}}</h4>
+            <h4 class="mainproduct-price"  id="main_total_checkout_cost">{{cart.total_checkout_cost.1}}</h4>
           </div>
         </div>
+        <form action="{%url 'checkout-page' %}" method="post">
+          {%csrf_token%}
+          <input name="total_checkout_cost" hidden type="text" value="{{cart.total_checkout_cost.0}}">
         {%if cart.num_of_item > 0 %}
         <button type="submit" class="payment-button">PROCEED TO CHECKOUT</button>
         {%endif%}
+      </form>
       </div>
     </div>
   </div>

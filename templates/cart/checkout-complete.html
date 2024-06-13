@@ -1,0 +1,28 @@
+!DOCTYPE html>
+html>
+  {% extends "header.html" %}
+  {% load static %}
+  {%block title%} Cart page {%endblock title%}
+
+<body>
+{%block content%}
+
+    <section id="login">
+      <div class="payment-container">
+        <i class="bi bi-check-square-fill"></i>
+        <h4 class="payment-message">Your Payment Was Successful</h4>
+        <p class="payment-message2">Thanks for your patronage.</p>
+        <div class="pay-success-button">
+            <button type="button" class="addtocart-button"><a href="{% url 'home-page' %}">Back to Home Page</a></button>
+            <button type="button" class="payment-cta"> <a href="{% url 'user-order-history'  order_id %}"> View Order Details</a></button>  
+        </div>
+      </div>
+    </section>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+
+{%endblock content%}
+</html>

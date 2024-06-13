@@ -74,7 +74,7 @@ def category_page(request,category):
     if category=='All':
         category='accessories'
     products=Products.objects.filter(product_gender=category.upper()).order_by("-id")
-    paginator = Paginator(products, 12)  # Show 10 products per page.
+    paginator = Paginator(products, 8)  # Show 10 products per page.
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     if category=="female" or category=="kids":
@@ -86,7 +86,7 @@ def category_page(request,category):
         return render(request,"store/accessory-category.html",{"page_obj":page_obj,"query":category,'category_options':category_options})
     else:  
         products=Products.objects.filter(product_gender="ACCESSORIES",product_name__icontains=category_options[category]).order_by("-id")
-        paginator = Paginator(products, 12)  # Show 10 products per page.
+        paginator = Paginator(products, 8)  # Show 10 products per page.
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
         return render(request,"store/accessory-category.html",{"page_obj":page_obj,"query":category,'category_options':category_options})
