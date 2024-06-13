@@ -27,7 +27,7 @@
           <p class="account-info profile_focus">My Details</p>
         </div>
         </a>
-        <a href="{% url 'user-profile-edit' 'order_history' %}">{%if order_history%}<div class="account-description intro ">{%else%}<div class="account-description ">{%endif%}
+        <a href="{% url 'user-profile-edit' 'order-history' %}">{%if order_history%}<div class="account-description intro ">{%else%}<div class="account-description ">{%endif%}
             <i class="bi bi-bag-check"></i>
             <p class="account-info profile_focus">Order History</p>
           </div>
@@ -134,7 +134,7 @@
       {%if processed_orders|length > 0 %}
       <div class="order-heading"><span>Order ID</span> <span>Total Order</span> <span>Total Price</span> <span>Date</span></div>
       {%for order in processed_orders%}
-      <div class="order-details"><a href="{% url 'user-profile-edit'  order.id %}"><span class="mainID"> {{order|truncatechars:16 }} </span></a> <span> {{order.num_of_item}} Items</span> <span>{{order.total_checkout_cost.1}}</span> <span>{{order.date}}</span></div>
+      <div class="order-details"><a href="{% url 'user-order-history'  order.id %}"><span class="mainID"> {{order|truncatechars:16 }} </span></a> <span> {{order.num_of_item}} Items</span> <span>{{order.total_checkout_cost.1}}</span> <span>{{order.date}}</span></div>
       {%endfor%}
       {%else%}
       <h3 class="orderHistory-display">
