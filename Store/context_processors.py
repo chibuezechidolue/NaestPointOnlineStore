@@ -35,7 +35,7 @@ def nav_bar(request):
 
     size_options=['SM','MD','LG','XL']
     collections=cache.get_or_set("collections", Collection.objects.all(), CACHE_TIMEOUT).order_by('id')[1:]
-    collection_paginator = Paginator(collections, 6)  # Show 10 products per page.
+    collection_paginator = Paginator(collections, 10)  # Show 10 products per page.
     page_number = request.GET.get("page")
     collection_page_obj = collection_paginator.get_page(page_number)
     nav_advert=cache.get_or_set("nav_advert",Advertisement.objects.get(advert_location="Nav_advert"),CACHE_TIMEOUT)

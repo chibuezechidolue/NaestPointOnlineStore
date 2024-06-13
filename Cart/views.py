@@ -29,7 +29,10 @@ def checkout_complete(request):
                 "Authorization": "Bearer " + os.environ.get("FLUTTER_API_KEY")
             }
         params={"tx_ref":tx_ref}
-        response=requests.get(url=url,headers=header,params=params)
+        try:
+            response=requests.get(url=url,headers=header,params=params)
+        except Exception as error:
+            print(f"This is the error: {error} /n response:{response}")
         response=response.json()
         cart_id=response['data']['meta']['cart_id']
         cart = Cart.objects.get(id=cart_id,paid=False)
@@ -43,7 +46,6 @@ def checkout_complete(request):
         return redirect('cart-page')
 
 
-    
 
 @login_required()
 def checkout(request):
@@ -77,11 +79,10 @@ def checkout(request):
                 },
                 "configurations": {
                     "session_duration": 10, #Session timeout in minutes (maxValue: 1440 minutes)    
-                    "max_retry_attempt": 4, #Max retry (int)
+                    "max_retry_attempt": 2, #Max retry (int)
                 }, 
             }
         
-
         try:
             response=requests.post(url=url,headers=header,json=data)
         except Exception as e:
@@ -90,6 +91,7 @@ def checkout(request):
         response=response.json()
         flutter_link=response["data"]["link"]
         return HttpResponseRedirect(flutter_link)
+    return redirect("cart-page")
 
 
 
