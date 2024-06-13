@@ -242,9 +242,11 @@ header.hide {
 }
 .item-name {
     font-size: .8rem;
+    color: var(--color-black);
 }
 .item-price {
     font-size: .8rem;
+    color: var(--color-black);
 }
 
 .cartTab .cart-btn {
@@ -1557,6 +1559,14 @@ input[type=radio] {
 
 .cartItem-image {
     width: 40%;
+}
+
+.cartItem-name {
+    color: var(--color-black);
+}
+
+.cartItem-price {
+    color: var(--color-black);
 }
 
 #cart .listItems .item img {
