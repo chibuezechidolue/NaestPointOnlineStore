@@ -259,6 +259,8 @@ header.hide {
 .checkOut {
     background-color: var(--color-primary);
     color: var(--color-white);
+    height: 100%;
+    width: 100%;
 }
 
 .cartTab .listCart .item {
