@@ -56,6 +56,8 @@ def shop_all_page(request,category):
         products=cache.get_or_set("products",Products.objects.all().order_by("-id"), CACHE_TIMEOUT)
     else:
         products=Products.objects.filter(product_name__icontains=category)
+    products=list(products)
+    random.shuffle(products)     #randomly shuffle products
     paginator = Paginator(products, 16)  # Show 16 products per page.
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
