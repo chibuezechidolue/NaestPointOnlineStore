@@ -6,6 +6,7 @@ from django.core.mail import send_mail
 from django.contrib import messages
 from django.core.cache import cache
 import os
+import random
 
 CACHE_TIMEOUT=60*10
 
@@ -14,16 +15,16 @@ def home_page(request):
     
     all_adds=cache.get_or_set("all_adds", Advertisement.objects.all(), CACHE_TIMEOUT).order_by('id')
     tags=cache.get_or_set("tags", SocialMediaTag.objects.all(), CACHE_TIMEOUT).order_by('-id')
-    # featured_prod=all_product.filter(prod_is_featured=True)
-    # mens_product=all_product.filter(product_gender="MALE")
-    context={'featured':all_product.filter(prod_is_featured=True),
-               "mens_prod":all_product.filter(product_gender="MALE"),
+
+    featured=list(all_product.filter(prod_is_featured=True))
+    random.shuffle(featured)     #randomly shuffle featured products
+    context={'featured':featured[:8],  
+               "mens_prod":all_product.filter(product_gender="MALE")[:6],
                "carousel":all_adds.filter(advert_location="CAROUSEL"),
                "sec2_ads":all_adds.filter(advert_location="sec2_advert"),
                "sec3_ads":all_adds.filter(advert_location="sec3_advert"),
                "sec4_ads":all_adds.filter(advert_location="sec4_advert"),
                "tags":tags}
-    
     return render(request,'store/index.html',context)
 
 
