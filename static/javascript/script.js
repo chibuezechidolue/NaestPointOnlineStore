@@ -278,7 +278,6 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     // Scroll reveal
-
     const sr = ScrollReveal({
       origin: 'top',
       distance: '40px',
@@ -286,12 +285,20 @@ window.addEventListener('DOMContentLoaded', () => {
       reset: true
     })
     
+    
+    // sr.reveal ('.about-container',{beforeReset: function(){sr.sync()},delay:100});
+    // sr.reveal ('.product-top',{beforeReset: function(){sr.sync()},delay:200});
+    // sr.reveal ('.carousel-inner',{beforeReset: function(){sr.sync()},delay:100});
+    // sr.reveal ('.promotion-image',{beforeReset: function(){sr.sync()},delay:100});
+    // sr.reveal ('.main-advert',{beforeReset: function(){sr.sync()},delay:100});
+
+    window.addEventListener('load', function() {
     sr.reveal ('.about-container',{delay:100});
     sr.reveal ('.product-top',{delay:200});
     sr.reveal ('.carousel-inner',{delay:100});
     sr.reveal ('.promotion-image',{delay:100});
     sr.reveal ('.main-advert',{delay:100});
-    
+    })
     // View Product thumbnail
 
     mainImg = document.getElementById('mainImg');

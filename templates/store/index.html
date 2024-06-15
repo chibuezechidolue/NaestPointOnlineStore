@@ -12,7 +12,7 @@
   <section id="hero">
   
     <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
+      <div class="carousel-inner load-hidden">
         {%for ads in carousel%}
         <a href="{{ads.advert_url}}">
         {%if ads == carousel.first%}
@@ -65,7 +65,7 @@
   <!-- About -->
 
   <section id="about">
-    <div class="row about-container about-group">
+    <div class="row about-container load-hidden about-group">
       <div class="col-7 col-sm-7 col-md-7 col-lg-7 about-left">
         <div class="about-first-writeup">
           <a href="{{sec2_ads.0.advert_url}}"><img src="{{sec2_ads.0.advert_img.url}}" class="d-block w-100" alt=""></a>
@@ -84,7 +84,7 @@
   <!-- Products-1 -->
 
   <section id="product">
-    <div class="product-top">
+    <div class="">
       <h2 class="product2-heading">FEATURED PRODUCTS</h2>
       <p class="product-message">WE SELECTED THE BEST BUYS, FREQUENTLY VIEWED WEAR, NEW ARRIVALS FOR YOUR INTEREST.</p>
     </div>
@@ -146,7 +146,7 @@
     <div class="row g-4">
       <div class="col-lg-7 blog-card left-side">
         <div class="d-block w-100 promotion-img-container">
-          <img src="{{sec3_ads.0.advert_img.url}}" class="promotion-image" alt="">
+          <img src="{{sec3_ads.0.advert_img.url}}" class="promotion-image load-hidden" alt="">
         </div>
       </div>
       <div class="col-lg-5 blog-card right-side">
@@ -231,7 +231,7 @@
     <div class="row g-8 advert-group">
       {%for ads in sec4_ads%}
       <div class="col-md-6 col-lg-4">
-        <div class="card main-advert">
+        <div class="card main-advert load-hidden ">
           <div class="card-body advert-body advert1">
             <h6 class="advert-title">{{ads.advert_title}}</h6>
             <p class="advert-text">{{ads.advert_text}}</p>
