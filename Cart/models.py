@@ -45,6 +45,14 @@ class Cart(models.Model):
     def total_checkout_cost(self):
         total_checkout=self.total_cart_sum[0] + self.total_cart_sum_shipping_fee[0] - self.total_cart_sum_discount[0]
         return [total_checkout,get_currency(total_checkout)]
+    
+    @property
+    def product_names(self):
+        cart_items=self.cartitems.all()
+        prod_names=[]
+        for item in cart_items:
+            prod_names.append(item.product.product_name)
+        return prod_names
 
 
 class CartItems(models.Model):
@@ -60,6 +68,9 @@ class CartItems(models.Model):
     def total_item_price(self):
         product_price=self.product.product_price.replace(",","")
         return self.quantity*int(product_price)
+    
+    
+
         
 
 

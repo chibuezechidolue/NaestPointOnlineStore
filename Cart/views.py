@@ -112,7 +112,7 @@ def delete_cart(request):
     return redirect(previous_page)
 
 
-def add_to_cart(request):
+def add_to_cart(request,option):
     data=json.loads(request.body)
     product_id=data['id']
     product=Products.objects.get(id=product_id)
@@ -132,13 +132,19 @@ def add_to_cart(request):
         except:
             session=request.session['session_id']=str(uuid.uuid4())
         cart, created = Cart.objects.get_or_create(session_id=session,paid=False)
-    cart_item, created=CartItems.objects.get_or_create(cart=cart,product=product)
-    cart_item.quantity+=1
-    cart_item.save()
+    if product.product_name in cart.product_names and option !="increase":
+        cart_item=CartItems.objects.get(cart=cart,product=product)
+        prod_available=True
+        cart_item.delete()
+    else:
+        cart_item, created=CartItems.objects.get_or_create(cart=cart,product=product)
+        prod_available=False
+        cart_item.quantity+=1
+        cart_item.save()
     response={"num_of_cart_items":cart.num_of_item,"item_qty":cart_item.quantity,
               "total_cart_sum":cart.total_cart_sum[1],"total_cart_sum_disc":cart.total_cart_sum_discount[1],
               "total_cart_sum_shipping_fee":cart.total_cart_sum_shipping_fee[1],"total_checkout_cost":cart.total_checkout_cost[1],
-              "item_prod_id":cart_item.product.pk}
+              "item_prod_id":cart_item.product.pk,"prod_in_cart":prod_available}
     return JsonResponse(response)
     # return JsonResponse(cart.num_of_item,safe=False)
 

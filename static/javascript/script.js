@@ -29,9 +29,9 @@ cartAddBtns.forEach(btn=>{
 
 // function for adding a clicked product to cart
 function addToCart(e){
-  // let product_id = e.target.value
+  let option = e.target.parentElement.value
   let product_id = e.target.id
-  let url = window.location.origin+"/cart/add-to-cart/"
+  let url = window.location.origin+"/cart/add-to-cart/"+option+"/"
   let data = {id:product_id}
 
   fetch(url,{
@@ -43,10 +43,18 @@ function addToCart(e){
   .then(res=>res.json())
   // .then(json => console.log(JSON.stringify(json.item_qty)))
   .then(data=>{
-              e.target.src="https://nastpoints3bucket.s3.eu-north-1.amazonaws.com/static/images/cart_activate.svg"
-              e.target.classList.add("cart_activate");
-              sleep(1000).then(() => { e.target.classList.remove("cart_activate");
-                                      e.target.src="https://nastpoints3bucket.s3.eu-north-1.amazonaws.com/static/images/Wheel-cart.svg" });
+    
+              if(data.prod_in_cart){
+                rmFromCart(e);
+              }
+              else{
+                e.target.src="https://nastpoints3bucket.s3.eu-north-1.amazonaws.com/static/images/cart_activate.svg"
+                e.target.classList.add("cart_activate");
+              // sleep(1000).then(() => { e.target.classList.remove("fav_activate"); });
+              // document.getElementById('no_of_saved_items').innerHTML=data.num_of_saved_items;
+              }
+              // sleep(3000).then(() => { e.target.classList.remove("cart_activate");
+              //                         e.target.src="https://nastpoints3bucket.s3.eu-north-1.amazonaws.com/static/images/Wheel-cart.svg" });
               document.getElementById('no_of_cart_items').innerHTML=data.num_of_cart_items;
               document.getElementById("quantity"+data.item_prod_id).innerHTML=data.item_qty;
               document.getElementById("total_cart_sum").innerHTML=data.total_cart_sum;
@@ -80,6 +88,7 @@ cartRmvBtns.forEach(btn=>{
 function rmFromCart(e){
   // let product_id = e.target.value
   let product_id = e.target.id
+  let prod_cart=document.querySelector(".add_to_cart.id_"+product_id)
   let url = window.location.origin+"/cart/rm-from-cart/"
   let data = {id:product_id}
 
@@ -91,9 +100,11 @@ function rmFromCart(e){
 
   .then(res=>res.json())
   .then(data=>{
+              e.target.src="https://nastpoints3bucket.s3.eu-north-1.amazonaws.com/static/images/Wheel-cart.svg";
               document.getElementById('no_of_cart_items').innerHTML=data.num_of_cart_items;
               if(data.item_qty<1){
                 document.getElementById("item_"+data.item_prod_id).remove();
+                prod_cart.src="https://nastpoints3bucket.s3.eu-north-1.amazonaws.com/static/images/Wheel-cart.svg";
                 try{document.getElementById("main_item_"+data.item_prod_id).remove();}
                 catch{} 
               }
@@ -101,8 +112,6 @@ function rmFromCart(e){
                 document.getElementById("quantity"+data.item_prod_id).innerHTML=data.item_qty;
                 try{document.getElementById("main_quantity"+data.item_prod_id).innerHTML=data.item_qty;}
                 catch{}
-                
-
               }
               document.getElementById("total_cart_sum").innerHTML=data.total_cart_sum;
               document.getElementById("total_cart_sum_discount").innerHTML=data.total_cart_sum_disc;
@@ -114,7 +123,6 @@ function rmFromCart(e){
                 document.getElementById("main_total_cart_sum_discount").innerHTML=data.total_cart_sum_disc;
                 document.getElementById("main_total_cart_sum_shipping_fee").innerHTML=data.total_cart_sum_shipping_fee;
                 document.getElementById("main_total_checkout_cost").innerHTML=data.total_checkout_cost;
-        
               }
               catch{}
 
